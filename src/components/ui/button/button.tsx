@@ -2,9 +2,9 @@ import { ComponentPropsWithoutRef, ElementType } from 'react'
 
 export type ButtonProps<T extends ElementType = 'button'> = {
   as?: T
-  variant?: 'primary' | 'secondary' | 'tertiary' | 'link'
-  fullWidth?: boolean
   className?: string
+  fullWidth?: boolean
+  variant?: 'link' | 'primary' | 'secondary' | 'tertiary'
 } & ComponentPropsWithoutRef<T>
 
 import s from './button.module.scss'
@@ -12,7 +12,8 @@ import s from './button.module.scss'
 export const Button = <T extends ElementType = 'button'>(
   props: ButtonProps<T> & Omit<ComponentPropsWithoutRef<T>, keyof ButtonProps<T>>
 ) => {
-  const { variant = 'primary', fullWidth, className, as: Component = 'button', ...rest } = props
+  const { as: Component = 'button', className, fullWidth, variant = 'primary', ...rest } = props
+
   return (
     <Component
       className={`${s.button} ${s[variant]} ${fullWidth ? s.fullWidth : ''} ${className}`}

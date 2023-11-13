@@ -11,7 +11,7 @@ const meta = {
   },
   component: Button,
   tags: ['autodocs'],
-  title: 'Components/Button',
+  title: 'Components/UI/Button',
 } satisfies Meta<typeof Button>
 
 export default meta
@@ -49,10 +49,9 @@ export const Link: Story = {
 
 export const FullWidth: Story = {
   args: {
+    ...Primary.args,
     children: 'Full Width Button',
-    disabled: false,
     fullWidth: true,
-    variant: 'primary',
   },
 }
 

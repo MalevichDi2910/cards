@@ -14,10 +14,14 @@ const meta = {
 export default meta
 type CardStory = StoryObj<typeof meta>
 
-export const Primary: CardStory = {}
+export const Primary: CardStory = {
+  args: {
+    variant: 'dark',
+  },
+}
 
 export const Secondary: CardStory = {
   args: {
-    className: 'white',
+    variant: 'light',
   },
 }

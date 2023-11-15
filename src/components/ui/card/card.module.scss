@@ -1,0 +1,17 @@
+.dark {
+  width: 420px;
+  min-height: 552px;
+
+  background-color: var(--color-dark-700);
+  border: 1px solid #313131;
+  box-shadow: drop-shadow(-1px -1px 2px rgb(0 0 0 / 10%)) drop-shadow(1px 1px 2px rgb(0 0 0 / 10%));
+}
+
+.light {
+  width: 420px;
+  min-height: 552px;
+  background-color: var(--color-light-700);
+
+  //border: 1px solid #313131;
+  box-shadow: drop-shadow(-1px -1px 2px rgb(0 0 0 / 10%)) drop-shadow(1px 1px 2px rgb(0 0 0 / 10%));
+}

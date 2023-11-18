@@ -1,0 +1,129 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+
+  .inputContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    .searchIcon {
+      position: absolute;
+      top: 8px;
+      left: 12px;
+
+      width: 20px;
+      height: 20px;
+    }
+
+    .closerIcon {
+      position: absolute;
+      top: 8px;
+      left: 258px;
+
+      width: 16px;
+      height: 16px;
+    }
+
+    .eyeIcon {
+      position: absolute;
+      top: 8px;
+      left: 252px;
+
+      width: 20px;
+      height: 20px;
+    }
+
+    .input {
+      width: 284px;
+      height: 36px;
+      padding: 6px 12px;
+
+      color: var(--color-light-100);
+
+      background-color: var(--color-dark-900);
+      border: 1px solid var(--color-dark-300);
+      border-radius: 2px;
+      outline: none;
+
+      &::placeholder {
+        color: var(--color-dark-100);
+      }
+
+      &[type='search'] {
+        padding: 6px 10px 6px 40px;
+      }
+
+      &:disabled {
+        color: var(--color-dark-300);
+        border: 1px solid var(--color-dark-300);
+
+        &::placeholder {
+          color: var(--color-dark-300);
+        }
+      }
+
+      &:focus {
+        border-color: var(--color-light-100);
+      }
+
+      &:active:not(&:disabled) {
+        border-color: var(--color-info-700);
+      }
+
+      &:hover:not(&:active, &:disabled) {
+        background-color: var(--color-dark-700);
+        border-color: var(--color-dark-100);
+      }
+    }
+  }
+
+  .label {
+    width: 32px;
+    height: 24px;
+    color: var(--color-dark-100);
+  }
+
+  .errorInput {
+    width: 284px;
+    height: 36px;
+    padding: 6px 12px;
+
+    background-color: var(--color-dark-900);
+    border: 1px solid var(--color-danger-300);
+    border-radius: 2px;
+    outline: none;
+
+    &::placeholder {
+      color: var(--color-danger-300);
+    }
+
+    &[type='search'] {
+      padding: 6px 10px 6px 40px;
+    }
+  }
+
+  .errorMessage {
+    color: var(--color-danger-300);
+  }
+}
+
+.passwordControl {
+  position: absolute;
+  top: 8px;
+  left: 252px;
+
+  display: inline-block;
+
+  width: 20px;
+  height: 20px;
+}
+
+.hidePassword {
+  background: url('../../../assets/icons/eye-outline.svg') 0 0 no-repeat;
+}
+
+.showPassword {
+  background: url('../../../assets/icons/eye-off.svg') 0 0 no-repeat;
+}

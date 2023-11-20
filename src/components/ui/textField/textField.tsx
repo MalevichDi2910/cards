@@ -1,7 +1,7 @@
 import { ChangeEvent, ComponentPropsWithoutRef, ReactNode, forwardRef, useState } from 'react'
 
-// import closerIcon from '@/assets/icons/close-outline.svg'
-import searchIcon from '@/assets/icons/search-outline.svg'
+import SvgComponent from '@/assets/icons/search'
+// import { CloseOutline } from '@/assets/icons/closeOutline'
 import { Typography } from '@/components/ui/typography'
 
 import s from './textField.module.scss'
@@ -29,9 +29,10 @@ export const TextField = /* @__PURE__ */ forwardRef<HTMLInputElement, TextFieldP
         </Typography>
         <div className={s.inputContainer}>
           {type === 'search' && (
-            <span>
-              <img alt={'search icon'} className={s.searchIcon} src={searchIcon} />
-            </span>
+            <SvgComponent
+              className={s.searchIcon}
+              fill={disabled ? 'var(--color-dark-300)' : 'var(--color-dark-100)'}
+            />
           )}
           <input
             className={error ? s.errorInput : s.input}
@@ -51,11 +52,7 @@ export const TextField = /* @__PURE__ */ forwardRef<HTMLInputElement, TextFieldP
               onClick={() => setVisiblePassword(visiblePassword => !visiblePassword)}
             />
           )}
-          {/*{isShowClearButton && (*/}
-          {/*  <span>*/}
-          {/*    <img alt={'closer icon'} className={s.closerIcon} src={closerIcon} />*/}
-          {/*  </span>*/}
-          {/*)}*/}
+          {/*{type === 'search' && <CloseOutline className={s.closerIcon} />}*/}
           {error && (
             <Typography variant={'caption'}>
               <span className={s.errorMessage}>{error}</span>

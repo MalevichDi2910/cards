@@ -32,8 +32,8 @@ export const Checkbox = ({
     <div className={s.wrapper}>
       <div className={classNames}>
         <CheckboxRadix.Root
+          checked={checked}
           className={disabled ? clsx(s.CheckboxRoot, s.CheckBoxDisabled) : s.CheckboxRoot}
-          defaultChecked={checked}
           disabled={disabled}
           id={id}
           onCheckedChange={onCheckedHandler}

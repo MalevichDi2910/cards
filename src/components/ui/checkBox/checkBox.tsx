@@ -1,25 +1,27 @@
-import { ComponentPropsWithoutRef, ElementType, ReactNode } from 'react'
-
 import Check from '@/assets/icons/checkMark'
+import { Typography } from '@/components/ui/typography'
 import * as CheckboxRadix from '@radix-ui/react-checkbox'
 import { clsx } from 'clsx'
 
-import s from './checkBoxEX.module.scss'
+import s from './checkBox.module.scss'
 
-type CheckBoxPropsType<T extends ElementType = 'form'> = {
-  as?: T
-  children?: ReactNode
+type CheckBoxPropsType = {
+  checked?: boolean
   className?: string
   disabled?: boolean
+  id: string
   onCheckedHandler?: (checked: boolean) => void
+  required?: boolean
   text?: string
-} & ComponentPropsWithoutRef<T>
+}
 
 export const Checkbox = ({
+  checked,
   className,
-  defaultChecked,
   disabled,
+  id,
   onCheckedHandler,
+  required,
   text,
 }: CheckBoxPropsType) => {
   const classNames = text
@@ -31,19 +33,20 @@ export const Checkbox = ({
       <div className={classNames}>
         <CheckboxRadix.Root
           className={disabled ? clsx(s.CheckboxRoot, s.CheckBoxDisabled) : s.CheckboxRoot}
-          defaultChecked={defaultChecked}
+          defaultChecked={checked}
           disabled={disabled}
-          id={'c1'}
+          id={id}
           onCheckedChange={onCheckedHandler}
+          required={required}
         >
           <CheckboxRadix.Indicator className={s.CheckboxIndicator}>
             {<Check disabled={disabled} />}
           </CheckboxRadix.Indicator>
         </CheckboxRadix.Root>
         {text && (
-          <label className={s.Label} htmlFor={'c1'}>
+          <Typography as={'label'} className={s.Label} htmlFor={id} variant={'body2'}>
             {text}
-          </label>
+          </Typography>
         )}
       </div>
     </div>

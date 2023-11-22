@@ -29,7 +29,7 @@ export const Default: Story = {
 export const Invalid: Story = {
   args: {
     disabled: false,
-    error: 'Error!',
+    errorMessage: 'Error!',
     label: 'Input',
     placeholder: 'Error',
   },

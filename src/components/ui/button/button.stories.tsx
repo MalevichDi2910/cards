@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
+import LogOut from '@/assets/logOut'
+
 import { Button } from './'
 
 const meta = {
@@ -25,9 +27,35 @@ export const Primary: Story = {
   },
 }
 
+export const PrimaryWithLogOut: Story = {
+  args: {
+    children: (
+      <>
+        <LogOut fill={'var(--color-light-100)'} />
+        Primary Button
+      </>
+    ),
+    disabled: false,
+    variant: 'primary',
+  },
+}
+
 export const Secondary: Story = {
   args: {
     children: 'Secondary Button',
+    disabled: false,
+    variant: 'secondary',
+  },
+}
+
+export const SecondaryWithLogOut: Story = {
+  args: {
+    children: (
+      <>
+        <LogOut fill={'var(--color-light-100)'} />
+        Secondary Button
+      </>
+    ),
     disabled: false,
     variant: 'secondary',
   },

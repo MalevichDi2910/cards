@@ -1,0 +1,98 @@
+/* reset */
+button {
+  all: unset;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.MainBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+}
+
+.rightPaddingChange {
+  padding-right: 9px;
+}
+
+.CheckboxRoot {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 14px;
+  height: 14px;
+  margin: 3px;
+
+  border: 2px solid var(--color-light-900);
+  border-radius: 2px;
+
+  &:hover::before {
+    content: '';
+
+    position: absolute;
+    z-index: -2;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 36px;
+    height: 36px;
+
+    background-color: var(--color-dark-500);
+    border-radius: 50%;
+  }
+
+  &:active::before {
+    content: '';
+
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 36px;
+    height: 36px;
+
+    background-color: var(--color-dark-100);
+    border-radius: 50%;
+  }
+
+  &:focus::before {
+    content: '';
+
+    position: absolute;
+    z-index: -3;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 36px;
+    height: 36px;
+
+    background-color: var(--color-dark-100);
+    border-radius: 50%;
+  }
+}
+
+.CheckboxIndicator {
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.CheckBoxDisabled {
+  border-color: var(--color-dark-100);
+}
+
+.Label {
+  padding-left: 8px;
+}

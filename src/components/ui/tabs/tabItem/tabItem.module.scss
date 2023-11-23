@@ -1,0 +1,54 @@
+.trigger {
+  cursor: pointer;
+  user-select: none;
+
+  padding: 0.6rem 2.4rem;
+
+  font-size: var(--font-size-m);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-m);
+  color: var(--color-light-100);
+  text-align: center;
+
+  background: transparent;
+  border-top: 1px solid var(--color-dark-300);
+  border-right: none;
+  border-bottom: 1px solid var(--color-dark-300);
+  border-left: 1px solid var(--color-dark-300);
+
+  &:first-child {
+    border-radius: 0.2rem 0 0 0.2rem;
+  }
+
+  &:last-child {
+    border-right: 1px solid var(--color-dark-300);
+    border-radius: 0 0.2rem 0.2rem 0;
+  }
+
+  &[data-state='active'] {
+    background-color: var(--color-primary-500);
+    border: 1px solid var(--color-primary-500);
+  }
+
+  &[data-state='active']:hover {
+    color: var(--color-light-100);
+    background-color: var(--color-dark-300);
+  }
+
+  &:hover {
+    color: var(--color-light-900);
+    background-color: var(--color-dark-300);
+    border: 1px solid var(--color-dark-100);
+  }
+
+  &:disabled {
+    pointer-events: none;
+    color: var(--color-dark-300);
+    background: var(--color-dark-700);
+  }
+
+  &:focus-visible {
+    background-color: var(--color-dark-700);
+    border: 1px solid var(--color-info-900);
+  }
+}

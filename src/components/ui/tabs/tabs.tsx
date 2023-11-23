@@ -2,6 +2,9 @@ import { ComponentPropsWithoutRef, ElementRef, ReactNode, forwardRef } from 'rea
 
 import { Typography } from '@/components/ui/typography'
 import * as RadixTabs from '@radix-ui/react-tabs'
+import { clsx } from 'clsx'
+
+import s from './tabs.module.scss'
 
 export type TabsProps = {
   children: ReactNode
@@ -10,8 +13,10 @@ export type TabsProps = {
 
 export const Tabs = forwardRef<ElementRef<typeof RadixTabs.Root>, TabsProps>(
   ({ children, className, label, ...restProps }, ref) => {
+    const rootClassName = clsx(s.root, className)
+
     return (
-      <RadixTabs.Root ref={ref} {...restProps}>
+      <RadixTabs.Root className={rootClassName} ref={ref} {...restProps}>
         {label && <Typography as={'label'} variant={'body2'} />}
         <RadixTabs.List loop>{children}</RadixTabs.List>
       </RadixTabs.Root>

@@ -32,7 +32,9 @@ button {
 
   border: 2px solid var(--color-light-900);
   border-radius: 2px;
+}
 
+.CheckboxRootEffect {
   &:hover::before {
     content: '';
 
@@ -82,15 +84,15 @@ button {
   }
 }
 
+.CheckBoxDisabled {
+  border-color: var(--color-dark-100);
+}
+
 .CheckboxIndicator {
   z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.CheckBoxDisabled {
-  border-color: var(--color-dark-100);
 }
 
 .Label {

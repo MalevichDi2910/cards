@@ -10,10 +10,10 @@ const SvgCheckMark = (allProps: IconProps, ref: Ref<SVGSVGElement>) => {
       icon={
         <svg
           fill={'none'}
-          height={'24'}
+          height={''}
           ref={ref}
           viewBox={'0 0 24 24'}
-          width={'24'}
+          width={''}
           xmlns={'http://www.w3.org/2000/svg'}
           {...props}
         >
@@ -32,6 +32,7 @@ const SvgCheckMark = (allProps: IconProps, ref: Ref<SVGSVGElement>) => {
           />
         </svg>
       }
+      size={1.5}
       {...restProps}
     />
   )

@@ -1,0 +1,18 @@
+.wrapper {
+  margin-left: 500px;
+}
+
+.icon {
+  margin-right: 10px;
+}
+
+.button {
+  display: flex;
+  color: white;
+  text-decoration: none;
+  transition: opacity 0.2s ease-in-out;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}

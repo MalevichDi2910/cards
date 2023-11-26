@@ -10,10 +10,10 @@ const LogOut = (allProps: IconProps, ref: Ref<SVGSVGElement>) => {
       icon={
         <svg
           fill={'currentColor'}
-          height={'100%'}
+          height={restProps.height}
           ref={ref}
           viewBox={'0 0 16 16'}
-          width={'100%'}
+          width={restProps.width}
           xmlns={'http://www.w3.org/2000/svg'}
         >
           <g clipPath={'url(#a)'} fill={'currentColor'}>
@@ -43,6 +43,5 @@ const LogOut = (allProps: IconProps, ref: Ref<SVGSVGElement>) => {
 }
 
 const ForwardRef = forwardRef(LogOut)
-const Memo = memo(ForwardRef)
 
-export default Memo
+export default memo(ForwardRef)

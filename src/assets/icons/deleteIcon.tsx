@@ -2,7 +2,7 @@ import { Ref, forwardRef, memo } from 'react'
 
 import { IconProps, IconWrapper } from '../IconWrapper'
 
-export const DeleteIcon = (allProps: IconProps, ref: Ref<SVGSVGElement>) => {
+const DeleteIcon = (allProps: IconProps, ref: Ref<SVGSVGElement>) => {
   const { svgProps: props, ...restProps } = allProps
 
   return (
@@ -10,10 +10,10 @@ export const DeleteIcon = (allProps: IconProps, ref: Ref<SVGSVGElement>) => {
       icon={
         <svg
           fill={'none'}
-          height={'100%'}
+          height={restProps.height}
           ref={ref}
           viewBox={'0 0 16 16'}
-          width={'100%'}
+          width={restProps.width}
           xmlns={'http://www.w3.org/2000/svg'}
           {...props}
         >
@@ -31,6 +31,5 @@ export const DeleteIcon = (allProps: IconProps, ref: Ref<SVGSVGElement>) => {
 }
 
 const ForwardRef = forwardRef(DeleteIcon)
-const Memo = memo(ForwardRef)
 
-export default Memo
+export default memo(ForwardRef)

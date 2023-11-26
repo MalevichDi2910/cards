@@ -51,14 +51,14 @@ export const UserInfo: Story = {
         <DropDownSeparator />
         <DropDownItem asChild>
           <a className={s.button} href={'profilePageHref'}>
-            <PersonIcon className={s.icon} color={'white'} height={'16'} width={'16'} />
+            <PersonIcon className={s.icon} color={'white'} height={16} width={16} />
             My Profile
           </a>
         </DropDownItem>
         <DropDownSeparator />
         <DropDownItem asChild>
           <a className={s.button} href={'profilePageHref'}>
-            <LogOut className={s.icon} color={'white'} height={'16'} width={'16'} />
+            <LogOut className={s.icon} color={'white'} height={16} width={16} />
             Sign Out
           </a>
         </DropDownItem>
@@ -73,26 +73,26 @@ export const MoreInfo: Story = {
       <div>
         <DropDownItem>
           <button className={s.button} onClick={() => {}}>
-            <PlayIcon className={s.icon} color={'white'} height={'16'} width={'16'} />
+            <PlayIcon className={s.icon} color={'white'} height={16} width={16} />
             Learn
           </button>
         </DropDownItem>
         <DropDownSeparator />
         <DropDownItem>
           <button className={s.button} onClick={() => {}}>
-            <EditIcon className={s.icon} color={'white'} height={'16'} width={'16'} />
+            <EditIcon className={s.icon} color={'white'} height={16} width={16} />
             Edit
           </button>
         </DropDownItem>
         <DropDownSeparator />
         <DropDownItem>
           <button className={s.button} onClick={() => {}}>
-            <DeleteIcon className={s.icon} color={'white'} height={'16'} width={'16'} />
+            <DeleteIcon className={s.icon} color={'white'} height={16} width={16} />
             Delete
           </button>
         </DropDownItem>
       </div>
     ),
-    trigger: <MoreInfoIcon />,
+    trigger: <MoreInfoIcon color={'white'} height={24} width={24} />,
   },
 }

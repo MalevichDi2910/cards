@@ -22,7 +22,6 @@ export const Default: Story = {
 
 export const DefaultWithText: Story = {
   args: {
-    checked: false,
     id: 'a2',
     text: 'check-box',
   },

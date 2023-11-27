@@ -2,6 +2,9 @@ import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
 
 import { Typography } from '@/components/ui/typography'
 import * as RadixSelect from '@radix-ui/react-select'
+import { clsx } from 'clsx'
+
+import s from '../select.module.scss'
 
 type SelectItemProps = {
   className?: string
@@ -12,10 +15,17 @@ export const SelectItem = forwardRef<ElementRef<typeof RadixSelect.Item>, Select
   ({ children, className, variant = 'default', ...restProps }, ref) => {
     const typographyVariant = variant === 'default' ? 'body1' : 'body2'
 
+    const classNames = {
+      selectItem: clsx(s[variant], s[`${variant}Paddings`], s.selectItem, className),
+      text: s.text,
+    }
+
     return (
-      <RadixSelect.Item ref={ref} {...restProps}>
+      <RadixSelect.Item className={classNames.selectItem} ref={ref} {...restProps}>
         <RadixSelect.ItemText>
-          <Typography variant={typographyVariant}>{children}</Typography>
+          <Typography className={classNames.text} variant={typographyVariant}>
+            {children}
+          </Typography>
         </RadixSelect.ItemText>
       </RadixSelect.Item>
     )

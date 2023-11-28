@@ -2,7 +2,7 @@
   cursor: pointer;
   user-select: none;
 
-  padding: 0.6rem 2.4rem;
+  padding: 6px 24px;
 
   font-size: var(--font-size-m);
   font-weight: var(--font-weight-regular);
@@ -17,12 +17,12 @@
   border-left: 1px solid var(--color-dark-300);
 
   &:first-child {
-    border-radius: 0.2rem 0 0 0.2rem;
+    border-radius: 2px 0 0 2px;
   }
 
   &:last-child {
     border-right: 1px solid var(--color-dark-300);
-    border-radius: 0 0.2rem 0.2rem 0;
+    border-radius: 0 2px 2px 0;
   }
 
   &[data-state='active'] {

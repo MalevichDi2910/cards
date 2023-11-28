@@ -17,7 +17,11 @@ export const Tabs = forwardRef<ElementRef<typeof RadixTabs.Root>, TabsProps>(
 
     return (
       <RadixTabs.Root className={rootClassName} ref={ref} {...restProps}>
-        {label && <Typography as={'label'} variant={'body2'} />}
+        {label && (
+          <Typography as={'label'} className={s.text} variant={'body2'}>
+            {label}
+          </Typography>
+        )}
         <RadixTabs.List loop>{children}</RadixTabs.List>
       </RadixTabs.Root>
     )

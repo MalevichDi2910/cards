@@ -12,21 +12,15 @@
       position: absolute;
       top: 8px;
       left: 12px;
-      color: var(--color-dark-100);
 
-      &:has(~ input:focus) {
-        color: var(--color-light-100);
-      }
-
-      &:has(~ input:disabled) {
-        color: var(--color-dark-300);
-      }
+      width: 20px;
+      height: 20px;
     }
 
     .closerIcon {
       position: absolute;
       top: 14px;
-      left: 258px;
+      left: 262px;
       color: var(--color-light-100);
     }
 
@@ -46,7 +40,7 @@
 
       color: var(--color-light-100);
 
-      background-color: var(--color-dark-900);
+      background-color: transparent;
       border: 1px solid var(--color-dark-300);
       border-radius: 2px;
       outline: none;
@@ -74,6 +68,10 @@
 
       &:active:not(&:disabled) {
         border-color: var(--color-info-700);
+
+        &::placeholder {
+          color: var(--color-light-100);
+        }
       }
 
       &:hover:not(&:active, &:disabled) {

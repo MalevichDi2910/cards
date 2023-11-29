@@ -1,0 +1,15 @@
+.root {
+  width: 100%;
+
+  .list {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    justify-content: flex-start;
+  }
+}
+
+label.text {
+  color: var(--color-dark-100);
+}

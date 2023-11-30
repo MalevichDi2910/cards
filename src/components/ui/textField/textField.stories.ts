@@ -51,3 +51,10 @@ export const Search: Story = {
     type: 'search',
   },
 }
+
+export const FullWidth: Story = {
+  args: {
+    ...Default.args,
+    fullWidth: true,
+  },
+}

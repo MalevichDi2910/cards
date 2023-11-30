@@ -5,11 +5,13 @@ import EyeOff from '@/assets/icons/eyeOff'
 import EyeOutline from '@/assets/icons/eyeOutline'
 import Search from '@/assets/icons/search'
 import { Typography } from '@/components/ui/typography'
+import { clsx } from 'clsx'
 
 import s from './textField.module.scss'
 
 export type TextFieldProps = {
   errorMessage?: string
+  fullWidth?: boolean
   label?: ReactNode
   onChangeValue?: (value: string) => void
   onClearSearch?: () => void
@@ -18,12 +20,34 @@ export type TextFieldProps = {
 
 export const TextField = /* @__PURE__ */ forwardRef<HTMLInputElement, TextFieldProps>(
   (
-    { disabled, errorMessage, label, onChange, onChangeValue, placeholder, type, value, ...rest },
+    {
+      disabled,
+      errorMessage,
+      fullWidth,
+      label,
+      onChange,
+      onChangeValue,
+      placeholder,
+      type,
+      value,
+      ...rest
+    },
     ref
   ) => {
     const [visiblePassword, setVisiblePassword] = useState<boolean>(false)
 
     const [isActive, setIsActive] = useState(false)
+
+    const classNames = {
+      closerIcon: s.closerIcon,
+      errorMessage: s.errorMessage,
+      eyeClass: s.eyeIcon,
+      input: clsx(errorMessage ? s.errorInput : s.input, fullWidth && s.fullWidth),
+      inputContainer: s.inputContainer,
+      label: s.label,
+      root: s.root,
+      searchIcon: s.searchIcon,
+    }
 
     const handleFocus = () => {
       setIsActive(true)
@@ -62,16 +86,18 @@ export const TextField = /* @__PURE__ */ forwardRef<HTMLInputElement, TextFieldP
     }
 
     return (
-      <div className={s.root}>
+      <div className={classNames.root}>
         {label && (
-          <Typography as={'label'} className={s.label} variant={'body2'}>
+          <Typography as={'label'} className={classNames.label} variant={'body2'}>
             {label}
           </Typography>
         )}
         <div className={s.inputContainer}>
-          {type === 'search' && <Search className={s.searchIcon} style={{ color: color }} />}
+          {type === 'search' && (
+            <Search className={classNames.searchIcon} style={{ color: color }} />
+          )}
           <input
-            className={errorMessage ? s.errorInput : s.input}
+            className={classNames.input}
             disabled={disabled}
             onBlur={handleBlur}
             onChange={onChangeHandler}
@@ -84,17 +110,19 @@ export const TextField = /* @__PURE__ */ forwardRef<HTMLInputElement, TextFieldP
           />
           {type === 'password' &&
             (visiblePassword ? (
-              <span className={s.eyeIcon} onClick={toggleVisiblePassword}>
+              <span className={classNames.eyeClass} onClick={toggleVisiblePassword}>
                 <EyeOff color={eyeIconClass} />
               </span>
             ) : (
-              <span className={s.eyeIcon} onClick={toggleVisiblePassword}>
+              <span className={classNames.eyeClass} onClick={toggleVisiblePassword}>
                 <EyeOutline color={eyeIconClass} />
               </span>
             ))}
-          {isShowClear && <CloseOutline className={s.closerIcon} onClick={onClearSearch} />}
+          {isShowClear && (
+            <CloseOutline className={classNames.closerIcon} onClick={onClearSearch} />
+          )}
           {showError && (
-            <Typography as={'span'} className={s.errorMessage} variant={'caption'}>
+            <Typography as={'span'} className={classNames.errorMessage} variant={'caption'}>
               {errorMessage}
             </Typography>
           )}

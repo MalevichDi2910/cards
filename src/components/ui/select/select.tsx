@@ -15,7 +15,9 @@ export type SelectProps = {
   className?: string
   fullWidth?: boolean
   label?: string
+  onChange?: (itemPerPage: string) => void
   options: Option[]
+  perPage?: number
   placeholder?: string
   variant?: 'default' | 'pagination'
 } & ComponentPropsWithoutRef<typeof RadixSelect.Root>

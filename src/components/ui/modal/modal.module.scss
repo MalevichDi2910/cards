@@ -95,9 +95,15 @@ input {
 }
 
 .BodyText {
-  display: flex;
   padding: 18px 24px;
-  word-wrap: break-word;
+
+  > * {
+    word-wrap: break-word;
+  }
+}
+
+.BodyTextScroll {
+  padding: 18px 24px;
 }
 
 .Text {

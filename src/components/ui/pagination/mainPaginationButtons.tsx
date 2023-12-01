@@ -5,14 +5,16 @@ import { clsx } from 'clsx'
 import s from './pagination.module.scss'
 
 export type MainPaginationButtonsProps = {
-  className?: string
   currentPage: number
   onClick: (pageNumber: number) => () => void
   paginationRange: (number | string)[]
 }
 
-export const MainPaginationButtons = (props: MainPaginationButtonsProps) => {
-  const { currentPage, onClick, paginationRange } = props
+export const MainPaginationButtons = ({
+  currentPage,
+  onClick,
+  paginationRange,
+}: MainPaginationButtonsProps) => {
   const Dots: FC = () => {
     return <span className={s.dots}>&#8230;</span>
   }

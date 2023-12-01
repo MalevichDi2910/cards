@@ -33,7 +33,7 @@
     cursor: pointer;
 
     &:focus-visible {
-      outline: var(--color-info-900);
+      outline: 2px solid var(--color-info-900);
     }
 
     &:disabled {
@@ -54,6 +54,33 @@
 
   .dots {
     @include item;
+  }
+
+  .arrow {
+    @include item;
+
+    cursor: pointer;
+    color: var(--color-light-100);
+
+    &:focus-visible {
+      outline: 2px solid var(--color-info-900);
+    }
+
+    &:hover:not(&:disabled) {
+      color: var(--color-light-100);
+      background-color: var(--color-dark-500);
+    }
+  }
+
+  .arrowDisabled {
+    @include item;
+
+    color: var(--color-dark-100);
+
+    &:hover:not(&:disabled) {
+      color: var(--color-light-100);
+      background-color: var(--color-dark-500);
+    }
   }
 
   .selectBox {

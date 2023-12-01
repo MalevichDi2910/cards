@@ -12,7 +12,7 @@ export type NavigationButtonProps = {
 
 export const PrevButton: FC<NavigationButtonProps> = ({ disabled, onClick }) => {
   return (
-    <button className={s.item} disabled={disabled} onClick={onClick}>
+    <button className={disabled ? s.arrowDisabled : s.arrow} disabled={disabled} onClick={onClick}>
       <ArrowIosBack />
     </button>
   )
@@ -20,7 +20,7 @@ export const PrevButton: FC<NavigationButtonProps> = ({ disabled, onClick }) => 
 
 export const NextButton: FC<NavigationButtonProps> = ({ disabled, onClick }) => {
   return (
-    <button className={s.item} disabled={disabled} onClick={onClick}>
+    <button className={disabled ? s.arrowDisabled : s.arrow} disabled={disabled} onClick={onClick}>
       <ArrowIosForward />
     </button>
   )

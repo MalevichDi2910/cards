@@ -36,7 +36,7 @@ const bodyTextTemplateShort =
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {
+export const DefaultWithChildren: Story = {
   args: {
     children: (
       <>
@@ -49,7 +49,13 @@ export const Default: Story = {
         </div>
 
         <div>
-          <TextField disabled={false} label={'Input'} placeholder={'Input'} type={'text'} />
+          <TextField
+            disabled={false}
+            fullWidth
+            label={'Input'}
+            placeholder={'Input'}
+            type={'text'}
+          />
         </div>
 
         <div>
@@ -82,11 +88,17 @@ export const SecondaryWithText: Story = {
   },
 }
 
+export const SecondaryWithTextOnly: Story = {
+  args: {
+    bodyText: bodyTextTemplateShort,
+  },
+}
+
 export const SecondaryWithTextScroll: Story = {
   args: {
     bodyText: bodyTextTemplateLong,
+    bodyTextScroll: true,
     closeIcon: true,
-    textScroll: true,
     title: 'Modal',
   },
 }

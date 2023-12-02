@@ -1,6 +1,7 @@
 import { ReactNode } from 'react'
 
 import XMark from '@/assets/icons/XMark'
+import { Button } from '@/components/ui/button'
 import ScrollArea from '@/components/ui/modal/scrollAreal'
 import { Typography } from '@/components/ui/typography'
 import * as Dialog from '@radix-ui/react-dialog'
@@ -29,7 +30,7 @@ const Modal = ({
   return (
     <Dialog.Root onOpenChange={onOpenChange} open={isOpen}>
       <Dialog.Trigger asChild>
-        <button className={`${s.Button} ${s.violet}`}>Edit profile</button>
+        <Button variant={'primary'}>Open modal</Button>
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className={s.DialogOverlay} />
@@ -55,9 +56,7 @@ const Modal = ({
           ) : (
             bodyText && (
               <div className={s.BodyText}>
-                <Typography className={s.Text} variant={'body1'}>
-                  {bodyText}
-                </Typography>
+                <Typography variant={'body1'}>{bodyText}</Typography>
               </div>
             )
           )}

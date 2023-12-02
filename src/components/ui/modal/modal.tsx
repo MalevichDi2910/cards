@@ -9,21 +9,21 @@ import s from './modal.module.scss'
 
 type ModalPropsType = {
   bodyText?: string
+  bodyTextScroll?: boolean
   children?: ReactNode
   closeIcon?: boolean
   isOpen?: boolean
   onOpenChange: () => void
-  textScroll?: boolean
   title?: string
 }
 
 const Modal = ({
   bodyText,
+  bodyTextScroll,
   children,
   closeIcon,
   isOpen,
   onOpenChange,
-  textScroll,
   title,
 }: ModalPropsType) => {
   return (
@@ -48,7 +48,7 @@ const Modal = ({
               </button>
             </Dialog.Close>
           )}
-          {bodyText && textScroll ? (
+          {bodyText && bodyTextScroll ? (
             <div className={s.BodyTextScroll}>
               <ScrollArea text={bodyText} />
             </div>

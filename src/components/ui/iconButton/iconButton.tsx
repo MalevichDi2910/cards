@@ -7,6 +7,9 @@ import {
   cloneElement,
   ReactElement,
 } from 'react'
+import { clsx } from 'clsx'
+
+import s from './IconButton.module.scss'
 
 type Props = {
   icon: ReactNode
@@ -21,9 +24,10 @@ export const IconButton = forwardRef<ElementRef<'button'>, Props>(
       width: size,
       height: size,
     }
+    const IconButtonClassName = clsx(s.root, className)
 
     return (
-      <button style={buttonStyle} ref={ref} {...restProps}>
+      <button className={IconButtonClassName} style={buttonStyle} ref={ref} {...restProps}>
         {cloneElement(icon as ReactElement, { size })}
       </button>
     )

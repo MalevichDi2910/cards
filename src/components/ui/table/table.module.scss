@@ -1,0 +1,38 @@
+.root {
+  border-collapse: collapse;
+
+  width: 100%;
+
+  color: var(--color-light-100);
+  text-align: start;
+
+  border: 1px solid var(--color-dark-500);
+  border-radius: 1px;
+
+  .headCell {
+    padding: 6px 24px;
+    text-align: left;
+    background-color: var(--color-dark-500);
+  }
+
+  .row {
+    &:not(:last-child) {
+      border-bottom: 1px solid var(--color-dark-500);
+    }
+  }
+
+  .cell {
+    padding: 6px 24px;
+  }
+}
+
+.empty {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 30px;
+  align-items: center;
+
+  .emptyDescription {
+    color: var(--color-dark-100);
+  }
+}

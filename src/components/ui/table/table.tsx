@@ -1,40 +1,54 @@
 import { ComponentPropsWithoutRef, ElementRef, ReactNode, forwardRef } from 'react'
 
 import { Typography } from '@/components/ui/typography'
+import { clsx } from 'clsx'
+import s from './table.module.scss'
 
 const Root = forwardRef<ElementRef<'table'>, ComponentPropsWithoutRef<'table'>>(
   ({ className, ...restProps }, ref) => {
-    return <table ref={ref} {...restProps} />
+    const rootClassName = clsx(s.root, className)
+
+    return <table className={rootClassName} ref={ref} {...restProps} />
   }
 )
 
 const Head = forwardRef<ElementRef<'thead'>, ComponentPropsWithoutRef<'thead'>>(
   ({ className, ...restProps }, ref) => {
-    return <thead ref={ref} {...restProps} />
+    const headClassName = clsx(s.thead, className)
+
+    return <thead className={headClassName} ref={ref} {...restProps} />
   }
 )
 
 const Body = forwardRef<ElementRef<'tbody'>, ComponentPropsWithoutRef<'tbody'>>(
   ({ className, ...restProps }, ref) => {
-    return <tbody ref={ref} {...restProps} />
+    const bodyClassName = clsx(s.body, className)
+
+    return <tbody className={bodyClassName} ref={ref} {...restProps} />
   }
 )
 
 const Row = forwardRef<ElementRef<'tr'>, ComponentPropsWithoutRef<'tr'>>(
   ({ className, ...restProps }, ref) => {
-    return <tr ref={ref} {...restProps} />
+    const rowClassName = clsx(s.row, className)
+
+    return <tr className={rowClassName} ref={ref} {...restProps} />
   }
 )
 
 const HeadCell = forwardRef<ElementRef<'th'>, ComponentPropsWithoutRef<'th'>>(
   ({ className, ...restProps }, ref) => {
-    return <th ref={ref} {...restProps} />
+    const headClassName = clsx(s.headCell, className)
+
+    return <th className={headClassName} ref={ref} {...restProps} />
   }
 )
 
 const Cell = forwardRef<ElementRef<'td'>, ComponentPropsWithoutRef<'td'>>(
   ({ className, ...restProps }, ref) => {
-    return <td ref={ref} {...restProps} />
+    const cellClassName = clsx(s.cell, className)
+
+    return <td className={cellClassName} ref={ref} {...restProps} />
   }
 )
 
@@ -46,9 +60,16 @@ type EmptyProps = {
 
 export const Empty = forwardRef<ElementRef<'div'>, EmptyProps>(
   ({ children, className, text = 'There is no data yet', ...restProps }, ref) => {
+    const classNames = {
+      empty: clsx(className, s.empty),
+      emptyDescription: s.emptyDescription,
+    }
+
     return (
-      <div ref={ref} {...restProps}>
-        <Typography variant={'h2'}>{text}</Typography>
+      <div className={classNames.empty} ref={ref} {...restProps}>
+        <Typography className={classNames.emptyDescription} variant={'body1'}>
+          {text}
+        </Typography>
         {children}
       </div>
     )

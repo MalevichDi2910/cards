@@ -33,8 +33,8 @@ const Modal = forwardRef<ElementRef<typeof Dialog.Root>, ModalPropsType>(
     ref
   ) => {
     return (
-      <Dialog.Root onOpenChange={onOpenChange} open={isOpen}>
-        <Dialog.Trigger asChild>
+      <Dialog.Root onOpenChange={onOpenChange} open={isOpen} {...restProps}>
+        <Dialog.Trigger asChild ref={ref}>
           <Button variant={'primary'}>Open modal</Button>
         </Dialog.Trigger>
         <Dialog.Portal>

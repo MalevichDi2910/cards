@@ -28,13 +28,13 @@ export const RadioGroup = forwardRef<ElementRef<typeof RadixRadioGroup.Root>, Ra
           >
             <RadixRadioGroup.Item
               className={s.RadioGroupItem}
-              id={id}
+              id={option.value}
               key={option.value}
               value={option.value}
             >
               <RadixRadioGroup.Indicator className={s.RadioGroupIndicator} />
             </RadixRadioGroup.Item>
-            <Typography as={'label'} className={s.Label} htmlFor={id} variant={'body2'}>
+            <Typography as={'label'} className={s.Label} htmlFor={option.value} variant={'body2'}>
               {option.title}
             </Typography>
           </div>

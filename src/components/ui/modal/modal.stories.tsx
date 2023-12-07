@@ -59,7 +59,7 @@ export const DefaultWithChildren: Story = {
         </div>
 
         <div>
-          <Checkbox id={'c1'} text={'Check-box'}></Checkbox>
+          <Checkbox id={'c1'} label={'Check-box'}></Checkbox>
         </div>
         <div className={s.FooterTwoButtonsContainer}>
           <Dialog.Close asChild>

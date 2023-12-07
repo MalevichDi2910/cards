@@ -10,7 +10,7 @@ import s from './checkBox.module.scss'
 export type CheckBoxProps = {
   id?: string
   label?: string
-  onValueChange: (checked: boolean) => void
+  onValueChange?: (checked: boolean) => void
 } & ComponentPropsWithoutRef<typeof CheckboxRadix.Root>
 
 export const Checkbox = ({

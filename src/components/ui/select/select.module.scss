@@ -28,7 +28,13 @@ label.disabled {
     background-color: var(--color-dark-500);
   }
 
+  .icon {
+    display: flex;
+    justify-content: center;
+  }
+
   &[data-state='open'] .icon {
+    transform-origin: center 50%;
     transform: rotate(180deg);
   }
 
@@ -44,6 +50,8 @@ label.disabled {
 .content {
   cursor: pointer;
   box-sizing: border-box;
+  width: var(--radix-select-trigger-width);
+  max-height: var(--radix-select-content-available-height);
 
   &[data-state='open'] {
     border-color: var(--color-dark-100);
@@ -95,8 +103,7 @@ label.disabled {
 }
 
 .pagination {
-  width: 5rem;
-  background: var(--color-dark-500);
+  background: var(--color-dark-700);
 }
 
 .paginationPaddings {

@@ -1,3 +1,5 @@
+import { ComponentPropsWithoutRef } from 'react'
+
 import Check from '@/assets/icons/checkMark'
 import { Typography } from '@/components/ui/typography'
 import * as CheckboxRadix from '@radix-ui/react-checkbox'
@@ -5,53 +7,38 @@ import { clsx } from 'clsx'
 
 import s from './checkBox.module.scss'
 
-type CheckBoxPropsType = {
-  checked?: boolean
-  className?: string
-  disabled?: boolean
-  id: string
-  onCheckedHandler?: (checked: boolean) => void
-  required?: boolean
-  text?: string
-}
+export type CheckBoxProps = {
+  id?: string
+  label?: string
+  onValueChange: (checked: boolean) => void
+} & ComponentPropsWithoutRef<typeof CheckboxRadix.Root>
 
 export const Checkbox = ({
   checked,
-  className,
   disabled,
   id,
-  onCheckedHandler,
+  label,
+  onValueChange,
   required,
-  text,
-}: CheckBoxPropsType) => {
-  const classNames = text
-    ? clsx(s.MainBox, className, s.rightPaddingChange)
-    : clsx(s.MainBox, className)
-
+}: CheckBoxProps) => {
   return (
     <div className={s.wrapper}>
-      <div className={classNames}>
+      <div className={s.MainBox}>
         <CheckboxRadix.Root
           checked={checked}
-          className={
-            disabled
-              ? clsx(s.CheckboxRoot, s.CheckBoxDisabled)
-              : clsx(s.CheckboxRoot, s.CheckboxRootEffect)
-          }
+          className={disabled ? clsx(s.CheckboxRoot) : clsx(s.CheckboxRoot, s.CheckboxRootEffect)}
           disabled={disabled}
           id={id}
-          onCheckedChange={onCheckedHandler}
+          onCheckedChange={onValueChange}
           required={required}
         >
           <CheckboxRadix.Indicator className={s.CheckboxIndicator}>
-            {<Check disabled={disabled} />}
+            <Check disabled={disabled} />
           </CheckboxRadix.Indicator>
         </CheckboxRadix.Root>
-        {text && (
-          <Typography as={'label'} className={s.Label} htmlFor={id} variant={'body2'}>
-            {text}
-          </Typography>
-        )}
+        <Typography as={'label'} className={s.Label} htmlFor={id} variant={'body2'}>
+          {label}
+        </Typography>
       </div>
     </div>
   )

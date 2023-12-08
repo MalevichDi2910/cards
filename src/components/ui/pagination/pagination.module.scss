@@ -1,0 +1,99 @@
+@mixin item {
+  all: unset;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 24px;
+  height: 24px;
+
+  font-size: var(--font-size-s);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-m);
+  color: var(--color-light-100);
+
+  background-color: transparent;
+  border-radius: 3px;
+}
+
+.root {
+  gap: 25px;
+  margin: 15px;
+
+  .container {
+    display: flex;
+    gap: 12px;
+    list-style-type: none;
+  }
+
+  .item {
+    @include item;
+
+    cursor: pointer;
+
+    &:focus-visible {
+      outline: 2px solid var(--color-info-900);
+    }
+
+    &:disabled {
+      cursor: initial;
+      opacity: 1;
+    }
+
+    &:hover:not(&:disabled) {
+      color: var(--color-light-100);
+      background-color: var(--color-dark-500);
+    }
+
+    &.selected {
+      color: var(--color-dark-900);
+      background-color: var(--color-light-100);
+    }
+  }
+
+  .dots {
+    @include item;
+  }
+
+  .arrow {
+    @include item;
+
+    cursor: pointer;
+    color: var(--color-light-100);
+
+    &:focus-visible {
+      outline: 2px solid var(--color-info-900);
+    }
+
+    &:hover:not(&:disabled) {
+      color: var(--color-light-100);
+      background-color: var(--color-dark-500);
+    }
+  }
+
+  .arrowDisabled {
+    @include item;
+
+    color: var(--color-dark-100);
+
+    &:hover:not(&:disabled) {
+      color: var(--color-light-100);
+      background-color: var(--color-dark-500);
+    }
+  }
+
+  .selectBox {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+
+    color: var(--color-light-100);
+    white-space: nowrap;
+  }
+
+  .select {
+    flex-shrink: 0;
+    gap: 2px;
+  }
+}

@@ -1,7 +1,6 @@
 import { ComponentPropsWithoutRef, ElementRef, ReactNode, forwardRef } from 'react'
 
 import XMark from '@/assets/icons/XMark'
-import { Button } from '@/components/ui/button'
 import ScrollArea from '@/components/ui/modal/scrollAreal'
 import { Typography } from '@/components/ui/typography'
 import * as Dialog from '@radix-ui/react-dialog'
@@ -14,7 +13,7 @@ type ModalPropsType = {
   children?: ReactNode
   closeIcon?: boolean
   isOpen?: boolean
-  onOpenChange: () => void
+  onOpenChange: (open: boolean) => void
   title?: string
 } & ComponentPropsWithoutRef<typeof Dialog.Root>
 
@@ -34,9 +33,7 @@ const Modal = forwardRef<ElementRef<typeof Dialog.Root>, ModalPropsType>(
   ) => {
     return (
       <Dialog.Root onOpenChange={onOpenChange} open={isOpen} {...restProps}>
-        <Dialog.Trigger asChild ref={ref}>
-          <Button variant={'primary'}>Open modal</Button>
-        </Dialog.Trigger>
+        <Dialog.Trigger asChild ref={ref}></Dialog.Trigger>
         <Dialog.Portal>
           <Dialog.Overlay className={s.DialogOverlay} />
           <Dialog.Content className={s.DialogContent}>

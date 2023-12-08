@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
+import { useState } from 'react'
+
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkBox'
 import Modal from '@/components/ui/modal/modal'
@@ -10,7 +12,9 @@ import * as Dialog from '@radix-ui/react-dialog'
 import s from '@/components/ui/modal/modal.module.scss'
 
 const meta = {
-  argTypes: {},
+  args: {
+    isOpen: false,
+  },
   component: Modal,
   tags: ['autodocs'],
   title: 'Components/UI/Modal',
@@ -38,45 +42,57 @@ type Story = StoryObj<typeof meta>
 
 export const DefaultWithChildren: Story = {
   args: {
-    children: (
+    closeIcon: true,
+    isOpen: false,
+    title: 'Modal',
+  },
+  render: args => {
+    const [open, setOpen] = useState(false)
+    const changeOpen = (open: boolean) => {
+      setOpen(open)
+    }
+
+    return (
       <>
-        <div>
-          <Select fullWidth label={'Select-box'} options={initialState} />
-        </div>
+        <Button onClick={() => setOpen(true)} variant={'primary'}>
+          Open modal
+        </Button>
+        <Modal closeIcon isOpen={open} onOpenChange={changeOpen} title={args.title}>
+          <div>
+            <Select fullWidth label={'Select-box'} options={initialState} />
+          </div>
 
-        <div>
-          <Select fullWidth label={'Select-box'} options={initialState} />
-        </div>
+          <div>
+            <Select fullWidth label={'Select-box'} options={initialState} />
+          </div>
 
-        <div>
-          <TextField
-            disabled={false}
-            fullWidth
-            label={'Input'}
-            placeholder={'Input'}
-            type={'text'}
-          />
-        </div>
+          <div>
+            <TextField
+              disabled={false}
+              fullWidth
+              label={'Input'}
+              placeholder={'Input'}
+              type={'text'}
+            />
+          </div>
 
-        <div>
-          <Checkbox id={'c1'} label={'Check-box'}></Checkbox>
-        </div>
-        <div className={s.FooterTwoButtonsContainer}>
-          <Dialog.Close asChild>
+          <div>
+            <Checkbox id={'c1'} label={'Check-box'}></Checkbox>
+          </div>
+          <div className={s.FooterTwoButtonsContainer}>
+            <Dialog.Close asChild></Dialog.Close>
             <div className={s.FooterTwoButtons}>
-              <Button className={s.Button} variant={'primary'}>
+              <Button className={s.Button} onSubmit={undefined} variant={'primary'}>
                 Button primary
               </Button>
               <Button className={s.Button} variant={'secondary'}>
-                Button primary
+                Button secondary
               </Button>
             </div>
-          </Dialog.Close>
-        </div>
+          </div>
+        </Modal>
       </>
-    ),
-    closeIcon: true,
-    title: 'Modal',
+    )
   },
 }
 
@@ -86,11 +102,47 @@ export const SecondaryWithText: Story = {
     closeIcon: true,
     title: 'Modal',
   },
+  render: args => {
+    const [open, setOpen] = useState(false)
+    const changeOpen = (open: boolean) => {
+      setOpen(open)
+    }
+
+    return (
+      <>
+        <Button onClick={() => setOpen(true)} variant={'primary'}>
+          Open modal
+        </Button>
+        <Modal
+          bodyText={args.bodyText}
+          closeIcon={args.closeIcon}
+          onOpenChange={changeOpen}
+          open={open}
+          title={args.title}
+        ></Modal>
+      </>
+    )
+  },
 }
 
 export const SecondaryWithTextOnly: Story = {
   args: {
     bodyText: bodyTextTemplateShort,
+  },
+  render: args => {
+    const [open, setOpen] = useState(false)
+    const changeOpen = (open: boolean) => {
+      setOpen(open)
+    }
+
+    return (
+      <>
+        <Button onClick={() => setOpen(true)} variant={'primary'}>
+          Open modal
+        </Button>
+        <Modal bodyText={args.bodyText} isOpen={open} onOpenChange={changeOpen}></Modal>
+      </>
+    )
   },
 }
 
@@ -100,5 +152,27 @@ export const SecondaryWithTextScroll: Story = {
     bodyTextScroll: true,
     closeIcon: true,
     title: 'Modal',
+  },
+  render: args => {
+    const [open, setOpen] = useState(false)
+    const changeOpen = (open: boolean) => {
+      setOpen(open)
+    }
+
+    return (
+      <>
+        <Button onClick={() => setOpen(true)} variant={'primary'}>
+          Open modal
+        </Button>
+        <Modal
+          bodyText={args.bodyText}
+          bodyTextScroll={args.bodyTextScroll}
+          closeIcon={args.closeIcon}
+          isOpen={open}
+          onOpenChange={changeOpen}
+          title={args.title}
+        ></Modal>
+      </>
+    )
   },
 }

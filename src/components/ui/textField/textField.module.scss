@@ -1,7 +1,6 @@
 .root {
   display: flex;
   flex-direction: column;
-  margin: 5px;
 
   .inputContainer {
     position: relative;
@@ -34,9 +33,10 @@
     }
 
     .input {
+      box-sizing: border-box;
       width: 284px;
       height: 36px;
-      padding: 6px 12px;
+      padding-left: 10px;
 
       color: var(--color-light-100);
 
@@ -46,6 +46,9 @@
       outline: none;
 
       &::placeholder {
+        font-size: var(--font-size-m);
+        font-weight: var(--font-weight-regular);
+        line-height: var(--line-height-m);
         color: var(--color-dark-100);
       }
 
@@ -101,9 +104,9 @@
   .errorInput {
     width: 284px;
     height: 36px;
-    padding: 6px 12px;
+    padding-left: 10px;
 
-    background-color: var(--color-dark-900);
+    background-color: transparent;
     border: 1px solid var(--color-danger-300);
     border-radius: 2px;
     outline: none;

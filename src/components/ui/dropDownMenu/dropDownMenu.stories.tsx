@@ -3,7 +3,6 @@ import type { Meta, StoryObj } from '@storybook/react'
 import DeleteIcon from '@/assets/icons/deleteIcon'
 import EditIcon from '@/assets/icons/editIcon'
 import LogOut from '@/assets/icons/logOut'
-import MoreInfoIcon from '@/assets/icons/moreInfoIcon'
 import PersonIcon from '@/assets/icons/personIcon'
 import PlayIcon from '@/assets/icons/playIcon'
 import { Avatar } from '@/components/ui/avatar'
@@ -93,6 +92,5 @@ export const MoreInfo: Story = {
         </DropDownItem>
       </div>
     ),
-    trigger: <MoreInfoIcon color={'white'} size={1.5} />,
   },
 }

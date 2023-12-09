@@ -4,7 +4,7 @@ import { Checkbox } from '@/components/ui/checkBox/checkBox'
 
 const meta = {
   argTypes: {
-    text: { type: 'string' },
+    label: { type: 'string' },
   },
   component: Checkbox,
   tags: ['autodocs'],
@@ -23,7 +23,7 @@ export const Default: Story = {
 export const DefaultWithText: Story = {
   args: {
     id: 'a2',
-    text: 'check-box',
+    label: 'check-box',
   },
 }
 
@@ -31,7 +31,7 @@ export const Disabled: Story = {
   args: {
     disabled: true,
     id: 'a3',
-    text: 'check-box',
+    label: 'check-box',
   },
 }
 
@@ -43,7 +43,7 @@ export const CheckedWithText: Story = {
   args: {
     checked: true,
     id: 'a5',
-    text: 'check-box',
+    label: 'check-box',
   },
 }
 
@@ -52,6 +52,6 @@ export const CheckedDisabled: Story = {
     checked: true,
     disabled: true,
     id: 'a6',
-    text: 'check-box',
+    label: 'check-box',
   },
 }

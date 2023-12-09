@@ -12,14 +12,12 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 6px;
-}
-
-.rightPaddingChange {
-  padding-right: 9px;
+  padding: 6px 0;
 }
 
 .CheckboxRoot {
+  cursor: pointer;
+
   position: relative;
 
   display: flex;
@@ -32,6 +30,11 @@ button {
 
   border: 2px solid var(--color-light-900);
   border-radius: 2px;
+
+  &:disabled {
+    cursor: initial;
+    border-color: var(--color-dark-100);
+  }
 }
 
 .CheckboxRootEffect {
@@ -82,10 +85,6 @@ button {
     background-color: var(--color-dark-100);
     border-radius: 50%;
   }
-}
-
-.CheckBoxDisabled {
-  border-color: var(--color-dark-100);
 }
 
 .CheckboxIndicator {

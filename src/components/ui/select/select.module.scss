@@ -1,0 +1,122 @@
+label.text {
+  color: var(--color-dark-100);
+}
+
+label.disabled {
+  color: var(--color-dark-300);
+}
+
+.default {
+  width: 210px;
+}
+
+.defaultPaddings {
+  padding: 6px 12px;
+}
+
+.pagination {
+  background: var(--color-dark-700);
+}
+
+.paginationPaddings {
+  padding: 0 2px 0 6px;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.trigger {
+  pointer-events: auto;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  box-sizing: border-box;
+
+  background-color: transparent;
+  border: 1px solid var(--color-dark-300);
+  border-radius: 2px;
+
+  .icon {
+    display: flex;
+    justify-content: center;
+  }
+
+  &[data-state='open'] {
+    border-color: var(--color-dark-100);
+    border-radius: 2px 2px 0 0;
+  }
+
+  &:focus {
+    border: 1px solid var(--color-info-700);
+    outline: 1px solid var(--color-info-700);
+  }
+
+  &:hover:not([data-disabled]) {
+    background-color: var(--color-dark-500);
+  }
+
+  &[data-state='open'] .icon {
+    transform-origin: center 50%;
+    transform: rotate(180deg);
+  }
+
+  &[data-disabled] .text {
+    color: var(--color-dark-300);
+  }
+
+  &[data-disabled] svg path {
+    fill: var(--color-dark-300);
+  }
+}
+
+.content {
+  cursor: pointer;
+  box-sizing: border-box;
+
+  &[data-state='open'] {
+    border-color: var(--color-dark-100);
+    border-radius: 2px 2px 0 0;
+  }
+
+  .text:hover {
+    color: var(--color-primary-300);
+  }
+
+  .text:active {
+    color: var(--color-light-100);
+  }
+}
+
+.selectItem {
+  pointer-events: auto;
+  cursor: pointer;
+  user-select: none;
+
+  width: var(--radix-select-trigger-width);
+  max-height: var(--radix-select-content-available-height);
+
+  border: 1px solid var(--color-dark-100);
+  border-top: none;
+
+  &:not(:last-child) {
+    border-bottom: none;
+  }
+
+  &:hover:not([data-disabled]) {
+    background-color: var(--color-primary-900);
+  }
+
+  &:active:not([data-disabled]) {
+    background-color: initial;
+  }
+
+  &[data-highlighted] {
+    color: var(--color-primary-300);
+    background-color: var(--color-primary-900);
+    outline: none;
+  }
+}

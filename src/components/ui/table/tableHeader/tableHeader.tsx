@@ -5,7 +5,7 @@ import { Table } from '@/components/ui/table'
 import { Typography } from '@/components/ui/typography'
 import { ArrowIosUp } from '@/assets/icons/arrowIosUp'
 import { clsx } from 'clsx'
-import s from './TableHeader.module.scss'
+import s from './tableHeader.module.scss'
 
 export type Column = {
   key: string

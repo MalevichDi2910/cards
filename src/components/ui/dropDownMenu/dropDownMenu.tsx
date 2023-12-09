@@ -6,15 +6,17 @@ import s from './dropDownMenu.module.scss'
 type DropdownProps = {
   children: ReactNode
   trigger: ReactNode
+  className?: string
+  align?: 'center' | 'end' | 'start'
 } & ComponentPropsWithoutRef<typeof DropdownMenuRadix.Root>
 
 export const DropDownMenu = forwardRef<ElementRef<typeof DropdownMenuRadix.Root>, DropdownProps>(
-  ({ children, trigger, ...rest }, ref) => {
+  ({ children, trigger, align = 'end', ...rest }, ref) => {
     return (
       <DropdownMenuRadix.Root {...rest}>
         <DropdownMenuRadix.Trigger>{trigger}</DropdownMenuRadix.Trigger>
         <DropdownMenuRadix.Portal>
-          <DropdownMenuRadix.Content ref={ref} align={'end'} className={s.dropdownMenuContent}>
+          <DropdownMenuRadix.Content align={align} ref={ref} className={s.dropdownMenuContent}>
             {children}
           </DropdownMenuRadix.Content>
         </DropdownMenuRadix.Portal>

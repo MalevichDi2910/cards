@@ -9,7 +9,7 @@ import {
 } from 'react'
 import { clsx } from 'clsx'
 
-import s from './IconButton.module.scss'
+import s from './iconButton.module.scss'
 
 type Props = {
   icon: ReactNode

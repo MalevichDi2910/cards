@@ -10,10 +10,10 @@ const MoreInfoIcon = (allProps: IconProps, ref: Ref<SVGSVGElement>) => {
       icon={
         <svg
           fill={'none'}
-          height={restProps.height}
+          height={''}
           ref={ref}
           viewBox={'0 0 24 24'}
-          width={restProps.width}
+          width={''}
           xmlns={'http://www.w3.org/2000/svg'}
           {...props}
         >

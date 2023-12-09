@@ -35,15 +35,15 @@ export const UserDropDownMenu = ({ email, name, profilePageHref }: Props) => {
         <DropDownSeparator />
         <DropDownItem asChild>
           <a className={s.link} href={profilePageHref}>
-            <PersonIcon className={s.icon} color={'white'} height={16} width={16} />
-            My Profile
+            <PersonIcon className={s.icon} color={'white'} size={1.5} />
+            <span className={s.text}>My Profile</span>
           </a>
         </DropDownItem>
         <DropDownSeparator />
         <DropDownItem asChild>
           <a className={s.link} href={profilePageHref}>
-            <LogOut className={s.icon} color={'white'} height={16} width={16} />
-            Sign Out
+            <LogOut className={s.icon} color={'white'} size={1.5} />
+            <span className={s.text}>Sign Out</span>
           </a>
         </DropDownItem>
       </DropDownMenu>

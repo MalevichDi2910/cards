@@ -35,7 +35,7 @@ export const UserInfo: Story = {
       <div>
         <DropDownItem asChild>
           <div className={s.photoAndEmail}>
-            <Avatar className={s.icon} size={'small'} userName={user.name} />
+            <Avatar size={'small'} userName={user.name} />
             <div className={s.nameAndEmail}>
               <Typography as={'div'} className={s.userName} variant={'subtitle2'}>
                 {user.name}
@@ -51,15 +51,15 @@ export const UserInfo: Story = {
         <DropDownSeparator />
         <DropDownItem asChild>
           <a className={s.button} href={'profilePageHref'}>
-            <PersonIcon className={s.icon} color={'white'} height={16} width={16} />
-            My Profile
+            <PersonIcon className={s.icon} color={'white'} size={1.5} />
+            <span className={s.text}>My Profile</span>
           </a>
         </DropDownItem>
         <DropDownSeparator />
         <DropDownItem asChild>
           <a className={s.button} href={'profilePageHref'}>
-            <LogOut className={s.icon} color={'white'} height={16} width={16} />
-            Sign Out
+            <LogOut className={s.icon} color={'white'} size={1.5} />
+            <span className={s.text}>Sign Out</span>
           </a>
         </DropDownItem>
       </div>
@@ -73,26 +73,26 @@ export const MoreInfo: Story = {
       <div>
         <DropDownItem>
           <button className={s.button} onClick={() => {}}>
-            <PlayIcon className={s.icon} color={'white'} height={16} width={16} />
+            <PlayIcon className={s.icon} color={'white'} size={1.5} />
             Learn
           </button>
         </DropDownItem>
         <DropDownSeparator />
         <DropDownItem>
           <button className={s.button} onClick={() => {}}>
-            <EditIcon className={s.icon} color={'white'} height={16} width={16} />
+            <EditIcon className={s.icon} color={'white'} size={1.5} />
             Edit
           </button>
         </DropDownItem>
         <DropDownSeparator />
         <DropDownItem>
           <button className={s.button} onClick={() => {}}>
-            <DeleteIcon className={s.icon} color={'white'} height={16} width={16} />
+            <DeleteIcon className={s.icon} color={'white'} size={1.5} />
             Delete
           </button>
         </DropDownItem>
       </div>
     ),
-    trigger: <MoreInfoIcon color={'white'} height={24} width={24} />,
+    trigger: <MoreInfoIcon color={'white'} size={1.5} />,
   },
 }

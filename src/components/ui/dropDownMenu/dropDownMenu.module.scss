@@ -15,7 +15,7 @@ button {
 .dropdownMenuContent {
   position: relative;
   top: 4px;
-  left: 15px;
+  left: 11px;
 
   min-width: 135px;
   margin: 8px;
@@ -43,13 +43,20 @@ button {
 }
 
 .dropdownMenuItem {
+  cursor: pointer;
+
   display: flex;
   align-items: center;
   justify-content: flex-start;
 
   font-size: var(--font-size-s);
+  line-height: var(--line-height-m);
 
   outline: none;
+
+  &:hover {
+    opacity: 0.7;
+  }
 }
 
 .dropdownMenuSeparator {
@@ -69,6 +76,9 @@ button {
 }
 
 .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-right: 10px;
 }
 
@@ -76,12 +86,17 @@ button {
   text-decoration: none;
 }
 
-.button {
+.text {
   color: white;
+}
+
+.button {
+  display: flex;
+  align-items: center;
   text-decoration: none;
   transition: opacity 0.2s ease-in-out;
 
   &:hover {
-    opacity: 0.8;
+    opacity: 0.7;
   }
 }

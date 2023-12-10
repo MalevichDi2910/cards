@@ -6,12 +6,15 @@ import LogOut from '@/assets/icons/logOut'
 import PersonIcon from '@/assets/icons/personIcon'
 import PlayIcon from '@/assets/icons/playIcon'
 import { Avatar } from '@/components/ui/avatar'
-import { DropDownItem } from '@/components/ui/dropDownMenu/dropDownItem'
+import { DropDownItem, DropDownItemWithIcon } from '@/components/ui/dropDownMenu/dropDownItem'
 import { DropDownMenu } from '@/components/ui/dropDownMenu/dropDownMenu'
 import { DropDownSeparator } from '@/components/ui/dropDownMenu/dropDownSeparator'
 import { Typography } from '@/components/ui/typography'
 
 import s from './dropDownMenu.module.scss'
+import { PlayCircle } from '@/assets/icons/playCircle'
+import { Edit } from '@/assets/icons/edit'
+import { Delete } from '@/assets/icons/delete'
 
 const meta = {
   component: DropDownMenu,
@@ -69,28 +72,13 @@ export const UserInfo: Story = {
 export const MoreInfo: Story = {
   args: {
     children: (
-      <div>
-        <DropDownItem>
-          <button className={s.button} onClick={() => {}}>
-            <PlayIcon className={s.icon} color={'white'} size={1.5} />
-            Learn
-          </button>
-        </DropDownItem>
+      <>
+        <DropDownItemWithIcon icon={<PlayCircle size={1} />} text="Learn" onSelect={() => {}} />
         <DropDownSeparator />
-        <DropDownItem>
-          <button className={s.button} onClick={() => {}}>
-            <EditIcon className={s.icon} color={'white'} size={1.5} />
-            Edit
-          </button>
-        </DropDownItem>
+        <DropDownItemWithIcon icon={<Edit size={1} />} text="Edit" onSelect={() => {}} />
         <DropDownSeparator />
-        <DropDownItem>
-          <button className={s.button} onClick={() => {}}>
-            <DeleteIcon className={s.icon} color={'white'} size={1.5} />
-            Delete
-          </button>
-        </DropDownItem>
-      </div>
+        <DropDownItemWithIcon icon={<Delete size={1} />} text="Delete" onSelect={() => {}} />
+      </>
     ),
   },
 }

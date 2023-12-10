@@ -54,11 +54,7 @@ export const UserInfo: Story = {
           onSelect={() => {}}
         />
         <DropDownSeparator />
-        <DropDownItemWithIcon
-          icon={<LogOut className={s.icon} size={1} />}
-          text="Sign Out"
-          onSelect={() => {}}
-        />
+        <DropDownItemWithIcon icon={<LogOut size={1} />} text="Sign Out" onSelect={() => {}} />
       </>
     ),
     trigger: <Avatar size={'small'} userName={user.name} src={user.src} />,

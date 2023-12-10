@@ -6,6 +6,7 @@ import { IconButton } from '@/components/ui/iconButton'
 import MoreInfoIcon from '@/assets/icons/moreInfoIcon'
 import { AnimatePresence, motion } from 'framer-motion'
 import { dropdownAnimations } from '@/components/ui/dropDownMenu/dropdownMenuAnimations'
+import { clsx } from 'clsx'
 
 type DropdownProps = {
   children: ReactNode
@@ -15,12 +16,16 @@ type DropdownProps = {
 } & ComponentPropsWithoutRef<typeof DropdownMenuRadix.Root>
 
 export const DropDownMenu = forwardRef<ElementRef<typeof DropdownMenuRadix.Root>, DropdownProps>(
-  ({ children, trigger, align = 'end', ...rest }, ref) => {
+  ({ children, trigger, align, className = 'end', ...rest }, ref) => {
     const [open, setOpen] = useState(false)
-
+    const classNames = {
+      trigger: s.trigger,
+      content: clsx(s.content, className),
+      arrow: s.arrow,
+    }
     return (
       <DropdownMenuRadix.Root {...rest} onOpenChange={setOpen} open={open}>
-        <DropdownMenuRadix.Trigger>
+        <DropdownMenuRadix.Trigger className={classNames.trigger} asChild>
           {trigger ?? <IconButton icon={<MoreInfoIcon />} size={1.5} />}
         </DropdownMenuRadix.Trigger>
         <AnimatePresence>
@@ -29,13 +34,14 @@ export const DropDownMenu = forwardRef<ElementRef<typeof DropdownMenuRadix.Root>
               <DropdownMenuRadix.Content
                 align={align}
                 ref={ref}
-                className={s.dropdownMenuContent}
+                className={classNames.content}
+                asChild
                 forceMount
                 onClick={event => event.stopPropagation()}
               >
                 <motion.div animate={open ? 'open' : 'closed'} {...dropdownAnimations.menu}>
                   <div>{children}</div>
-                  <DropdownMenuRadix.Arrow className={s.arrow} />
+                  <DropdownMenuRadix.Arrow className={classNames.arrow} />
                 </motion.div>
               </DropdownMenuRadix.Content>
             </DropdownMenuRadix.Portal>

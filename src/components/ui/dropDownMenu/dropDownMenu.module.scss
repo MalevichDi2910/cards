@@ -1,5 +1,4 @@
-button {
-  all: unset;
+.trigger {
   cursor: pointer;
   transition: opacity 0.2s ease-in-out;
 
@@ -8,60 +7,70 @@ button {
   }
 }
 
-.wrapper {
-  margin-left: 300px;
-}
-
-.dropdownMenuContent {
+.content {
   position: relative;
-  top: 4px;
-  left: 11px;
 
-  min-width: 135px;
   margin: 8px;
   padding: 12px;
 
   background: var(--color-dark-700);
   border: 1px solid var(--color-dark-500);
   border-radius: 4px;
-
-  &::after {
-    content: '';
-
-    position: absolute;
-    top: -9px;
-    right: 11px;
-    transform: rotate(45deg);
-
-    width: 16px;
-    height: 16px;
-
-    background: var(--color-dark-700);
-    border-top: 1px solid #333;
-    border-left: 1px solid #333;
-  }
 }
 
-.dropdownMenuItem {
+.arrow {
+  position: absolute;
+  top: -9px;
+  right: 4px;
+  transform: rotate(45deg);
+
+  width: 16px;
+  height: 16px;
+
+  background-color: var(--color-dark-700);
+  border-top: 1px solid var(--color-dark-500);
+  border-top: none;
+  border-left: none;
+
+  fill: var(--color-dark-700);
+}
+
+.item {
   cursor: pointer;
 
   display: flex;
+  gap: 6px;
   align-items: center;
-  justify-content: flex-start;
+
+  width: 100%;
 
   font-size: var(--font-size-s);
   line-height: var(--line-height-m);
 
   outline: none;
 
-  &:hover {
+  &:hover,
+  &:focus {
     opacity: 0.7;
   }
+
+  &:not(:last-child) {
+    padding-bottom: 12px;
+  }
+
+  &:not(:first-child) {
+    padding-top: 12px;
+  }
+}
+
+.itemIcon {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .dropdownMenuSeparator {
   height: 2px;
-  margin: 12px 0;
   background-color: var(--color-dark-500);
 }
 
@@ -73,30 +82,4 @@ button {
 
 .userEmail {
   color: var(--color-dark-100);
-}
-
-.icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 10px;
-}
-
-.link {
-  text-decoration: none;
-}
-
-.text {
-  color: white;
-}
-
-.button {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  transition: opacity 0.2s ease-in-out;
-
-  &:hover {
-    opacity: 0.7;
-  }
 }

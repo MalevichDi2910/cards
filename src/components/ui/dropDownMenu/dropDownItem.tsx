@@ -18,8 +18,9 @@ export const DropDownItem = forwardRef<
   ElementRef<typeof DropdownMenuRadix.Item>,
   DropDownItemProps
 >(({ children, onSelect, className, ...rest }, ref) => {
-  const DropDownItemClassName = clsx(s.dropdownMenuItem, className)
-
+  const classNames = {
+    item: clsx(s.item, className),
+  }
   const onSelectHandler = (e: Event) => {
     onSelect && onSelect(e)
     e.preventDefault()
@@ -28,8 +29,9 @@ export const DropDownItem = forwardRef<
   return (
     <DropdownMenuRadix.Item
       ref={ref}
-      className={DropDownItemClassName}
+      className={classNames.item}
       onSelect={onSelectHandler}
+      asChild
       {...rest}
     >
       <motion.div {...dropdownAnimations.item}>{children}</motion.div>
@@ -61,6 +63,7 @@ export const DropDownItemWithIcon = forwardRef<
       ref={ref}
       className={classNames.item}
       onSelect={onSelectHandler}
+      asChild
       {...rest}
     >
       <motion.div {...dropdownAnimations.item}>

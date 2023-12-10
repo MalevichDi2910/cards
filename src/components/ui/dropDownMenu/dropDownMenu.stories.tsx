@@ -1,10 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
-
-import DeleteIcon from '@/assets/icons/deleteIcon'
-import EditIcon from '@/assets/icons/editIcon'
 import LogOut from '@/assets/icons/logOut'
 import PersonIcon from '@/assets/icons/personIcon'
-import PlayIcon from '@/assets/icons/playIcon'
 import { Avatar } from '@/components/ui/avatar'
 import { DropDownItem, DropDownItemWithIcon } from '@/components/ui/dropDownMenu/dropDownItem'
 import { DropDownMenu } from '@/components/ui/dropDownMenu/dropDownMenu'
@@ -29,15 +25,16 @@ type Story = StoryObj<typeof meta>
 const user = {
   email: 'j&johnson@gmail.com',
   name: 'Ivan',
+  src: 'https://i.pinimg.com/564x/3a/52/1d/3a521da0debc5ff73da0df432395c64f.jpg',
 }
 
 export const UserInfo: Story = {
   args: {
     children: (
-      <div>
-        <DropDownItem asChild>
+      <>
+        <DropDownItem onSelect={() => {}} asChild>
           <div className={s.photoAndEmail}>
-            <Avatar size={'small'} userName={user.name} />
+            <Avatar size={'small'} userName={user.name} src={user.src} />
             <div className={s.nameAndEmail}>
               <Typography as={'div'} className={s.userName} variant={'subtitle2'}>
                 {user.name}
@@ -51,22 +48,20 @@ export const UserInfo: Story = {
           </div>
         </DropDownItem>
         <DropDownSeparator />
-        <DropDownItem asChild>
-          <a className={s.button} href={'profilePageHref'}>
-            <PersonIcon className={s.icon} color={'white'} size={1.5} />
-            <span className={s.text}>My Profile</span>
-          </a>
-        </DropDownItem>
+        <DropDownItemWithIcon
+          icon={<PersonIcon className={s.icon} size={1} />}
+          text="My Profile"
+          onSelect={() => {}}
+        />
         <DropDownSeparator />
-        <DropDownItem asChild>
-          <a className={s.button} href={'profilePageHref'}>
-            <LogOut className={s.icon} color={'white'} size={1.5} />
-            <span className={s.text}>Sign Out</span>
-          </a>
-        </DropDownItem>
-      </div>
+        <DropDownItemWithIcon
+          icon={<LogOut className={s.icon} size={1} />}
+          text="Sign Out"
+          onSelect={() => {}}
+        />
+      </>
     ),
-    trigger: <Avatar size={'small'} userName={user.name} />,
+    trigger: <Avatar size={'small'} userName={user.name} src={user.src} />,
   },
 }
 export const MoreInfo: Story = {

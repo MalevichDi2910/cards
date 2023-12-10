@@ -20,8 +20,8 @@ export const DropDownMenu = forwardRef<ElementRef<typeof DropdownMenuRadix.Root>
     const [open, setOpen] = useState(false)
     const classNames = {
       trigger: s.trigger,
-      content: clsx(s.content, className),
-      arrow: s.arrow,
+      content: clsx(s.content, align === 'start' && s.contentStart, className),
+      arrow: clsx(s.arrow, align === 'start' && s.arrowStart),
     }
     return (
       <DropdownMenuRadix.Root {...rest} onOpenChange={setOpen} open={open}>

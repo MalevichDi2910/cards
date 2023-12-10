@@ -14,8 +14,14 @@ import { Delete } from '@/assets/icons/delete'
 
 const meta = {
   component: DropDownMenu,
-  decorators: [Story => <div style={{ margin: 'auto', maxWidth: '300px' }}>{Story()}</div>],
+  decorators: [Story => <div style={{ margin: ' 0 auto', maxWidth: '300px' }}>{Story()}</div>],
   tags: ['autodocs'],
+  argTypes: {
+    align: {
+      options: ['start', 'center', 'end'],
+      control: { type: 'select' },
+    },
+  },
   title: 'Components/UI/DropdownMenu',
 } satisfies Meta<typeof DropDownMenu>
 

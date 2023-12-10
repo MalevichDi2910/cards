@@ -2,8 +2,10 @@ import { ComponentPropsWithoutRef, ElementRef, forwardRef, ReactNode } from 'rea
 
 import * as DropdownMenuRadix from '@radix-ui/react-dropdown-menu'
 import { clsx } from 'clsx'
+import { motion } from 'framer-motion'
 
 import s from './dropDownMenu.module.scss'
+import { dropdownAnimations } from '@/components/ui/dropDownMenu/dropdownMenuAnimations'
 
 type DropDownItemProps = {
   children?: ReactNode
@@ -29,7 +31,7 @@ export const DropDownItem = forwardRef<
       onSelect={onSelectHandler}
       {...rest}
     >
-      {children}
+      <motion.div {...dropdownAnimations.item}>{children}</motion.div>
     </DropdownMenuRadix.Item>
   )
 })

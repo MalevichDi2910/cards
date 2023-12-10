@@ -20,7 +20,7 @@ const menu = {
 
 const item = {
   variants: {
-    closed: { x: -16, opacity: 0 },
+    closed: { x: -12, opacity: 0 },
     open: { x: 0, opacity: 1 },
   },
   transition: { opacity: { duration: 0.15 } },

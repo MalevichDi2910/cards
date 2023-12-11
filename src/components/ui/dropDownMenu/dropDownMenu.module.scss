@@ -34,7 +34,7 @@
   height: 16px;
 
   background-color: var(--color-dark-700);
-  border-top: 1px solid var(--color-dark-500);
+  border: 1px solid var(--color-dark-500);
   border-top: none;
   border-left: none;
 
@@ -80,7 +80,7 @@
 }
 
 .dropdownMenuSeparator {
-  height: 2px;
+  height: 0.06rem;
   background-color: var(--color-dark-500);
 }
 

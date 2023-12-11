@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  align-items: center;
+  height: 36px;
+}
+
+.text {
+  margin-right: 14px;
+  padding-bottom: 1px;
+  border-bottom: 1px dashed var(--color-light-100);
+}
+
+.avatar {
+  margin: 0;
+}

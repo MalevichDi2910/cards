@@ -12,6 +12,7 @@ import {
 import { Typography } from '@/components/ui/typography'
 
 import s from './header.module.scss'
+import c from '@/components/ui/dropDownMenu/dropDownMenu.module.scss'
 
 export type HeaderProps = {
   isLoggedIn?: boolean
@@ -27,9 +28,10 @@ export const Header = ({ isLoggedIn, user }: HeaderProps) => {
             {user.name}
           </Typography>
           <DropDownMenu
+            align={'end'}
             trigger={
               <Avatar
-                className={s.avatar}
+                className={c.avatar}
                 size={'small'}
                 src={user.src}
                 userName={user.name}
@@ -37,13 +39,13 @@ export const Header = ({ isLoggedIn, user }: HeaderProps) => {
             }
           >
             <DropDownItem asChild onSelect={() => {}}>
-              <div className={s.photoAndEmail}>
+              <div className={c.photoAndEmail}>
                 <Avatar size={'small'} src={user.src} userName={user.name} />
-                <div className={s.nameAndEmail}>
-                  <Typography as={'div'} className={s.userName} variant={'subtitle2'}>
+                <div className={c.nameAndEmail}>
+                  <Typography as={'div'} className={c.userName} variant={'subtitle2'}>
                     {user.name}
                   </Typography>
-                  <div className={s.userEmail}>
+                  <div className={c.userEmail}>
                     <Typography as={'div'} variant={'caption'}>
                       {user.email}
                     </Typography>
@@ -53,7 +55,7 @@ export const Header = ({ isLoggedIn, user }: HeaderProps) => {
             </DropDownItem>
             <DropDownSeparator />
             <DropDownItemWithIcon
-              icon={<PersonIcon className={s.icon} size={1} />}
+              icon={<PersonIcon className={c.icon} size={1} />}
               onSelect={() => {}}
               text={'My Profile'}
             />

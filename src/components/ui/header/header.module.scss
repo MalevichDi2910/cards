@@ -1,4 +1,4 @@
-.container {
+.headerContainer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -7,4 +7,19 @@
   padding: 136px;
 
   background-color: var(--color-dark-700);
+}
+
+.nameWithDropDown {
+  display: flex;
+  align-items: center;
+}
+
+.text {
+  margin-right: 14px;
+  padding-bottom: 1px;
+  border-bottom: 1px dashed var(--color-light-100);
+}
+
+.avatar {
+  margin: 0;
 }

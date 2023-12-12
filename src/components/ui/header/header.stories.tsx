@@ -1,9 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import ItIncubator from '@/assets/icons/itIncubator'
-import { AvatarWithName } from '@/components/ui/avatarWithName/avatarWithName'
-import { Button } from '@/components/ui/button'
-
 import { Header } from './'
 
 const meta = {
@@ -16,24 +12,19 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
+const user = {
+  email: 'j&johnson@gmail.com',
+  name: 'Ivan',
+  src: 'https://i.pinimg.com/564x/3a/52/1d/3a521da0debc5ff73da0df432395c64f.jpg',
+}
+
 export const HeaderWithButton: Story = {
-  args: {
-    children: (
-      <>
-        <ItIncubator height={'36'} width={'157'} />
-        <Button variant={'primary'}>Sign In</Button>
-      </>
-    ),
-  },
+  args: {},
 }
 
 export const HeaderWithDropDown: Story = {
   args: {
-    children: (
-      <>
-        <ItIncubator height={'36'} width={'157'} />
-        <AvatarWithName src={'https://placehold.co/96'} userName={'Simon'} />
-      </>
-    ),
+    isLoggedIn: true,
+    user: user,
   },
 }

@@ -1,31 +1,34 @@
-import { ComponentPropsWithoutRef, ElementRef, forwardRef, ReactNode, useState } from 'react'
+import { ComponentPropsWithoutRef, ElementRef, ReactNode, forwardRef, useState } from 'react'
 
-import * as DropdownMenuRadix from '@radix-ui/react-dropdown-menu'
-import s from './dropDownMenu.module.scss'
-import { IconButton } from '@/components/ui/iconButton'
 import MoreInfoIcon from '@/assets/icons/moreInfoIcon'
-import { AnimatePresence, motion } from 'framer-motion'
 import { dropdownAnimations } from '@/components/ui/dropDownMenu/dropdownMenuAnimations'
+import { IconButton } from '@/components/ui/iconButton'
+import * as DropdownMenuRadix from '@radix-ui/react-dropdown-menu'
 import { clsx } from 'clsx'
+import { AnimatePresence, motion } from 'framer-motion'
+
+import s from './dropDownMenu.module.scss'
 
 type DropdownProps = {
-  children: ReactNode
-  trigger?: ReactNode
-  className?: string
   align?: 'center' | 'end' | 'start'
+  children: ReactNode
+  className?: string
+  trigger?: ReactNode
 } & ComponentPropsWithoutRef<typeof DropdownMenuRadix.Root>
 
 export const DropDownMenu = forwardRef<ElementRef<typeof DropdownMenuRadix.Root>, DropdownProps>(
-  ({ children, trigger, align, className = 'end', ...rest }, ref) => {
+  ({ align, children, className = 'end', trigger, ...rest }, ref) => {
     const [open, setOpen] = useState(false)
     const classNames = {
-      trigger: s.trigger,
-      content: clsx(s.content, align === 'start' && s.contentStart, className),
       arrow: clsx(s.arrow, align === 'start' && s.arrowStart),
+
+      content: clsx(s.content, align === 'start' && s.contentStart, className),
+      trigger: s.trigger,
     }
+
     return (
       <DropdownMenuRadix.Root {...rest} onOpenChange={setOpen} open={open}>
-        <DropdownMenuRadix.Trigger className={classNames.trigger} asChild>
+        <DropdownMenuRadix.Trigger asChild className={classNames.trigger}>
           {trigger ?? <IconButton icon={<MoreInfoIcon />} size={1.5} />}
         </DropdownMenuRadix.Trigger>
         <AnimatePresence>
@@ -33,11 +36,11 @@ export const DropDownMenu = forwardRef<ElementRef<typeof DropdownMenuRadix.Root>
             <DropdownMenuRadix.Portal forceMount>
               <DropdownMenuRadix.Content
                 align={align}
-                ref={ref}
-                className={classNames.content}
                 asChild
+                className={classNames.content}
                 forceMount
                 onClick={event => event.stopPropagation()}
+                ref={ref}
               >
                 <motion.div animate={open ? 'open' : 'closed'} {...dropdownAnimations.menu}>
                   <div>{children}</div>

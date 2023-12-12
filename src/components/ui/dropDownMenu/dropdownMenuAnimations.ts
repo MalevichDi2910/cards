@@ -1,8 +1,8 @@
 import { MotionProps } from 'framer-motion'
 
 const menu = {
-  initial: 'closed',
   exit: 'closed',
+  initial: 'closed',
   variants: {
     closed: {
       opacity: 0,
@@ -10,8 +10,8 @@ const menu = {
     open: {
       opacity: 1,
       transition: {
-        duration: 0.3,
         delayChildren: 0.2,
+        duration: 0.3,
         staggerChildren: 0.05,
       },
     },
@@ -19,11 +19,11 @@ const menu = {
 } satisfies MotionProps
 
 const item = {
-  variants: {
-    closed: { x: -12, opacity: 0 },
-    open: { x: 0, opacity: 1 },
-  },
   transition: { opacity: { duration: 0.15 } },
+  variants: {
+    closed: { opacity: 0, x: -12 },
+    open: { opacity: 1, x: 0 },
+  },
 } satisfies MotionProps
 
-export const dropdownAnimations = { menu, item }
+export const dropdownAnimations = { item, menu }

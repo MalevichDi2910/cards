@@ -1,6 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react'
+
+import { Delete } from '@/assets/icons/delete'
+import { Edit } from '@/assets/icons/edit'
 import LogOut from '@/assets/icons/logOut'
 import PersonIcon from '@/assets/icons/personIcon'
+import { PlayCircle } from '@/assets/icons/playCircle'
 import { Avatar } from '@/components/ui/avatar'
 import { DropDownItem, DropDownItemWithIcon } from '@/components/ui/dropDownMenu/dropDownItem'
 import { DropDownMenu } from '@/components/ui/dropDownMenu/dropDownMenu'
@@ -8,20 +12,17 @@ import { DropDownSeparator } from '@/components/ui/dropDownMenu/dropDownSeparato
 import { Typography } from '@/components/ui/typography'
 
 import s from './dropDownMenu.module.scss'
-import { PlayCircle } from '@/assets/icons/playCircle'
-import { Edit } from '@/assets/icons/edit'
-import { Delete } from '@/assets/icons/delete'
 
 const meta = {
+  argTypes: {
+    align: {
+      control: { type: 'select' },
+      options: ['start', 'center', 'end'],
+    },
+  },
   component: DropDownMenu,
   decorators: [Story => <div style={{ margin: ' 0 auto', maxWidth: '300px' }}>{Story()}</div>],
   tags: ['autodocs'],
-  argTypes: {
-    align: {
-      options: ['start', 'center', 'end'],
-      control: { type: 'select' },
-    },
-  },
   title: 'Components/UI/DropdownMenu',
 } satisfies Meta<typeof DropDownMenu>
 
@@ -38,9 +39,9 @@ export const UserInfo: Story = {
   args: {
     children: (
       <>
-        <DropDownItem onSelect={() => {}} asChild>
+        <DropDownItem asChild onSelect={() => {}}>
           <div className={s.photoAndEmail}>
-            <Avatar size={'small'} userName={user.name} src={user.src} />
+            <Avatar size={'small'} src={user.src} userName={user.name} />
             <div className={s.nameAndEmail}>
               <Typography as={'div'} className={s.userName} variant={'subtitle2'}>
                 {user.name}
@@ -56,25 +57,25 @@ export const UserInfo: Story = {
         <DropDownSeparator />
         <DropDownItemWithIcon
           icon={<PersonIcon className={s.icon} size={1} />}
-          text="My Profile"
           onSelect={() => {}}
+          text={'My Profile'}
         />
         <DropDownSeparator />
-        <DropDownItemWithIcon icon={<LogOut size={1} />} text="Sign Out" onSelect={() => {}} />
+        <DropDownItemWithIcon icon={<LogOut size={1} />} onSelect={() => {}} text={'Sign Out'} />
       </>
     ),
-    trigger: <Avatar size={'small'} userName={user.name} src={user.src} />,
+    trigger: <Avatar size={'small'} src={user.src} userName={user.name} />,
   },
 }
 export const MoreInfo: Story = {
   args: {
     children: (
       <>
-        <DropDownItemWithIcon icon={<PlayCircle size={1} />} text="Learn" onSelect={() => {}} />
+        <DropDownItemWithIcon icon={<PlayCircle size={1} />} onSelect={() => {}} text={'Learn'} />
         <DropDownSeparator />
-        <DropDownItemWithIcon icon={<Edit size={1} />} text="Edit" onSelect={() => {}} />
+        <DropDownItemWithIcon icon={<Edit size={1} />} onSelect={() => {}} text={'Edit'} />
         <DropDownSeparator />
-        <DropDownItemWithIcon icon={<Delete size={1} />} text="Delete" onSelect={() => {}} />
+        <DropDownItemWithIcon icon={<Delete size={1} />} onSelect={() => {}} text={'Delete'} />
       </>
     ),
   },

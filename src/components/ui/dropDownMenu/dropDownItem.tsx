@@ -1,12 +1,12 @@
-import { ComponentPropsWithoutRef, ElementRef, forwardRef, ReactNode } from 'react'
+import { ComponentPropsWithoutRef, ElementRef, ReactNode, forwardRef } from 'react'
 
+import { dropdownAnimations } from '@/components/ui/dropDownMenu/dropdownMenuAnimations'
+import { Typography } from '@/components/ui/typography'
 import * as DropdownMenuRadix from '@radix-ui/react-dropdown-menu'
 import { clsx } from 'clsx'
 import { motion } from 'framer-motion'
 
 import s from './dropDownMenu.module.scss'
-import { dropdownAnimations } from '@/components/ui/dropDownMenu/dropdownMenuAnimations'
-import { Typography } from '@/components/ui/typography'
 
 type DropDownItemProps = {
   children?: ReactNode
@@ -17,7 +17,7 @@ type DropDownItemProps = {
 export const DropDownItem = forwardRef<
   ElementRef<typeof DropdownMenuRadix.Item>,
   DropDownItemProps
->(({ children, onSelect, className, ...rest }, ref) => {
+>(({ children, className, onSelect, ...rest }, ref) => {
   const classNames = {
     item: clsx(s.item, className),
   }
@@ -28,10 +28,10 @@ export const DropDownItem = forwardRef<
 
   return (
     <DropdownMenuRadix.Item
-      ref={ref}
+      asChild
       className={classNames.item}
       onSelect={onSelectHandler}
-      asChild
+      ref={ref}
       {...rest}
     >
       <motion.div {...dropdownAnimations.item}>{children}</motion.div>
@@ -47,7 +47,7 @@ type DropDownItemWithIconProps = Omit<DropDownItemProps, 'children'> & {
 export const DropDownItemWithIcon = forwardRef<
   ElementRef<typeof DropdownMenuRadix.Item>,
   DropDownItemWithIconProps
->(({ children, onSelect, className, icon, text, ...rest }, ref) => {
+>(({ children, className, icon, onSelect, text, ...rest }, ref) => {
   const classNames = {
     item: clsx(s.item, className),
     itemIcon: s.itemIcon,
@@ -60,10 +60,10 @@ export const DropDownItemWithIcon = forwardRef<
 
   return (
     <DropdownMenuRadix.Item
-      ref={ref}
+      asChild
       className={classNames.item}
       onSelect={onSelectHandler}
-      asChild
+      ref={ref}
       {...rest}
     >
       <motion.div {...dropdownAnimations.item}>

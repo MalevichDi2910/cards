@@ -23,7 +23,7 @@ export const Header = ({ isLoggedIn, user }: HeaderProps) => {
       <ItIncubator height={'36'} width={'157'} />
       {isLoggedIn && user && (
         <div className={s.nameWithDropDown}>
-          <Typography className={s.text} variant={'h3'}>
+          <Typography className={s.text} variant={'subtitle1'}>
             {user.name}
           </Typography>
           <DropDownMenu

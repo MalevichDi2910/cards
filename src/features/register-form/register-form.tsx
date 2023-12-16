@@ -50,16 +50,16 @@ export const RegisterForm = () => {
             label={'Confirm Password'}
             type={'password'}
           />
-          <Button className={s.btnSignUp} fullWidth type={'submit'}>
+          <Button className={s.signUp} fullWidth type={'submit'}>
             Sign Up
           </Button>
-          <Typography as={'p'} className={s.text} variant={'body2'}>
-            Already have an account?
-          </Typography>
-          <Typography as={'a'} className={s.signIn} variant={'subtitle1'}>
-            Sign In
-          </Typography>
         </form>
+        <Typography as={'p'} className={s.text} variant={'body2'}>
+          Already have an account?
+        </Typography>
+        <Button as={'a'} className={s.signIn} href={'/sign-in'} variant={'link'}>
+          Sign In
+        </Button>
       </Card>
     </>
   )

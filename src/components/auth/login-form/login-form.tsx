@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form'
 
 import { FormValues, loginSchema } from '@/components/auth/login-form/loginSchema'
 import { Button } from '@/components/ui/button'
-import { ControlledCheckbox } from '@/components/ui/controlled/controlled-checkbox/controlled-checkbox'
+import { ControlledCheckbox } from '@/components/ui/controlled/controlled-checkbox'
 import { TextField } from '@/components/ui/textField'
 import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'

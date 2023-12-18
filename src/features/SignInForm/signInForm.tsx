@@ -4,7 +4,7 @@ import { FormValues, loginSchema } from '@/components/auth/login-form/loginSchem
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { ControlledCheckbox } from '@/components/ui/controlled/controlled-checkbox/controlled-checkbox'
-import { TextField } from '@/components/ui/textField'
+import { ControlledTextField } from '@/components/ui/controlled/controlled-textField'
 import { Typography } from '@/components/ui/typography'
 import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -14,7 +14,6 @@ export const SignInForm = () => {
     control,
     formState: { errors },
     handleSubmit,
-    register,
   } = useForm<FormValues>({ resolver: zodResolver(loginSchema) })
 
   const onSubmit = handleSubmit(data => {
@@ -29,25 +28,22 @@ export const SignInForm = () => {
         </Typography>
         <form onSubmit={onSubmit}>
           <DevTool control={control} />
-          <TextField
-            {...register('email')}
+          <ControlledTextField
+            control={control}
             errorMessage={errors.email?.message}
             fullWidth
             label={'Email'}
+            name={'email'}
           />
-          <TextField
-            {...register('password')}
+          <ControlledTextField
+            control={control}
             errorMessage={errors.password?.message}
             fullWidth
             label={'Password'}
+            name={'password'}
             type={'password'}
           />
-          <ControlledCheckbox
-            control={control}
-            label={'Remember me'}
-            name={'rememberMe'}
-            position={'left'}
-          />
+          <ControlledCheckbox control={control} label={'Remember me'} name={'rememberMe'} />
           <Typography as={'p'} variant={'body2'}>
             Forgot Password?
           </Typography>

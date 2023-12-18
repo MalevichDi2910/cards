@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef } from 'react'
+import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
 
 import Check from '@/assets/icons/checkMark'
 import { Typography } from '@/components/ui/typography'
@@ -13,15 +13,8 @@ export type CheckBoxProps = {
   onValueChange?: (checked: boolean) => void
 } & ComponentPropsWithoutRef<typeof CheckboxRadix.Root>
 
-export const Checkbox = ({
-  checked,
-  disabled,
-  id,
-  label,
-  onValueChange,
-  required,
-}: CheckBoxProps) => {
-  return (
+export const Checkbox = forwardRef<ElementRef<typeof CheckboxRadix.Root>, CheckBoxProps>(
+  ({ checked, disabled, id, label, onValueChange, required }, ref) => (
     <div className={s.wrapper}>
       <div className={s.MainBox}>
         <CheckboxRadix.Root
@@ -30,6 +23,7 @@ export const Checkbox = ({
           disabled={disabled}
           id={id}
           onCheckedChange={onValueChange}
+          ref={ref}
           required={required}
         >
           <CheckboxRadix.Indicator className={s.CheckboxIndicator}>
@@ -42,4 +36,4 @@ export const Checkbox = ({
       </div>
     </div>
   )
-}
+)

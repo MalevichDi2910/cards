@@ -2,6 +2,8 @@ import { useForm } from 'react-hook-form'
 
 import { FormValues, loginSchema } from '@/components/auth/login-form/loginSchema'
 import { Button } from '@/components/ui/button'
+import { ControlledCheckbox } from '@/components/ui/controlled/controlled-checkbox'
+import { TextField } from '@/components/ui/textField'
 import { ControlledCheckbox } from '@/components/ui/controlled/controlled-checkbox/controlled-checkbox'
 import { ControlledTextField } from '@/components/ui/controlled/controlled-textField/controlled-textField'
 import { DevTool } from '@hookform/devtools'

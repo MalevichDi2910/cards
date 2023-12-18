@@ -1,0 +1,31 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.title {
+  margin-bottom: 28px;
+}
+
+.signUp {
+  margin-top: 40px;
+}
+
+.text {
+  margin: 20px 0 0;
+  padding: 0;
+  color: var(--color-light-900);
+}
+
+.signIn {
+  cursor: pointer;
+  color: var(--color-primary-500);
+  text-decoration: underline;
+}

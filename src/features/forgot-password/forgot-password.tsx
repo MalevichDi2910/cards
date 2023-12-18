@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import { FormValues, loginSchema } from '@/components/auth/login-form/loginSchema'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
-import { TextField } from '@/components/ui/textField'
+import { ControlledTextField } from '@/components/ui/controlled/controlled-textField'
 import { Typography } from '@/components/ui/typography'
 import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -15,7 +15,6 @@ export const ForgotPasswordForm = () => {
     control,
     formState: { errors },
     handleSubmit,
-    register,
   } = useForm<FormValues>({ resolver: zodResolver(loginSchema) })
 
   const onSubmit = handleSubmit(data => {
@@ -30,11 +29,12 @@ export const ForgotPasswordForm = () => {
         </Typography>
         <form className={s.form} onSubmit={onSubmit}>
           <DevTool control={control} />
-          <TextField
-            {...register('email')}
+          <ControlledTextField
+            control={control}
             errorMessage={errors.email?.message}
             fullWidth
             label={'Email'}
+            name={'email'}
           />
           <Typography as={'p'} className={s.info} variant={'body2'}>
             Enter your email address and we will send you further instructions

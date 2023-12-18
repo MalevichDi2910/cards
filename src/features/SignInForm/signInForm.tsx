@@ -9,6 +9,8 @@ import { Typography } from '@/components/ui/typography'
 import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
 
+import s from './signInForm.module.scss'
+
 export const SignInForm = () => {
   const {
     control,
@@ -22,11 +24,11 @@ export const SignInForm = () => {
 
   return (
     <>
-      <Card variant={'dark'}>
-        <Typography as={'h1'} variant={'large'}>
+      <Card className={s.card} variant={'dark'}>
+        <Typography as={'h1'} className={s.title} variant={'large'}>
           Sign In
         </Typography>
-        <form onSubmit={onSubmit}>
+        <form className={s.form} onSubmit={onSubmit}>
           <DevTool control={control} />
           <ControlledTextField
             control={control}
@@ -44,17 +46,17 @@ export const SignInForm = () => {
             type={'password'}
           />
           <ControlledCheckbox control={control} label={'Remember me'} name={'rememberMe'} />
-          <Typography as={'p'} variant={'body2'}>
+          <Typography as={'p'} className={s.forgotPassword} variant={'body2'}>
             Forgot Password?
           </Typography>
-          <Button fullWidth type={'submit'}>
+          <Button className={s.signIn} fullWidth type={'submit'}>
             Sign In
           </Button>
         </form>
-        <Typography as={'p'} variant={'body2'}>
-          Don't have an account?
+        <Typography as={'p'} className={s.text} variant={'body2'}>
+          {`Don't have an account?`}
         </Typography>
-        <Button as={'a'} href={'/sign-up'} variant={'link'}>
+        <Button as={'a'} className={s.signUp} href={'/sign-up'} variant={'link'}>
           Sign Up
         </Button>
       </Card>

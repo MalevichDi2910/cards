@@ -31,7 +31,7 @@ export const CreateNewPasswordForm = () => {
           <DevTool control={control} />
           <ControlledTextField
             control={control}
-            errorMessage={errors.email?.message}
+            errorMessage={errors.password?.message}
             fullWidth
             label={'Password'}
             name={'password'}

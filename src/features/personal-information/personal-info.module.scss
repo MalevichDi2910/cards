@@ -1,0 +1,52 @@
+.avatarWithIconWrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 27px;
+
+  .avatarWithIcon {
+    position: relative;
+    width: 96px;
+    height: 96px;
+
+    .editButton {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      padding: 6px;
+    }
+  }
+}
+
+.editBottomWrapper {
+  margin-top: 12px;
+
+  .saveButton {
+    width: 100%;
+    margin-top: 36px;
+  }
+}
+
+.bottomWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .nameAndIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 6px;
+
+    .name {
+      margin-right: 9px;
+    }
+  }
+
+  .email {
+    color: var(--color-dark-100);
+  }
+
+  .logoutButton {
+    margin-top: 13px;
+  }
+}

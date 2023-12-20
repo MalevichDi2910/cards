@@ -5,19 +5,12 @@ import { Card } from '@/components/ui/card'
 import { ControlledCheckbox } from '@/components/ui/controlled/controlled-checkbox/controlled-checkbox'
 import { ControlledTextField } from '@/components/ui/controlled/controlled-textField'
 import { Typography } from '@/components/ui/typography'
+import { SignInFormSchema, SignInFormValues } from '@/features/SignInForm/SignInFormSchema'
 import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { z } from 'zod'
 
 import s from './signInForm.module.scss'
 
-export type SignInFormValues = z.infer<typeof SignInFormSchema>
-
-export const SignInFormSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(3),
-  rememberMe: z.boolean().optional().default(false),
-})
 export const SignInForm = () => {
   const {
     control,

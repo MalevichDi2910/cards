@@ -8,22 +8,18 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { ControlledTextField } from '@/components/ui/controlled/controlled-textField'
 import { Typography } from '@/components/ui/typography'
+import {
+  PersonalInfoFormValues,
+  PersonalInfoSchema,
+} from '@/features/personal-information/personal-info-schema'
 import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { z } from 'zod'
 
 import s from './personal-info.module.scss'
 
 type Props = {
   user: { email: string; name: string; src: string }
 }
-
-export type PersonalInfoFormValues = z.infer<typeof PersonalInfoSchema>
-
-const PersonalInfoSchema = z.object({
-  file: z.any(),
-  nickname: z.string().min(3, { message: 'Your nickname or more characters long' }).max(30),
-})
 
 export const PersonalInfo = ({ user }: Props) => {
   const {
@@ -53,7 +49,7 @@ export const PersonalInfo = ({ user }: Props) => {
       <Typography variant={'large'}>Personal Information</Typography>
       <div className={s.avatarWithIconWrapper}>
         <form className={s.avatarWithIcon}>
-          <Avatar size={'large'} userName={user.name}></Avatar>
+          <Avatar size={'large'} src={user.src} userName={user.name}></Avatar>
           <Button
             as={'label'}
             className={s.editButton}
@@ -82,7 +78,7 @@ export const PersonalInfo = ({ user }: Props) => {
             name={'nickname'}
             placeholder={user.name}
           />
-          <Button as={'button'} className={s.saveButton} fullWidth variant={'primary'}>
+          <Button className={s.saveButton} fullWidth variant={'primary'}>
             Save Changes
           </Button>
         </form>
@@ -96,16 +92,16 @@ export const PersonalInfo = ({ user }: Props) => {
             <Edit
               as={'button'}
               onClick={() => {
-                setEditMode(true)
+                setEditMode(!editMode)
               }}
             />
           </div>
           <Typography className={s.email} variant={'body2'}>
             {user.email}
           </Typography>
-          <Button as={'button'} className={s.logoutButton} variant={'secondary'}>
+          <Button className={s.logoutButton} variant={'secondary'}>
             <LogOut size={1} />
-            {'Logout'}
+            Logout
           </Button>
         </div>
       )}

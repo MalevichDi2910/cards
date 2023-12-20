@@ -49,10 +49,10 @@ export const RegisterForm = () => {
           />
           <ControlledTextField
             control={control}
-            errorMessage={errors.password?.message}
+            errorMessage={errors.confirmPassword?.message}
             fullWidth
             label={'Confirm Password'}
-            name={'password'}
+            name={'confirmPassword'}
             type={'password'}
           />
           <Button className={s.signUp} fullWidth type={'submit'}>

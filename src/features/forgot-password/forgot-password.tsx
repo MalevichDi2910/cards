@@ -1,10 +1,13 @@
 import { useForm } from 'react-hook-form'
 
-import { FormValues, loginSchema } from '@/components/auth/login-form/loginSchema'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { ControlledTextField } from '@/components/ui/controlled/controlled-textField'
 import { Typography } from '@/components/ui/typography'
+import {
+  ForgotPasswordFormValues,
+  forgotPasswordSchema,
+} from '@/features/forgot-password/forgot-password-schema'
 import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
 
@@ -15,7 +18,7 @@ export const ForgotPasswordForm = () => {
     control,
     formState: { errors },
     handleSubmit,
-  } = useForm<FormValues>({ resolver: zodResolver(loginSchema) })
+  } = useForm<ForgotPasswordFormValues>({ resolver: zodResolver(forgotPasswordSchema) })
 
   const onSubmit = handleSubmit(data => {
     console.log(data)

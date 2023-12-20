@@ -1,6 +1,5 @@
 import { useForm } from 'react-hook-form'
 
-import { FormValues, loginSchema } from '@/components/auth/login-form/loginSchema'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { ControlledCheckbox } from '@/components/ui/controlled/controlled-checkbox/controlled-checkbox'
@@ -8,15 +7,23 @@ import { ControlledTextField } from '@/components/ui/controlled/controlled-textF
 import { Typography } from '@/components/ui/typography'
 import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
 
 import s from './signInForm.module.scss'
 
+export type SignInFormValues = z.infer<typeof SignInFormSchema>
+
+export const SignInFormSchema = z.object({
+  email: z.string().email(),
+  password: z.string().min(3),
+  rememberMe: z.boolean().optional().default(false),
+})
 export const SignInForm = () => {
   const {
     control,
     formState: { errors },
     handleSubmit,
-  } = useForm<FormValues>({ resolver: zodResolver(loginSchema) })
+  } = useForm<SignInFormValues>({ resolver: zodResolver(SignInFormSchema) })
 
   const onSubmit = handleSubmit(data => {
     console.log(data)

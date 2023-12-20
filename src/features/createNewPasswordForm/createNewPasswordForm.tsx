@@ -4,21 +4,23 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { ControlledTextField } from '@/components/ui/controlled/controlled-textField'
 import { Typography } from '@/components/ui/typography'
-import {
-  ForgotPasswordFormValues,
-  forgotPasswordSchema,
-} from '@/features/forgot-password/forgot-password-schema'
 import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
 
-import s from './forgot-password.module.scss'
+import s from './createNewPasswordForm.module.scss'
+export type CreateNewPasswordFormValues = z.infer<typeof CreateNewPasswordFormSchema>
 
-export const ForgotPasswordForm = () => {
+export const CreateNewPasswordFormSchema = z.object({
+  password: z.string().min(3),
+})
+
+export const CreateNewPasswordForm = () => {
   const {
     control,
     formState: { errors },
     handleSubmit,
-  } = useForm<ForgotPasswordFormValues>({ resolver: zodResolver(forgotPasswordSchema) })
+  } = useForm<CreateNewPasswordFormValues>({ resolver: zodResolver(CreateNewPasswordFormSchema) })
 
   const onSubmit = handleSubmit(data => {
     console.log(data)
@@ -28,30 +30,25 @@ export const ForgotPasswordForm = () => {
     <>
       <Card className={s.card} variant={'dark'}>
         <Typography as={'h1'} className={s.title} variant={'large'}>
-          Forgot your password?
+          Create new password
         </Typography>
         <form className={s.form} onSubmit={onSubmit}>
           <DevTool control={control} />
           <ControlledTextField
             control={control}
-            errorMessage={errors.email?.message}
+            errorMessage={errors.password?.message}
             fullWidth
-            label={'Email'}
-            name={'email'}
+            label={'Password'}
+            name={'password'}
+            type={'password'}
           />
           <Typography as={'p'} className={s.info} variant={'body2'}>
-            Enter your email address and we will send you further instructions
+            Create new password and we will send you further instructions to email
           </Typography>
           <Button className={s.button} fullWidth type={'submit'}>
-            Send Instructions
+            Create New Password
           </Button>
         </form>
-        <Typography as={'p'} className={s.rememberPassword} variant={'body2'}>
-          Did you remember your password?
-        </Typography>
-        <Button as={'a'} className={s.loggingIn} variant={'link'}>
-          Try logging in
-        </Button>
       </Card>
     </>
   )

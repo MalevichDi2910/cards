@@ -1,21 +1,26 @@
 import { useForm } from 'react-hook-form'
 
-import { FormValues, loginSchema } from '@/components/auth/login-form/loginSchema'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { ControlledTextField } from '@/components/ui/controlled/controlled-textField'
 import { Typography } from '@/components/ui/typography'
 import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
 
 import s from './createNewPasswordForm.module.scss'
+export type CreateNewPasswordFormValues = z.infer<typeof CreateNewPasswordFormSchema>
+
+export const CreateNewPasswordFormSchema = z.object({
+  password: z.string().min(3),
+})
 
 export const CreateNewPasswordForm = () => {
   const {
     control,
     formState: { errors },
     handleSubmit,
-  } = useForm<FormValues>({ resolver: zodResolver(loginSchema) })
+  } = useForm<CreateNewPasswordFormValues>({ resolver: zodResolver(CreateNewPasswordFormSchema) })
 
   const onSubmit = handleSubmit(data => {
     console.log(data)

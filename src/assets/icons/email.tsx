@@ -10,10 +10,10 @@ const Email = (allProps: IconProps, ref: Ref<SVGSVGElement>) => {
       icon={
         <svg
           fill={'currentColor'}
-          height={''}
+          height={'100%'}
           ref={ref}
           viewBox={'0 0 96 96'}
-          width={''}
+          width={'100%'}
           xmlns={'http://www.w3.org/2000/svg'}
         >
           <path

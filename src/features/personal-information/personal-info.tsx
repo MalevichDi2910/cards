@@ -82,7 +82,7 @@ export const PersonalInfo = ({ user }: Props) => {
             name={'nickname'}
             placeholder={user.name}
           />
-          <Button as={'button'} className={s.saveButton} variant={'primary'}>
+          <Button as={'button'} className={s.saveButton} fullWidth variant={'primary'}>
             Save Changes
           </Button>
         </form>

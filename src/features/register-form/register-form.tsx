@@ -1,10 +1,13 @@
 import { useForm } from 'react-hook-form'
 
-import { FormValues, loginSchema } from '@/components/auth/login-form/loginSchema'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { ControlledTextField } from '@/components/ui/controlled/controlled-textField/controlled-textField'
 import { Typography } from '@/components/ui/typography'
+import {
+  RegisterFormValues,
+  registerFormSchema,
+} from '@/features/register-form/register-form-schema'
 import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
 
@@ -15,7 +18,7 @@ export const RegisterForm = () => {
     control,
     formState: { errors },
     handleSubmit,
-  } = useForm<FormValues>({ resolver: zodResolver(loginSchema) })
+  } = useForm<RegisterFormValues>({ resolver: zodResolver(registerFormSchema) })
 
   const onSubmit = handleSubmit(data => {
     console.log(data)

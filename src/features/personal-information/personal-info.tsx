@@ -1,13 +1,8 @@
 import { ChangeEvent, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { Edit } from '@/assets/icons/edit'
-import { LogOut } from '@/assets/icons/logOut'
-import { Avatar } from '@/components/ui/avatar'
-import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
-import { ControlledTextField } from '@/components/ui/controlled/controlled-textField'
-import { Typography } from '@/components/ui/typography'
+import { Edit, LogOut } from '@/assets/icons'
+import { Avatar, Button, Card, ControlledTextField, Typography } from '@/components/ui'
 import {
   PersonalInfoFormValues,
   PersonalInfoSchema,

@@ -1,11 +1,12 @@
 import { ComponentPropsWithoutRef, ElementRef, ReactNode, forwardRef } from 'react'
 
 import { SvgXMark } from '@/assets/icons/XMark'
-import ScrollArea from '@/components/ui/modal/scrollAreal'
 import { Typography } from '@/components/ui/typography'
 import * as Dialog from '@radix-ui/react-dialog'
 
 import s from './modal.module.scss'
+
+import { ScrollArea } from './scrollArea'
 
 type ModalPropsType = {
   bodyText?: string
@@ -17,7 +18,7 @@ type ModalPropsType = {
   title?: string
 } & ComponentPropsWithoutRef<typeof Dialog.Root>
 
-const Modal = forwardRef<ElementRef<typeof Dialog.Root>, ModalPropsType>(
+export const Modal = forwardRef<ElementRef<typeof Dialog.Root>, ModalPropsType>(
   (
     {
       bodyText,
@@ -69,5 +70,3 @@ const Modal = forwardRef<ElementRef<typeof Dialog.Root>, ModalPropsType>(
     )
   }
 )
-
-export default Modal

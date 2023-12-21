@@ -7,7 +7,7 @@ type ScrollAreaPropsType = {
   text: string
 }
 
-const ScrollArea = ({ text }: ScrollAreaPropsType) => (
+export const ScrollArea = ({ text }: ScrollAreaPropsType) => (
   <ScrollAreaRadix.Root className={s.ScrollAreaRoot} type={'always'}>
     <ScrollAreaRadix.Viewport className={s.ScrollAreaViewport}>
       <Typography variant={'body1'}>{text}</Typography>
@@ -17,5 +17,3 @@ const ScrollArea = ({ text }: ScrollAreaPropsType) => (
     </ScrollAreaRadix.Scrollbar>
   </ScrollAreaRadix.Root>
 )
-
-export default ScrollArea

@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkBox'
-import Modal from '@/components/ui/modal/modal'
+import { Modal } from '@/components/ui/modal/modal'
 import { Option, Select } from '@/components/ui/select'
 import { TextField } from '@/components/ui/textField'
 import * as Dialog from '@radix-ui/react-dialog'

@@ -2,7 +2,7 @@ import { Ref, forwardRef, memo } from 'react'
 
 import { IconProps, IconWrapper } from '@/assets/IconWrapper'
 
-const ArrowIosForward = (allProps: IconProps, ref: Ref<SVGSVGElement>) => {
+const SvgComponent = (allProps: IconProps, ref: Ref<SVGSVGElement>) => {
   const { svgProps: props, ...restProps } = allProps
 
   return (
@@ -36,7 +36,4 @@ const ArrowIosForward = (allProps: IconProps, ref: Ref<SVGSVGElement>) => {
   )
 }
 
-const ForwardRef = forwardRef(ArrowIosForward)
-const Memo = memo(ForwardRef)
-
-export default Memo
+export const ArrowIosForward = memo(forwardRef(SvgComponent))

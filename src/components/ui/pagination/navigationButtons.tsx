@@ -1,7 +1,7 @@
 import { FC } from 'react'
 
-import ArrowIosBack from '@/assets/icons/arrowIosBack'
-import ArrowIosForward from '@/assets/icons/arrowIosForward'
+import { ArrowIosBack } from '@/assets/icons/arrowIosBack'
+import { ArrowIosForward } from '@/assets/icons/arrowIosForward'
 
 import s from '@/components/ui/pagination/pagination.module.scss'
 

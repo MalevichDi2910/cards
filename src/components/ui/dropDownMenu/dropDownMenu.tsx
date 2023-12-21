@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef, ElementRef, ReactNode, forwardRef, useState } from 'react'
 
-import MoreInfoIcon from '@/assets/icons/moreInfoIcon'
+import { MoreInfoIcon } from '@/assets/icons/moreInfoIcon'
 import { dropdownAnimations } from '@/components/ui/dropDownMenu/dropdownMenuAnimations'
 import { IconButton } from '@/components/ui/iconButton'
 import * as DropdownMenuRadix from '@radix-ui/react-dropdown-menu'

@@ -1,4 +1,4 @@
-import Email from '@/assets/icons/email'
+import { Email } from '@/assets/icons/email'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Typography } from '@/components/ui/typography'

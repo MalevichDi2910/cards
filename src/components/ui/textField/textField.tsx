@@ -1,9 +1,9 @@
 import { ChangeEvent, ComponentPropsWithoutRef, ReactNode, forwardRef, useState } from 'react'
 
-import CloseOutline from '@/assets/icons/closeOutline'
-import EyeOff from '@/assets/icons/eyeOff'
-import EyeOutline from '@/assets/icons/eyeOutline'
-import Search from '@/assets/icons/search'
+import { CloseOutline } from '@/assets/icons/closeOutline'
+import { EyeOff } from '@/assets/icons/eyeOff'
+import { EyeOutline } from '@/assets/icons/eyeOutline'
+import { Search } from '@/assets/icons/search'
 import { Typography } from '@/components/ui/typography'
 import { clsx } from 'clsx'
 

@@ -2,7 +2,7 @@ import { Ref, forwardRef, memo } from 'react'
 
 import { IconProps, IconWrapper } from '@/assets/IconWrapper'
 
-const Search = (allProps: IconProps, ref: Ref<SVGSVGElement>) => {
+const SvgComponent = (allProps: IconProps, ref: Ref<SVGSVGElement>) => {
   const { disabled, svgProps: props, ...restProps } = allProps
 
   return (
@@ -37,7 +37,4 @@ const Search = (allProps: IconProps, ref: Ref<SVGSVGElement>) => {
   )
 }
 
-const ForwardRef = forwardRef(Search)
-const Memo = memo(ForwardRef)
-
-export default Memo
+export const Search = memo(forwardRef(SvgComponent))

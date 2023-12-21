@@ -2,7 +2,7 @@ import { ChangeEvent, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { Edit } from '@/assets/icons/edit'
-import LogOut from '@/assets/icons/logOut'
+import { LogOut } from '@/assets/icons/logOut'
 import { Avatar } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'

@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
 
-import Check from '@/assets/icons/checkMark'
+import { SvgCheckMark } from '@/assets/icons/checkMark'
 import { Typography } from '@/components/ui/typography'
 import * as CheckboxRadix from '@radix-ui/react-checkbox'
 import { clsx } from 'clsx'
@@ -27,7 +27,7 @@ export const Checkbox = forwardRef<ElementRef<typeof CheckboxRadix.Root>, CheckB
           required={required}
         >
           <CheckboxRadix.Indicator className={s.CheckboxIndicator}>
-            <Check disabled={disabled} />
+            <SvgCheckMark disabled={disabled} />
           </CheckboxRadix.Indicator>
         </CheckboxRadix.Root>
         <Typography as={'label'} className={s.Label} htmlFor={id} variant={'body2'}>

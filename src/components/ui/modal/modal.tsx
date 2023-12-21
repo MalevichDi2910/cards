@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef, ElementRef, ReactNode, forwardRef } from 'react'
 
-import XMark from '@/assets/icons/XMark'
+import { SvgXMark } from '@/assets/icons/XMark'
 import ScrollArea from '@/components/ui/modal/scrollAreal'
 import { Typography } from '@/components/ui/typography'
 import * as Dialog from '@radix-ui/react-dialog'
@@ -47,7 +47,7 @@ const Modal = forwardRef<ElementRef<typeof Dialog.Root>, ModalPropsType>(
             {title && closeIcon && (
               <Dialog.Close asChild>
                 <button aria-label={'Close'} className={s.IconButton}>
-                  {<XMark size={1.5} />}
+                  {<SvgXMark size={1.5} />}
                 </button>
               </Dialog.Close>
             )}

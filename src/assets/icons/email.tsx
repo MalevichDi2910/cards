@@ -2,7 +2,7 @@ import { Ref, forwardRef, memo } from 'react'
 
 import { IconProps, IconWrapper } from '@/assets/IconWrapper'
 
-const Email = (allProps: IconProps, ref: Ref<SVGSVGElement>) => {
+const SvgComponent = (allProps: IconProps, ref: Ref<SVGSVGElement>) => {
   const { svgProps: props, ...restProps } = allProps
 
   return (
@@ -194,6 +194,4 @@ const Email = (allProps: IconProps, ref: Ref<SVGSVGElement>) => {
   )
 }
 
-const ForwardRef = forwardRef(Email)
-
-export default memo(ForwardRef)
+export const Email = memo(forwardRef(SvgComponent))

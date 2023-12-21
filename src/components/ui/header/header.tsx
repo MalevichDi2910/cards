@@ -1,6 +1,6 @@
-import ItIncubator from '@/assets/icons/itIncubator'
-import LogOut from '@/assets/icons/logOut'
-import PersonIcon from '@/assets/icons/personIcon'
+import { ItIncubator } from '@/assets/icons/itIncubator'
+import { LogOut } from '@/assets/icons/logOut'
+import { PersonIcon } from '@/assets/icons/personIcon'
 import { Avatar } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import {

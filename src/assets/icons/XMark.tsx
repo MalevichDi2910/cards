@@ -2,7 +2,7 @@ import { Ref, forwardRef, memo } from 'react'
 
 import { IconProps, IconWrapper } from '@/assets/IconWrapper'
 
-const SvgXMark = (allProps: IconProps, ref: Ref<SVGSVGElement>) => {
+const SvgComponent = (allProps: IconProps, ref: Ref<SVGSVGElement>) => {
   const { disabled, svgProps: props, ...restProps } = allProps
 
   return (
@@ -36,6 +36,5 @@ const SvgXMark = (allProps: IconProps, ref: Ref<SVGSVGElement>) => {
     />
   )
 }
-const ForwardRef = forwardRef(SvgXMark)
 
-export default memo(ForwardRef)
+export const SvgXMark = memo(forwardRef(SvgComponent))

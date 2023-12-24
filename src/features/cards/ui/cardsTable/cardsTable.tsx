@@ -5,6 +5,7 @@ import { Rating } from '@/components/ui/rating'
 import { Sort, Table, TableHeader } from '@/components/ui/table'
 import { Typography } from '@/components/ui/typography'
 import { Card } from '@/features/cards/api/cardsApi.types'
+import { columnsData } from '@/features/cards/ui/cardsTable/columnsData'
 
 type Props = {
   cards: Card[]
@@ -14,7 +15,7 @@ type Props = {
 export const CardsTable = ({ cards, onSort, sort }: Props) => {
   return (
     <Table.Root>
-      <TableHeader columns={} onSort={onSort} sort={sort} />
+      <TableHeader columns={columnsData} onSort={onSort} sort={sort} />
       <Table.Body>
         {cards.map(card => {
           return (

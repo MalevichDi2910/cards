@@ -26,3 +26,10 @@ export const columnsData: Column[] = [
     title: '',
   },
 ]
+export const getColumnsData = (isOwner: boolean) => {
+  if (isOwner) {
+    return columnsData
+  }
+
+  return columnsData.slice(0, columnsData.length - 1)
+}

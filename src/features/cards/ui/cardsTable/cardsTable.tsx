@@ -5,17 +5,18 @@ import { Rating } from '@/components/ui/rating'
 import { Sort, Table, TableHeader } from '@/components/ui/table'
 import { Typography } from '@/components/ui/typography'
 import { Card } from '@/features/cards/api/cardsApi.types'
-import { columnsData } from '@/features/cards/ui/cardsTable/columnsData'
+import { getColumnsData } from '@/features/cards/ui/cardsTable/columnsData'
 
 type Props = {
   cards: Card[]
+  isOwner: boolean
   onSort: (sort: Sort) => void
   sort: Sort
 }
-export const CardsTable = ({ cards, onSort, sort }: Props) => {
+export const CardsTable = ({ cards, isOwner, onSort, sort }: Props) => {
   return (
     <Table.Root>
-      <TableHeader columns={columnsData} onSort={onSort} sort={sort} />
+      <TableHeader columns={getColumnsData(isOwner)} onSort={onSort} sort={sort} />
       <Table.Body>
         {cards.map(card => {
           return (
@@ -34,10 +35,12 @@ export const CardsTable = ({ cards, onSort, sort }: Props) => {
               <Table.Cell>
                 <Rating rating={card.grade} />
               </Table.Cell>
-              <Table.Cell>
-                <IconButton icon={<Edit />} size={1} />
-                <IconButton icon={<Delete />} size={1} />
-              </Table.Cell>
+              {isOwner && (
+                <Table.Cell>
+                  <IconButton icon={<Edit />} size={1} />
+                  <IconButton icon={<Delete />} size={1} />
+                </Table.Cell>
+              )}
             </Table.Row>
           )
         })}

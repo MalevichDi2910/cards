@@ -9,6 +9,7 @@ import { DropDownItemWithIcon, DropDownMenu, DropDownSeparator } from '@/compone
 import { Sort } from '@/components/ui/table'
 import { TextField } from '@/components/ui/textField'
 import { Typography } from '@/components/ui/typography'
+import { useMeQuery } from '@/features/auth/api/authApi'
 import { useGetCardsQuery } from '@/features/cards/api/cardsApi'
 import { CardsTable } from '@/features/cards/ui/cardsTable/cardsTable'
 
@@ -23,6 +24,7 @@ export const DeckPage = ({ isOwner, sort }: Props) => {
   const { id } = useParams<{ id: string }>()
   const queryParams = { id, params: {} }
   const { data: deckData } = useGetCardsQuery(queryParams)
+  const { data: user } = useMeQuery()
 
   return (
     <div>

@@ -1,9 +1,5 @@
-import { Button } from '@/components/ui/button'
+import { Router } from '@/common/router'
 
 export function App() {
-  return (
-    <div>
-      <Button>Hello</Button>
-    </div>
-  )
+  return <Router />
 }

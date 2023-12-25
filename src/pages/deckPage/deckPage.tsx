@@ -1,3 +1,5 @@
+import { useParams } from 'react-router-dom'
+
 import ArrowIosBack from '@/assets/icons/arrowIosBack'
 import { Delete } from '@/assets/icons/delete'
 import { Edit } from '@/assets/icons/edit'
@@ -7,6 +9,7 @@ import { DropDownItemWithIcon, DropDownMenu, DropDownSeparator } from '@/compone
 import { Sort } from '@/components/ui/table'
 import { TextField } from '@/components/ui/textField'
 import { Typography } from '@/components/ui/typography'
+import { useGetCardsQuery } from '@/features/cards/api/cardsApi'
 import { CardsTable } from '@/features/cards/ui/cardsTable/cardsTable'
 
 type Props = {
@@ -16,6 +19,10 @@ type Props = {
 export const DeckPage = ({ isOwner, sort }: Props) => {
   const goBack = () => {}
   const onChangeSort = (sort: Sort) => {}
+
+  const { id } = useParams<{ id: string }>()
+  const queryParams = { id, params: {} }
+  const { data: deckData } = useGetCardsQuery(queryParams)
 
   return (
     <div>
@@ -56,7 +63,12 @@ export const DeckPage = ({ isOwner, sort }: Props) => {
       </div>
       <div>
         <TextField placeholder={'Input search'} type={'search'} />
-        <CardsTable cards={[]} isOwner={isOwner} onSort={onChangeSort} sort={sort} />
+        <CardsTable
+          cards={deckData?.items || []}
+          isOwner={isOwner}
+          onSort={onChangeSort}
+          sort={sort}
+        />
       </div>
     </div>
   )

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { App } from '@/App'
+import { App } from '@/app/ui/App'
 import ReactDOM from 'react-dom/client'
 
 import '@fontsource/roboto/400.css'

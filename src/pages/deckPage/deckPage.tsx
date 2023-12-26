@@ -12,12 +12,12 @@ import { Typography } from '@/components/ui/typography'
 import { useMeQuery } from '@/features/auth/api/authApi'
 import { useGetCardsQuery } from '@/features/cards/api/cardsApi'
 import { CardsTable } from '@/features/cards/ui/cardsTable/cardsTable'
+import { useGetDeckQuery } from '@/features/decks/api'
 
 type Props = {
-  isOwner: boolean
   sort: Sort
 }
-export const DeckPage = ({ isOwner, sort }: Props) => {
+export const DeckPage = ({ sort }: Props) => {
   const goBack = () => {}
   const onChangeSort = (sort: Sort) => {}
 
@@ -25,6 +25,9 @@ export const DeckPage = ({ isOwner, sort }: Props) => {
   const queryParams = { id, params: {} }
   const { data: deckData } = useGetCardsQuery(queryParams)
   const { data: user } = useMeQuery()
+  const { data: deck } = useGetDeckQuery({ id })
+
+  const isOwner = user?.id === deck?.userId
 
   return (
     <div>

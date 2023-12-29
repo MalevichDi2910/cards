@@ -13,6 +13,7 @@ import { useMeQuery } from '@/features/auth/api/authApi'
 import { useGetCardsQuery } from '@/features/cards/api/cardsApi'
 import { CardsTable } from '@/features/cards/ui/cardsTable/cardsTable'
 import { useGetDeckQuery } from '@/features/decks/api'
+import { DropDownDeckTools } from '@/pages/deckPage/DropDownDeckTools/DropDownDeckTools'
 
 type Props = {
   sort: Sort
@@ -42,21 +43,7 @@ export const DeckPage = ({ sort }: Props) => {
           </Typography>
           {isOwner && (
             <DropDownMenu>
-              <>
-                <DropDownItemWithIcon
-                  icon={<PlayCircle size={1} />}
-                  onSelect={() => {}}
-                  text={'Learn'}
-                />
-                <DropDownSeparator />
-                <DropDownItemWithIcon icon={<Edit size={1} />} onSelect={() => {}} text={'Edit'} />
-                <DropDownSeparator />
-                <DropDownItemWithIcon
-                  icon={<Delete size={1} />}
-                  onSelect={() => {}}
-                  text={'Delete'}
-                />
-              </>
+              <DropDownDeckTools />
             </DropDownMenu>
           )}
         </div>

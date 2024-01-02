@@ -1,16 +1,13 @@
 import { useParams } from 'react-router-dom'
 
-import { Button } from '@/components/ui/button'
-import { DropDownMenu } from '@/components/ui/dropDownMenu'
 import { GoBack } from '@/components/ui/goBack'
 import { Sort } from '@/components/ui/table'
 import { TextField } from '@/components/ui/textField'
-import { Typography } from '@/components/ui/typography'
 import { useMeQuery } from '@/features/auth/api/authApi'
 import { useGetCardsQuery } from '@/features/cards/api/cardsApi'
 import { CardsTable } from '@/features/cards/ui/cardsTable/cardsTable'
 import { useGetDeckQuery } from '@/features/decks/api'
-import { DropDownDeckTools } from '@/pages/deckPage/DropDownDeckTools/DropDownDeckTools'
+import { PackHeader } from '@/pages/deckPage/packHeader'
 
 type Props = {
   sort: Sort
@@ -29,23 +26,7 @@ export const DeckPage = ({ sort }: Props) => {
   return (
     <div>
       <GoBack title={'Back to Decks List'} />
-      <div>
-        <div>
-          <Typography as={'h1'} variant={'large'}>
-            {isOwner ? 'My Deck' : 'Friends Deck'}
-          </Typography>
-          {isOwner && (
-            <DropDownMenu>
-              <DropDownDeckTools />
-            </DropDownMenu>
-          )}
-        </div>
-        {isOwner && (
-          <Button>
-            <Typography variant={'subtitle2'}>Add New Card</Typography>
-          </Button>
-        )}
-      </div>
+      {deck && <PackHeader isOwner={isOwner} />}
       <div>
         <TextField placeholder={'Input search'} type={'search'} />
         <CardsTable

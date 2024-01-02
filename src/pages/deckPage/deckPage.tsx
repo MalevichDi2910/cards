@@ -1,8 +1,10 @@
 import { useParams } from 'react-router-dom'
 
+import { Button } from '@/components/ui/button'
 import { GoBack } from '@/components/ui/goBack'
-import { Sort } from '@/components/ui/table'
+import { Sort, Table } from '@/components/ui/table'
 import { TextField } from '@/components/ui/textField'
+import { Typography } from '@/components/ui/typography'
 import { useMeQuery } from '@/features/auth/api/authApi'
 import { useGetCardsQuery } from '@/features/cards/api/cardsApi'
 import { CardsTable } from '@/features/cards/ui/cardsTable/cardsTable'
@@ -22,20 +24,33 @@ export const DeckPage = ({ sort }: Props) => {
   const { data: deck } = useGetDeckQuery({ id })
 
   const isOwner = user?.id === deck?.userId
+  const isEmptyCard = deck && deck.cardsCount > 0
 
   return (
     <div>
       <GoBack title={'Back to Decks List'} />
-      {deck && <PackHeader isOwner={isOwner} />}
-      <div>
-        <TextField placeholder={'Input search'} type={'search'} />
-        <CardsTable
-          cards={deckData?.items || []}
-          isOwner={isOwner}
-          onSort={onChangeSort}
-          sort={sort}
-        />
-      </div>
+      {deck && <PackHeader deck={deck} isEmptyCard={isEmptyCard} isOwner={isOwner} />}
+      {isEmptyCard && (
+        <div>
+          <TextField placeholder={'Input search'} type={'search'} />
+          <CardsTable
+            cards={deckData?.items || []}
+            isOwner={isOwner}
+            onSort={onChangeSort}
+            sort={sort}
+          />
+        </div>
+      )}
+      {!isEmptyCard && (
+        <>
+          <Table.Empty text={'This pack is empty. Click add new card to fill this pack'} />
+          <Table.Empty>
+            <Button>
+              <Typography variant={'subtitle2'}>Add New Card</Typography>
+            </Button>
+          </Table.Empty>
+        </>
+      )}
     </div>
   )
 }

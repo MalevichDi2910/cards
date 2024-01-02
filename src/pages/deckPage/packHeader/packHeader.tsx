@@ -8,14 +8,16 @@ import { DropDownDeckTools } from '@/pages/deckPage/dropDownDeckTools'
 
 type Props = {
   deck: GetDecksResponseItems
+  isEmptyCard: boolean
   isOwner: boolean
 }
-export const PackHeader = ({ deck, isOwner }: Props) => {
+export const PackHeader = ({ deck, isEmptyCard, isOwner }: Props) => {
   return (
     <div>
       <div>
         <Typography as={'h1'} variant={'large'}>
-          {isOwner ? 'My Deck' : 'Friends Deck'}
+          {isOwner && isEmptyCard ? 'My Deck' : 'Friends Deck'}
+          {isEmptyCard && `${deck.name} Pack `}
         </Typography>
         {isOwner && (
           <DropDownMenu>

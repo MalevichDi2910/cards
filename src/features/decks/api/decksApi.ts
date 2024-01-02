@@ -9,6 +9,7 @@ export const decksApi = baseApi.injectEndpoints({
       createCard: builder.mutation<Card, { body: CreateRequestBodyType; id: string }>({
         query: ({ body, id }) => {
           return {
+            body,
             method: `POST`,
             url: `v1/decks/${id}/cards`,
           }

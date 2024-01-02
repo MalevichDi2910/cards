@@ -1,11 +1,8 @@
 import { useParams } from 'react-router-dom'
 
-import ArrowIosBack from '@/assets/icons/arrowIosBack'
-import { Delete } from '@/assets/icons/delete'
-import { Edit } from '@/assets/icons/edit'
-import { PlayCircle } from '@/assets/icons/playCircle'
 import { Button } from '@/components/ui/button'
-import { DropDownItemWithIcon, DropDownMenu, DropDownSeparator } from '@/components/ui/dropDownMenu'
+import { DropDownMenu } from '@/components/ui/dropDownMenu'
+import { GoBack } from '@/components/ui/goBack'
 import { Sort } from '@/components/ui/table'
 import { TextField } from '@/components/ui/textField'
 import { Typography } from '@/components/ui/typography'
@@ -19,7 +16,6 @@ type Props = {
   sort: Sort
 }
 export const DeckPage = ({ sort }: Props) => {
-  const goBack = () => {}
   const onChangeSort = (sort: Sort) => {}
 
   const { id } = useParams<{ id: string }>()
@@ -32,10 +28,7 @@ export const DeckPage = ({ sort }: Props) => {
 
   return (
     <div>
-      <Button onClick={goBack} variant={'link'}>
-        <ArrowIosBack size={1} />
-        Back to Decks List
-      </Button>
+      <GoBack title={'Back to Decks List'} />
       <div>
         <div>
           <Typography as={'h1'} variant={'large'}>

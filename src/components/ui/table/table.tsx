@@ -2,6 +2,7 @@ import { ComponentPropsWithoutRef, ElementRef, ReactNode, forwardRef } from 'rea
 
 import { Typography } from '@/components/ui/typography'
 import { clsx } from 'clsx'
+
 import s from './table.module.scss'
 
 const Root = forwardRef<ElementRef<'table'>, ComponentPropsWithoutRef<'table'>>(

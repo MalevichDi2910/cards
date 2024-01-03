@@ -1,6 +1,5 @@
-.headerContainer {
+.container {
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: space-between;
 
@@ -10,6 +9,16 @@
 
   background-color: var(--color-dark-700);
   border-bottom: 1px solid var(--color-dark-500);
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  max-width: 1038px;
+  margin: auto;
 }
 
 .nameWithDropDown {

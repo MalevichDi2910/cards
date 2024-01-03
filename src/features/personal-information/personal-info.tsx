@@ -1,5 +1,6 @@
 import { ChangeEvent, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 
 import { Edit } from '@/assets/icons/edit'
 import LogOut from '@/assets/icons/logOut'
@@ -27,6 +28,12 @@ export const PersonalInfo = ({ user }: Props) => {
     formState: { errors },
     handleSubmit,
   } = useForm<PersonalInfoFormValues>({ resolver: zodResolver(PersonalInfoSchema) })
+
+  const navigate = useNavigate()
+
+  const logOut = () => {
+    navigate('/sign-in')
+  }
 
   const onSubmit = handleSubmit(data => {
     console.log(data)
@@ -99,7 +106,7 @@ export const PersonalInfo = ({ user }: Props) => {
           <Typography className={s.email} variant={'body2'}>
             {user.email}
           </Typography>
-          <Button className={s.logoutButton} variant={'secondary'}>
+          <Button className={s.logoutButton} onClick={logOut} variant={'secondary'}>
             <LogOut size={1} />
             Logout
           </Button>

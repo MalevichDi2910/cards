@@ -27,6 +27,7 @@ export const TextField = /* @__PURE__ */ forwardRef<HTMLInputElement, TextFieldP
       label,
       onChange,
       onChangeValue,
+      onClearSearch,
       placeholder,
       type,
       value,
@@ -64,12 +65,7 @@ export const TextField = /* @__PURE__ */ forwardRef<HTMLInputElement, TextFieldP
       ? 'var(--color-dark-300)'
       : 'var(--color-dark-100)'
 
-    const [text, setText] = useState<string>('')
-    const onClearSearch = () => {
-      setText('')
-    }
-
-    const isShowClear = type === 'search' && text.length > 0
+    const isShowClear = type === 'search' && value?.length! > 0
 
     const showError = !!errorMessage && errorMessage.length > 0
 
@@ -78,7 +74,6 @@ export const TextField = /* @__PURE__ */ forwardRef<HTMLInputElement, TextFieldP
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
       onChange?.(e)
       onChangeValue?.(e.currentTarget.value)
-      setText(e.currentTarget.value)
     }
 
     const toggleVisiblePassword = () => {
@@ -105,7 +100,7 @@ export const TextField = /* @__PURE__ */ forwardRef<HTMLInputElement, TextFieldP
             placeholder={placeholder}
             ref={ref}
             type={'password' && visiblePassword ? 'text' : type}
-            value={text}
+            value={value}
             {...rest}
           />
           {type === 'password' &&

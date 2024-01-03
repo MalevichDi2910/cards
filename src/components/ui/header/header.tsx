@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom'
+
 import ItIncubator from '@/assets/icons/itIncubator'
 import LogOut from '@/assets/icons/logOut'
 import PersonIcon from '@/assets/icons/personIcon'
@@ -19,6 +21,16 @@ export type HeaderProps = {
   user?: { email: string; name: string; src: string }
 }
 export const Header = ({ isLoggedIn, user }: HeaderProps) => {
+  const navigate = useNavigate()
+
+  const signOutOfProfile = () => {
+    navigate('/sign-in')
+  }
+
+  const goToMyProfile = () => {
+    navigate('/profile')
+  }
+
   return (
     <div className={s.container}>
       <div className={s.wrapper}>
@@ -57,12 +69,14 @@ export const Header = ({ isLoggedIn, user }: HeaderProps) => {
               <DropDownSeparator />
               <DropDownItemWithIcon
                 icon={<PersonIcon className={c.icon} size={1} />}
+                onClick={goToMyProfile}
                 onSelect={() => {}}
                 text={'My Profile'}
               />
               <DropDownSeparator />
               <DropDownItemWithIcon
                 icon={<LogOut size={1} />}
+                onClick={signOutOfProfile}
                 onSelect={() => {}}
                 text={'Sign Out'}
               />

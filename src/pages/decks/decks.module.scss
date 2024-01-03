@@ -1,0 +1,27 @@
+.container {
+  width: 100%;
+  max-width: 1038px;
+  margin: auto;
+
+  .title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 34px;
+  }
+
+  .filter {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+
+    margin-top: 10px;
+    margin-bottom: 36px;
+  }
+
+  .icons {
+    display: flex;
+    justify-content: space-between;
+    width: 70px;
+  }
+}

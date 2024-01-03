@@ -2,7 +2,7 @@ import { Edit } from '@/assets/icons/edit'
 import { PlayCircle } from '@/assets/icons/playCircle'
 import Trash from '@/assets/icons/trash'
 import { GetDecksResponse } from '@/common/services/api'
-import { Body, Cell, Column, Root, Row, Sort, TableHeader } from '@/components/ui/table'
+import { Column, Sort, Table, TableHeader } from '@/components/ui/table'
 
 import s from '@/pages/decks/decks.module.scss'
 
@@ -22,27 +22,27 @@ export const TableForDecks = ({ decks, setSort, sort }: TableForDecksProps) => {
   ]
 
   return (
-    <Root>
+    <Table.Root>
       <TableHeader columns={tableColumn} onSort={setSort} sort={sort} />
-      <Body>
+      <Table.Body>
         {decks?.items?.map(deck => {
           return (
-            <Row key={deck?.id}>
-              <Cell>{deck?.name}</Cell>
-              <Cell>{deck?.cardsCount}</Cell>
-              <Cell>{new Date(deck?.updated).toLocaleDateString()}</Cell>
-              <Cell>{deck?.author?.name}</Cell>
-              <Cell>
+            <Table.Row key={deck?.id}>
+              <Table.Cell>{deck?.name}</Table.Cell>
+              <Table.Cell>{deck?.cardsCount}</Table.Cell>
+              <Table.Cell>{new Date(deck?.updated).toLocaleDateString()}</Table.Cell>
+              <Table.Cell>{deck?.author?.name}</Table.Cell>
+              <Table.Cell>
                 <div className={s.icons}>
                   <PlayCircle />
                   <Edit />
                   <Trash />
                 </div>
-              </Cell>
-            </Row>
+              </Table.Cell>
+            </Table.Row>
           )
         })}
-      </Body>
-    </Root>
+      </Table.Body>
+    </Table.Root>
   )
 }

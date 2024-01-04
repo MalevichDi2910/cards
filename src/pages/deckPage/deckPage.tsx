@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 
+import { useAppSelector } from '@/common/services/store'
 import { Button } from '@/components/ui/button'
 import { GoBack } from '@/components/ui/goBack'
 import { Sort, Table } from '@/components/ui/table'
@@ -22,10 +23,10 @@ type Props = {
   sort: Sort
 }
 export const DeckPage = ({ sort }: Props) => {
-  const question = useSelector(selectCardsOuestion)
-  const currentPage = useSelector(selectCardsCurrentPage)
-  const sortParams = useSelector(selectCardsSortParams)
-  const pageSize = useSelector(selectCardsPageSize)
+  const question = useAppSelector(selectCardsOuestion)
+  const currentPage = useAppSelector(selectCardsCurrentPage)
+  const sortParams = useAppSelector(selectCardsSortParams)
+  const pageSize = useAppSelector(selectCardsPageSize)
 
   const { id = '' } = useParams<{ id: string }>()
   const queryParams = { id, params: { currentPage, pageSize, question, sortParams } }

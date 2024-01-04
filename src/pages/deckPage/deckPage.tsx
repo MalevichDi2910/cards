@@ -1,7 +1,6 @@
-import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 
-import { useAppSelector } from '@/common/services/store'
+import { useAppDispatch, useAppSelector } from '@/common/services/store'
 import { Button } from '@/components/ui/button'
 import { GoBack } from '@/components/ui/goBack'
 import { Sort, Table } from '@/components/ui/table'
@@ -15,28 +14,29 @@ import {
   selectCardsPageSize,
   selectCardsSortParams,
 } from '@/features/cards/modal'
+import { cardsActions } from '@/features/cards/modal/cardsSlice'
 import { CardsTable } from '@/features/cards/ui/cardsTable/cardsTable'
 import { useGetDeckQuery } from '@/features/decks/api'
 import { PackHeader } from '@/pages/deckPage/packHeader'
 
-type Props = {
-  sort: Sort
-}
-export const DeckPage = ({ sort }: Props) => {
+export const DeckPage = () => {
+  const dispatch = useAppDispatch()
   const question = useAppSelector(selectCardsOuestion)
   const currentPage = useAppSelector(selectCardsCurrentPage)
-  const sortParams = useAppSelector(selectCardsSortParams)
+  const sort = useAppSelector(selectCardsSortParams)
   const pageSize = useAppSelector(selectCardsPageSize)
 
   const { id = '' } = useParams<{ id: string }>()
-  const queryParams = { id, params: { currentPage, pageSize, question, sortParams } }
+  const queryParams = { id, params: { currentPage, pageSize, question } }
   const { data: deckData } = useGetCardsQuery(queryParams)
   const { data: user } = useMeQuery()
   const { data: deck } = useGetDeckQuery({ id })
 
   const isOwner = user?.id === deck?.userId
   const isEmptyCard = deck && deck.cardsCount > 0
-  const onChangeSort = (sort: Sort) => {}
+  const onChangeSort = (sortParams: Sort) => {
+    dispatch(cardsActions.setSort({ sortParams }))
+  }
 
   return (
     <div>

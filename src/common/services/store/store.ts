@@ -1,4 +1,4 @@
-import { TypedUseSelectorHook, useSelector } from 'react-redux'
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 
 import { baseApi } from '@/common/services/api/baseApi'
 import { cardSlice } from '@/features/cards/modal/cardsSlice'
@@ -15,3 +15,4 @@ export const store = configureStore({
 export type AppDispatch = typeof store.dispatch
 export type RootState = ReturnType<typeof store.getState>
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
+export const useAppDispatch: () => AppDispatch = useDispatch

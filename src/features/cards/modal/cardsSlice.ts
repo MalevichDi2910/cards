@@ -1,5 +1,5 @@
 import { Sort } from '@/components/ui/table'
-import { createSlice } from '@reduxjs/toolkit'
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   currentPage: 1,
@@ -11,5 +11,11 @@ const initialState = {
 export const cardSlice = createSlice({
   initialState,
   name: 'cards',
-  reducers: {},
+  reducers: {
+    setSort: (state, action: PayloadAction<{ sortParams: Sort }>) => {
+      state.sortParams = action.payload.sortParams
+    },
+  },
 })
+
+export const cardsActions = cardSlice.actions

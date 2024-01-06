@@ -41,7 +41,7 @@ export const DeckPage = () => {
   return (
     <div>
       <GoBack title={'Back to Decks List'} />
-      {deck && <PackHeader deck={deck} isEmptyCard={isEmptyCard} isOwner={isOwner} />}
+      {deck && <PackHeader deck={deck} isEmptyCard={!!isEmptyCard} isOwner={isOwner} />}
       {isEmptyCard && (
         <div>
           <TextField placeholder={'Input search'} type={'search'} />

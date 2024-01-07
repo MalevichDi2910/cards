@@ -21,7 +21,7 @@ export const PackHeader = ({ deck, isEmptyCard, isOwner }: Props) => {
         </Typography>
         {isOwner && (
           <DropDownMenu>
-            <DropDownDeckTools />
+            <DropDownDeckTools deck={deck} />
           </DropDownMenu>
         )}
       </div>

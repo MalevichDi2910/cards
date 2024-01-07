@@ -14,6 +14,20 @@ type Props = {
   sort: Sort
 }
 export const CardsTable = ({ cards, isOwner, onSort, sort }: Props) => {
+  const cardDate = (stringDate: string): string => {
+    const date = new Date(stringDate)
+    const dateFormat = new Intl.DateTimeFormat('ru', {
+      day: '2-digit',
+      hour: 'numeric',
+      minute: 'numeric',
+      month: '2-digit',
+      second: 'numeric',
+      year: 'numeric',
+    })
+
+    return dateFormat.format(date)
+  }
+
   return (
     <Table.Root>
       <TableHeader columns={getColumnsData(isOwner)} onSort={onSort} sort={sort} />
@@ -30,7 +44,7 @@ export const CardsTable = ({ cards, isOwner, onSort, sort }: Props) => {
                 </div>
               </Table.Cell>
               <Table.Cell>
-                <Typography variant={'body2'}>{'Data'}</Typography>
+                <Typography variant={'body2'}>{cardDate(card.updated)}</Typography>
               </Table.Cell>
               <Table.Cell>
                 <Rating rating={card.grade} />

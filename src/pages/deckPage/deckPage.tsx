@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '@/common/services/store'
 import { Button } from '@/components/ui/button'
 import { GoBack } from '@/components/ui/goBack'
+import { Pagination } from '@/components/ui/pagination'
 import { Sort, Table } from '@/components/ui/table'
 import { TextField } from '@/components/ui/textField'
 import { Typography } from '@/components/ui/typography'
@@ -13,6 +14,7 @@ import {
   selectCardsOuestion,
   selectCardsPageSize,
   selectCardsSortParams,
+  selectSelectItems,
 } from '@/features/cards/modal'
 import { cardsActions } from '@/features/cards/modal/cardsSlice'
 import { CardsTable } from '@/features/cards/ui/cardsTable/cardsTable'
@@ -24,10 +26,11 @@ export const DeckPage = () => {
   const question = useAppSelector(selectCardsOuestion)
   const currentPage = useAppSelector(selectCardsCurrentPage)
   const sort = useAppSelector(selectCardsSortParams)
-  const pageSize = useAppSelector(selectCardsPageSize)
+  const cardsPerPage = useAppSelector(selectCardsPageSize)
+  const selectItems = useAppSelector(selectSelectItems)
 
   const { id = '' } = useParams<{ id: string }>()
-  const queryParams = { id, params: { currentPage, pageSize, question } }
+  const queryParams = { id, params: { cardsPerPage, currentPage, question } }
   const { data: deckData } = useGetCardsQuery(queryParams)
   const { data: user } = useMeQuery()
   const { data: deck } = useGetDeckQuery({ id })
@@ -36,6 +39,12 @@ export const DeckPage = () => {
   const isEmptyCard = deck && deck.cardsCount > 0
   const onChangeSort = (sortParams: Sort) => {
     dispatch(cardsActions.setSort({ sortParams }))
+  }
+  const onChangeSetPage = (currentPage: number) => {
+    dispatch(cardsActions.setCurrentPage({ currentPage }))
+  }
+  const onChangeSetCardsPerPage = (value: string) => {
+    dispatch(cardsActions.setPageSize({ pageSize: Number(value) }))
   }
 
   return (
@@ -50,6 +59,14 @@ export const DeckPage = () => {
             isOwner={isOwner}
             onSort={onChangeSort}
             sort={sort}
+          />
+          <Pagination
+            count={deckData?.pagination.totalItems || 1}
+            onChange={onChangeSetPage}
+            onPerPageChange={onChangeSetCardsPerPage}
+            page={currentPage}
+            perPage={cardsPerPage}
+            perPageOptions={selectItems}
           />
         </div>
       )}

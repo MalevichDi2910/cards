@@ -6,3 +6,4 @@ export const selectCardsCurrentPage = (state: RootState) => state.cards.currentP
 
 export const selectCardsSortParams = (state: RootState) => state.cards.sortParams
 export const selectCardsPageSize = (state: RootState) => state.cards.pageSize
+export const selectSelectItems = (state: RootState) => state.cards.selectItems

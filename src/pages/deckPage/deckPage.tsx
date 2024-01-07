@@ -21,6 +21,8 @@ import { CardsTable } from '@/features/cards/ui/cardsTable/cardsTable'
 import { useGetDeckQuery } from '@/features/decks/api'
 import { PackHeader } from '@/pages/deckPage/packHeader'
 
+import s from './deckPage.module.scss'
+
 export const DeckPage = () => {
   const dispatch = useAppDispatch()
   const question = useAppSelector(selectCardsOuestion)
@@ -48,12 +50,12 @@ export const DeckPage = () => {
   }
 
   return (
-    <div>
-      <GoBack title={'Back to Decks List'} />
+    <div className={s.root}>
+      <GoBack className={s.link} title={'Back to Decks List'} />
       {deck && <PackHeader deck={deck} isEmptyCard={!!isEmptyCard} isOwner={isOwner} />}
       {isEmptyCard && (
         <div>
-          <TextField placeholder={'Input search'} type={'search'} />
+          <TextField className={s.input} placeholder={'Input search'} type={'search'} />
           <CardsTable
             cards={deckData?.items || []}
             isOwner={isOwner}

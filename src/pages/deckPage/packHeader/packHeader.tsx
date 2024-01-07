@@ -6,6 +6,8 @@ import { DropDownMenu } from '@/components/ui/dropDownMenu'
 import { Typography } from '@/components/ui/typography'
 import { DropDownDeckTools } from '@/pages/deckPage/dropDownDeckTools'
 
+import s from './packHeader.module.scss'
+
 type Props = {
   deck: GetDecksResponseItems
   isEmptyCard: boolean
@@ -13,8 +15,8 @@ type Props = {
 }
 export const PackHeader = ({ deck, isEmptyCard, isOwner }: Props) => {
   return (
-    <div>
-      <div>
+    <div className={s.root}>
+      <div className={s.deckOwnerWrapper}>
         <Typography as={'h1'} variant={'large'}>
           {isOwner && isEmptyCard ? 'My Pack' : 'Friends Pack'}
           {!isEmptyCard && `${deck.name} Pack `}

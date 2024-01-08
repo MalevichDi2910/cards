@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '@/common/services/store'
 import { Button } from '@/components/ui/button'
 import { GoBack } from '@/components/ui/goBack'
+import { Loader } from '@/components/ui/loader'
 import { Pagination } from '@/components/ui/pagination'
 import { Sort, Table } from '@/components/ui/table'
 import { TextField } from '@/components/ui/textField'
@@ -33,7 +34,7 @@ export const DeckPage = () => {
 
   const { id = '' } = useParams<{ id: string }>()
   const queryParams = { id, params: { cardsPerPage, currentPage, question } }
-  const { data: deckData } = useGetCardsQuery(queryParams)
+  const { data: deckData, isLoading } = useGetCardsQuery(queryParams)
   const { data: user } = useMeQuery()
   const { data: deck } = useGetDeckQuery({ id })
 
@@ -47,6 +48,10 @@ export const DeckPage = () => {
   }
   const onChangeSetCardsPerPage = (value: string) => {
     dispatch(cardsActions.setPageSize({ pageSize: Number(value) }))
+  }
+
+  if (isLoading) {
+    return <Loader />
   }
 
   return (

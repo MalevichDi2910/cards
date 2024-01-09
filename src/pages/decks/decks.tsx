@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { useGetAuthMeQuery } from '@/common/services/auth'
+import { useMeQuery } from '@/common/services/auth'
 import { useCreateDeckMutation, useGetDecksQuery } from '@/common/services/decks'
 import { Button } from '@/components/ui/button'
 import { Header } from '@/components/ui/header'
@@ -21,7 +21,7 @@ export const Decks = () => {
   const [page, setPage] = useState<number>(1)
   const [cardsPerPage, setCardsPerPage] = useState<number>(10)
 
-  const { data: user } = useGetAuthMeQuery()
+  const { data: user } = useMeQuery()
   const [createDeck, deckCreationStatus] = useCreateDeckMutation()
   const {
     data: decks,

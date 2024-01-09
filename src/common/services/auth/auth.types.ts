@@ -1,5 +1,5 @@
-export type AuthMeResponseType = {
-  avatar: string
+export type User = {
+  avatar?: null | string
   created: string
   email: string
   id: string

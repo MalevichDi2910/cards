@@ -1,11 +1,11 @@
 import { baseApi } from '@/common/services/api/baseApi'
-import { AuthMeResponseType } from '@/common/services/auth'
+import { User } from '@/common/services/auth'
 
 const authApi = baseApi.injectEndpoints({
   endpoints: builder => {
     return {
-      getAuthMe: builder.query<AuthMeResponseType | null, void>({
-        providesTags: ['Auth'],
+      me: builder.query<User | null, void>({
+        providesTags: ['Me'],
         query: () => {
           return {
             url: `v1/auth/me`,
@@ -16,4 +16,4 @@ const authApi = baseApi.injectEndpoints({
   },
 })
 
-export const { useGetAuthMeQuery } = authApi
+export const { useMeQuery } = authApi

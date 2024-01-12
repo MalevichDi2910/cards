@@ -1,11 +1,11 @@
 import { useState } from 'react'
 
-import { useMeQuery } from '@/common/services/auth'
 import { useCreateDeckMutation, useGetDecksQuery } from '@/common/services/decks'
 import { Header } from '@/components/ui/header'
 import { Pagination } from '@/components/ui/pagination'
 import { Sort } from '@/components/ui/table'
 import { Typography } from '@/components/ui/typography'
+import { useMeQuery } from '@/features/auth/api'
 import { FilterForDecks } from '@/pages/decks/filter-for-decks'
 import { AddPack } from '@/pages/decks/modals/modals-for-decks/add-pack'
 import { TableForDecks } from '@/pages/decks/table-for-decks'

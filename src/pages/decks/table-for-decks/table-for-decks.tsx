@@ -1,10 +1,10 @@
-import { Edit } from '@/assets/icons/edit'
 import { PlayCircle } from '@/assets/icons/playCircle'
-import Trash from '@/assets/icons/trash'
 import { GetDecksResponse } from '@/common/services/api'
 import { Column, Sort, Table, TableHeader } from '@/components/ui/table'
+import { DeletePack } from '@/pages/decks/modals/modals-for-decks/delete-pack'
+import { EditPack } from '@/pages/decks/modals/modals-for-decks/edit-pack'
 
-import s from '@/pages/decks/decks.module.scss'
+import s from './table-for-decks.module.scss'
 
 type TableForDecksProps = {
   decks: GetDecksResponse | undefined
@@ -35,8 +35,8 @@ export const TableForDecks = ({ decks, setSort, sort }: TableForDecksProps) => {
               <Table.Cell>
                 <div className={s.icons}>
                   <PlayCircle />
-                  <Edit />
-                  <Trash />
+                  <EditPack />
+                  <DeletePack />
                 </div>
               </Table.Cell>
             </Table.Row>

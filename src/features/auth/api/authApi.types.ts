@@ -1,4 +1,4 @@
-export type User = {
+export type AuthResponseType = {
   avatar?: null | string
   created: string
   email: string

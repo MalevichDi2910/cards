@@ -2,12 +2,12 @@ import { useState } from 'react'
 
 import { useMeQuery } from '@/common/services/auth'
 import { useCreateDeckMutation, useGetDecksQuery } from '@/common/services/decks'
-import { Button } from '@/components/ui/button'
 import { Header } from '@/components/ui/header'
 import { Pagination } from '@/components/ui/pagination'
 import { Sort } from '@/components/ui/table'
 import { Typography } from '@/components/ui/typography'
 import { FilterForDecks } from '@/pages/decks/filter-for-decks'
+import { AddPack } from '@/pages/decks/modals/modals-for-decks/add-pack'
 import { TableForDecks } from '@/pages/decks/table-for-decks'
 
 import s from './decks.module.scss'
@@ -55,12 +55,10 @@ export const Decks = () => {
       <div className={s.container}>
         <div className={s.title}>
           <Typography variant={'large'}>Packs list</Typography>
-          <Button
+          <AddPack
             disabled={deckCreationStatus.isLoading}
-            onClick={() => createDeck({ name: 'New deck' })}
-          >
-            Add new pack
-          </Button>
+            onCreateDeck={() => createDeck({ name: 'New deck' })}
+          />
         </div>
         <FilterForDecks
           range={range}

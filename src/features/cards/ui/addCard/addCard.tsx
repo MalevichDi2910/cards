@@ -30,6 +30,7 @@ export const AddCard = () => {
   })
 
   const questionFormat = watch('questionFormat')
+  const answerFormat = watch('answerFormat')
 
   return (
     <Modal isOpen={open} onOpenChange={changeOpen} title={'Add New Card'}>
@@ -59,7 +60,22 @@ export const AddCard = () => {
           </>
         )}
 
-        <ControlledTextField control={control} fullWidth label={'Answer'} name={'answer'} />
+        {answerFormat === 'text' && (
+          <ControlledTextField control={control} fullWidth label={'Answer'} name={'answer'} />
+        )}
+        {answerFormat === 'picture' && (
+          <>
+            <div>
+              <img />
+            </div>
+            <Button fullWidth type={'button'} variant={'secondary'}>
+              <Image />
+              <Typography as={'span'} variant={'subtitle2'}>
+                {'Change Cover'}
+              </Typography>
+            </Button>
+          </>
+        )}
         <div>
           <Button onClick={closeModal} type={'reset'} variant={'secondary'}>
             <Typography variant={'subtitle2'}>Cancel</Typography>

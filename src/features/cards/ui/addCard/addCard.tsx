@@ -8,10 +8,12 @@ import Modal from '@/components/ui/modal/modal'
 import { Option } from '@/components/ui/select'
 import { Typography } from '@/components/ui/typography'
 
-type Props = {
-  options: Option[]
-}
-export const AddCard = ({ options }: Props) => {
+export const AddCard = () => {
+  const options: Option[] = [
+    { title: 'Text', value: 'text' },
+    { title: 'Picture', value: 'picture' },
+  ]
+
   const [open, setOpen] = useState(false)
   const changeOpen = (open: boolean) => {
     setOpen(open)
@@ -20,11 +22,13 @@ export const AddCard = ({ options }: Props) => {
   const closeModal = () => {
     setOpen(false)
   }
-  const { control, handleSubmit } = useForm({})
+  const { control, handleSubmit, watch } = useForm({})
 
   const onSubmit = handleSubmit(data => {
     console.log(data)
   })
+
+  const questionFormat = watch('questionFormat')
 
   return (
     <Modal isOpen={open} onOpenChange={changeOpen} title={'Add New Card'}>
@@ -37,7 +41,22 @@ export const AddCard = ({ options }: Props) => {
           options={options}
           placeholder={'Data format type'}
         />
-        <ControlledTextField control={control} fullWidth label={'Question'} name={'question'} />
+        {questionFormat === 'text' && (
+          <ControlledTextField control={control} fullWidth label={'Question'} name={'question'} />
+        )}
+        {questionFormat === 'picture' && (
+          <>
+            <div>
+              <img />
+            </div>
+            <Button fullWidth type={'button'} variant={'secondary'}>
+              <Typography as={'span'} variant={'subtitle2'}>
+                {'Change Cover'}
+              </Typography>
+            </Button>
+          </>
+        )}
+
         <ControlledTextField control={control} fullWidth label={'Answer'} name={'answer'} />
         <div>
           <Button onClick={closeModal} type={'reset'} variant={'secondary'}>

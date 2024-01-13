@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
+import { Image } from '@/assets/icons/image'
 import { Button } from '@/components/ui/button'
 import { ControlledTextField } from '@/components/ui/controlled/controlled-textField'
 import { ControlledSelect } from '@/components/ui/controlled/controlledSelect'
@@ -50,6 +51,7 @@ export const AddCard = () => {
               <img />
             </div>
             <Button fullWidth type={'button'} variant={'secondary'}>
+              <Image />
               <Typography as={'span'} variant={'subtitle2'}>
                 {'Change Cover'}
               </Typography>

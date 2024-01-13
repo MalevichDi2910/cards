@@ -1,5 +1,5 @@
 import { baseApi } from '@/common/services/api'
-import { GetDecksResponseItems } from '@/common/services/api/flashcards.types'
+import { GetDeckLearnResponse, GetDecksResponseItems } from '@/common/services/api/flashcards.types'
 import { Card } from '@/features/cards/api'
 import { CreateRequestBodyType } from '@/features/decks/api/decksApi.types'
 
@@ -22,8 +22,29 @@ export const decksApi = baseApi.injectEndpoints({
           }
         },
       }),
+      getRandomCard: builder.query<GetDeckLearnResponse, { id: string }>({
+        providesTags: ['Learn'],
+        query: ({ id }) => {
+          return {
+            url: `v1/decks/${id}/learn`,
+          }
+        },
+      }),
+      saveCardGrade: builder.mutation<
+        {},
+        { cardId: string | undefined; grade: number; id: string }
+      >({
+        invalidatesTags: ['Learn'],
+        query: ({ cardId, grade, id }) => {
+          return {
+            body: { cardId, grade },
+            method: `POST`,
+            url: `v1/decks/${id}/learn`,
+          }
+        },
+      }),
     }
   },
 })
 
-export const { useGetDeckQuery } = decksApi
+export const { useGetDeckQuery, useGetRandomCardQuery, useSaveCardGradeMutation } = decksApi

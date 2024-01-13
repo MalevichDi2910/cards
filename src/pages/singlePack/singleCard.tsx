@@ -42,8 +42,6 @@ export const SingleCard = () => {
     setRating('1')
   }
 
-  console.log(question)
-
   if (isDeckLoading || isCardLoading || isRatingLoading) {
     return <Loader />
   }

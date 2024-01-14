@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { Image } from '@/assets/icons/image'
@@ -31,6 +31,13 @@ export const AddCard = () => {
 
   const questionFormat = watch('questionFormat')
   const answerFormat = watch('answerFormat')
+  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+
+    if (!file) {
+      return
+    }
+  }
 
   return (
     <Modal isOpen={open} onOpenChange={changeOpen} title={'Add New Card'}>
@@ -68,12 +75,15 @@ export const AddCard = () => {
             <div>
               <img />
             </div>
-            <Button fullWidth type={'button'} variant={'secondary'}>
-              <Image />
-              <Typography as={'span'} variant={'subtitle2'}>
-                {'Change Cover'}
-              </Typography>
-            </Button>
+            <Typography as={'label'} htmlFor={'imageInput'} variant={'subtitle2'}>
+              <Button fullWidth type={'button'} variant={'secondary'}>
+                <Image />
+                <Typography as={'span'} variant={'subtitle2'}>
+                  {'Change Cover'}
+                </Typography>
+              </Button>
+              <input id={'imageInput'} onChange={onChangeHandler} type={'file'} />
+            </Typography>
           </>
         )}
         <div>

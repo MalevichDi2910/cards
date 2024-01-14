@@ -33,15 +33,15 @@ export type GetDecksResponse = {
 
 export type GetDeckLearnResponse = {
   answer: string
-  answerImg?: any
-  answerVideo?: any
+  answerImg?: string
+  answerVideo?: string
   created: string
   deckId: string
   grade: number
   id: string
   question: string
-  questionImg?: any
-  questionVideo?: any
+  questionImg?: string
+  questionVideo?: string
   shots: number
   updated: string
 }

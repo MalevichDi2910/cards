@@ -74,7 +74,7 @@ export const Select = forwardRef<ElementRef<typeof RadixSelect.Root>, SelectProp
         <RadixSelect.Portal>
           <RadixSelect.Content className={classNames.content} position={'popper'} ref={ref}>
             <RadixSelect.Viewport>
-              {options.map(option => (
+              {options?.map(option => (
                 <SelectItem key={option.value} value={option.value} variant={variant}>
                   {option.title}
                 </SelectItem>

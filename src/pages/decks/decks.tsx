@@ -66,8 +66,8 @@ export const Decks = () => {
     dispatch(decksActions.setCurrentPage({ currentPage }))
   }
 
-  const onChangeSetCardsPerPage = (pageSize: number) => {
-    dispatch(decksActions.setPageSize({ pageSize }))
+  const onChangeSetCardsPerPage = (pageSize: string) => {
+    dispatch(decksActions.setPageSize({ pageSize: Number(pageSize) }))
   }
 
   const onChangeSetRange = (range: number[]) => {

@@ -10,7 +10,7 @@ import s from '@/pages/decks/decks.module.scss'
 type FilterForDecksProps = {
   range: number[]
   search: string
-  setCardsPerPage: (perPage: number) => void
+  setCardsPerPage: (perPage: string) => void
   setPage: (page: number) => void
   setRange: (range: number[]) => void
   setSearch: (search: string) => void
@@ -31,7 +31,7 @@ export const FilterForDecks = ({
     setSearch('')
     setRange([0, 100])
     setPage(1)
-    setCardsPerPage(10)
+    setCardsPerPage('10')
   }
 
   const packsCards = [

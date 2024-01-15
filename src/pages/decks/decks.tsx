@@ -1,11 +1,20 @@
-import { useState } from 'react'
-
 import { useCreateDeckMutation, useGetDecksQuery } from '@/common/services/decks'
-import { Header } from '@/components/ui/header'
+import { useAppDispatch, useAppSelector } from '@/common/services/store'
+import { Loader } from '@/components/ui/loader'
 import { Pagination } from '@/components/ui/pagination'
 import { Sort } from '@/components/ui/table'
 import { Typography } from '@/components/ui/typography'
 import { useMeQuery } from '@/features/auth/api'
+import {
+  decksActions,
+  selectDecksCurrentPage,
+  selectDecksPageSize,
+  selectDecksRange,
+  selectDecksSelectItems,
+  selectDecksSort,
+  selectSearch,
+  selectShowMyDecks,
+} from '@/features/decks/modal'
 import { FilterForDecks } from '@/pages/decks/filter-for-decks'
 import { AddPack } from '@/pages/decks/modals/modals-for-decks/add-pack'
 import { TableForDecks } from '@/pages/decks/table-for-decks'
@@ -13,24 +22,28 @@ import { TableForDecks } from '@/pages/decks/table-for-decks'
 import s from './decks.module.scss'
 
 export const Decks = () => {
-  const [showMyDecks, setShowMyDecks] = useState<boolean>(false)
-  const [sort, setSort] = useState<Sort | null>({ direction: 'desc', key: 'updated' })
+  const dispatch = useAppDispatch()
+  const currentPage = useAppSelector(selectDecksCurrentPage)
+  const pageSize = useAppSelector(selectDecksPageSize)
+  const range = useAppSelector(selectDecksRange)
+  const search = useAppSelector(selectSearch)
+  const selectItems = useAppSelector(selectDecksSelectItems)
+  const showMyDecks = useAppSelector(selectShowMyDecks)
+  const sort = useAppSelector(selectDecksSort)
+
   const sortedString = sort ? `${sort.key}-${sort.direction}` : null
-  const [search, setSearch] = useState<string>('')
-  const [range, setRange] = useState<number[]>([0, 100])
-  const [page, setPage] = useState<number>(1)
-  const [cardsPerPage, setCardsPerPage] = useState<number>(10)
 
   const { data: user } = useMeQuery()
   const [createDeck, deckCreationStatus] = useCreateDeckMutation()
+
   const {
     data: decks,
     error,
     isLoading,
   } = useGetDecksQuery({
     authorId: showMyDecks ? user?.id : undefined,
-    currentPage: page,
-    itemsPerPage: cardsPerPage,
+    currentPage: currentPage,
+    itemsPerPage: pageSize,
     maxCardsCount: range[1],
     minCardsCount: range[0],
     name: search,
@@ -38,7 +51,7 @@ export const Decks = () => {
   })
 
   if (isLoading) {
-    return <Typography variant={'h1'}>Loading...</Typography>
+    return <Loader />
   }
 
   if (error) {
@@ -49,9 +62,32 @@ export const Decks = () => {
     )
   }
 
+  const onChangeSetPage = (currentPage: number) => {
+    dispatch(decksActions.setCurrentPage({ currentPage }))
+  }
+
+  const onChangeSetCardsPerPage = (pageSize: number) => {
+    dispatch(decksActions.setPageSize({ pageSize }))
+  }
+
+  const onChangeSetRange = (range: number[]) => {
+    dispatch(decksActions.setRange({ range }))
+  }
+
+  const onChangeSort = (sortParams: Sort) => {
+    dispatch(decksActions.setSort({ sortParams }))
+  }
+
+  const onChangeSetShowMyDecks = (showMyDecks: boolean) => {
+    dispatch(decksActions.setShowMyDecks({ showMyDecks }))
+  }
+
+  const onChangeSetSearch = (search: string) => {
+    dispatch(decksActions.setSearch({ search }))
+  }
+
   return (
     <>
-      <Header isLoggedIn user={{ email: 'mal', name: 'di', src: '' }} />
       <div className={s.container}>
         <div className={s.title}>
           <Typography variant={'large'}>Packs list</Typography>
@@ -63,20 +99,21 @@ export const Decks = () => {
         <FilterForDecks
           range={range}
           search={search}
-          setCardsPerPage={setCardsPerPage}
-          setPage={setPage}
-          setRange={setRange}
-          setSearch={setSearch}
-          setShowMyDecks={setShowMyDecks}
+          setCardsPerPage={onChangeSetCardsPerPage}
+          setPage={onChangeSetPage}
+          setRange={onChangeSetRange}
+          setSearch={onChangeSetSearch}
+          setShowMyDecks={onChangeSetShowMyDecks}
           showMyDecks={showMyDecks}
         />
-        <TableForDecks decks={decks} setSort={setSort} sort={sort} />
+        <TableForDecks decks={decks} setSort={onChangeSort} sort={sort} />
         <Pagination
           count={decks?.pagination?.totalPages || 1}
-          onChange={setPage}
-          onPerPageChange={setCardsPerPage}
-          page={page}
-          perPage={cardsPerPage}
+          onChange={onChangeSetPage}
+          onPerPageChange={onChangeSetCardsPerPage}
+          page={currentPage}
+          perPage={pageSize}
+          perPageOptions={selectItems}
         />
       </div>
     </>

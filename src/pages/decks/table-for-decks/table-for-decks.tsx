@@ -28,7 +28,7 @@ export const TableForDecks = ({ decks, setSort, sort }: TableForDecksProps) => {
         {decks?.items?.map(deck => {
           return (
             <Table.Row key={deck?.id}>
-              <Table.Cell>{deck?.name}</Table.Cell>
+              <Table.Cell className={s.name}>{deck?.name}</Table.Cell>
               <Table.Cell>{deck?.cardsCount}</Table.Cell>
               <Table.Cell>{new Date(deck?.updated).toLocaleDateString()}</Table.Cell>
               <Table.Cell>{deck?.author?.name}</Table.Cell>

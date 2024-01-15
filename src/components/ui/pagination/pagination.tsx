@@ -9,7 +9,7 @@ import s from './pagination.module.scss'
 export type PaginationProps = {
   count: number
   onChange: (page: number) => void
-  onPerPageChange: (itemPerPage: number) => void
+  onPerPageChange: (itemPerPage: string) => void
   page: number
   perPage: number
   perPageOptions: Option[]
@@ -37,9 +37,6 @@ export const Pagination = ({
     page,
     siblings,
   })
-  const onPerPageChangeHandler = (itemPerPage: string) => {
-    onPerPageChange(+itemPerPage)
-  }
 
   return (
     <div className={s.root}>
@@ -51,7 +48,7 @@ export const Pagination = ({
           paginationRange={paginationRange}
         />
         <NextButton disabled={isLastPage} onClick={handleNextPageClicked} />
-        <PerPageSelect onPerPageChange={onPerPageChangeHandler} perPageOptions={perPageOptions} />
+        <PerPageSelect onPerPageChange={onPerPageChange} perPageOptions={perPageOptions} />
       </div>
     </div>
   )

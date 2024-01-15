@@ -8,6 +8,8 @@ import { ControlledSelect } from '@/components/ui/controlled/controlledSelect'
 import Modal from '@/components/ui/modal/modal'
 import { Option } from '@/components/ui/select'
 import { Typography } from '@/components/ui/typography'
+import { addCardFormSchema, addCardFormValues } from '@/features/cards/ui/addCard/addCardFormSchema'
+import { zodResolver } from '@hookform/resolvers/zod'
 
 export type CardValues = {
   answer: string
@@ -34,7 +36,13 @@ export const AddCard = ({ cardValues }: Props) => {
   const closeModal = () => {
     setOpen(false)
   }
-  const { control, handleSubmit, watch } = useForm({})
+  const { control, handleSubmit, watch } = useForm<addCardFormValues>({
+    defaultValues: {
+      answer: cardValues?.answer || '',
+      question: cardValues?.question || '',
+    },
+    resolver: zodResolver(addCardFormSchema),
+  })
 
   const onSubmit = handleSubmit(data => {
     console.log(data)

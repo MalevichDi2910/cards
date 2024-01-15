@@ -9,13 +9,24 @@ import Modal from '@/components/ui/modal/modal'
 import { Option } from '@/components/ui/select'
 import { Typography } from '@/components/ui/typography'
 
-export const AddCard = () => {
+export type CardValues = {
+  answer: string
+  answerImg: null | string | undefined
+  question: string
+  questionImg: null | string | undefined
+}
+type Props = {
+  cardValues?: CardValues
+}
+export const AddCard = ({ cardValues }: Props) => {
   const options: Option[] = [
     { title: 'Text', value: 'text' },
     { title: 'Picture', value: 'picture' },
   ]
 
   const [open, setOpen] = useState(false)
+  const [questionCover, setQuestionCover] = useState<File | null>(null)
+  const [answerCover, setAnswerCover] = useState<File | null>(null)
   const changeOpen = (open: boolean) => {
     setOpen(open)
   }
@@ -31,13 +42,25 @@ export const AddCard = () => {
 
   const questionFormat = watch('questionFormat')
   const answerFormat = watch('answerFormat')
-  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
 
+  const onChangeQuestionCover = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files![0]
+
+    setQuestionCover(file)
     if (!file) {
       return
     }
   }
+  const onChangeAnswerCover = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files![0]
+
+    setAnswerCover(file)
+    if (!file) {
+      return
+    }
+  }
+  const questionImage = questionCover ? URL.createObjectURL(questionCover) : cardValues?.questionImg
+  const answerImage = answerCover ? URL.createObjectURL(answerCover) : cardValues?.answerImg
 
   return (
     <Modal isOpen={open} onOpenChange={changeOpen} title={'Add New Card'}>
@@ -55,15 +78,20 @@ export const AddCard = () => {
         )}
         {questionFormat === 'picture' && (
           <>
-            <div>
-              <img />
-            </div>
-            <Button fullWidth type={'button'} variant={'secondary'}>
-              <Image />
-              <Typography as={'span'} variant={'subtitle2'}>
-                {'Change Cover'}
-              </Typography>
-            </Button>
+            {questionImage && (
+              <div>
+                <img alt={'card img'} src={questionImage} />
+              </div>
+            )}
+            <Typography as={'label'} htmlFor={'questionImageInput'} variant={'subtitle2'}>
+              <Button fullWidth type={'button'} variant={'secondary'}>
+                <Image />
+                <Typography as={'span'} variant={'subtitle2'}>
+                  {'Change Cover'}
+                </Typography>
+              </Button>
+              <input id={'questionImageInput'} onChange={onChangeQuestionCover} type={'file'} />
+            </Typography>
           </>
         )}
 
@@ -72,17 +100,19 @@ export const AddCard = () => {
         )}
         {answerFormat === 'picture' && (
           <>
-            <div>
-              <img />
-            </div>
-            <Typography as={'label'} htmlFor={'imageInput'} variant={'subtitle2'}>
+            {answerImage && (
+              <div>
+                <img alt={'card img'} src={answerImage} />
+              </div>
+            )}
+            <Typography as={'label'} htmlFor={'answerImageInput'} variant={'subtitle2'}>
               <Button fullWidth type={'button'} variant={'secondary'}>
                 <Image />
                 <Typography as={'span'} variant={'subtitle2'}>
                   {'Change Cover'}
                 </Typography>
               </Button>
-              <input id={'imageInput'} onChange={onChangeHandler} type={'file'} />
+              <input id={'answerImageInput'} onChange={onChangeAnswerCover} type={'file'} />
             </Typography>
           </>
         )}

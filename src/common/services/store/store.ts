@@ -1,9 +1,10 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 
 import { baseApi } from '@/common/services/api/baseApi'
-import { cardSlice } from '@/features/cards/modal/cardsSlice'
-import { decksSlice } from '@/features/decks/modal'
+import { cardSlice } from '@/features/cards/model/cardsSlice'
 import { configureStore } from '@reduxjs/toolkit'
+
+import { decksSlice } from '../../../features/decks/model'
 
 export const store = configureStore({
   middleware: getDefaultMiddleware => getDefaultMiddleware().concat(baseApi.middleware),

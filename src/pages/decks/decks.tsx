@@ -14,7 +14,7 @@ import {
   selectDecksSort,
   selectSearch,
   selectShowMyDecks,
-} from '@/features/decks/modal'
+} from '@/features/decks/model'
 import { FilterForDecks } from '@/pages/decks/filter-for-decks'
 import { AddPack } from '@/pages/decks/modals/modals-for-decks/add-pack'
 import { TableForDecks } from '@/pages/decks/table-for-decks'

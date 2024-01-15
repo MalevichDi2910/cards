@@ -12,23 +12,16 @@ export type PaginationProps = {
   onPerPageChange: (itemPerPage: number) => void
   page: number
   perPage: number
-  perPageOptions?: Option[]
+  perPageOptions: Option[]
   siblings?: number
 }
-
-const selectItems = [
-  { title: '10', value: '10' },
-  { title: '20', value: '20' },
-  { title: '30', value: '30' },
-  { title: '50', value: '50' },
-  { title: '100', value: '100' },
-]
 
 export const Pagination = ({
   count,
   onChange,
   onPerPageChange,
   page,
+  perPageOptions,
   siblings,
 }: PaginationProps) => {
   const {
@@ -58,7 +51,7 @@ export const Pagination = ({
           paginationRange={paginationRange}
         />
         <NextButton disabled={isLastPage} onClick={handleNextPageClicked} />
-        <PerPageSelect onPerPageChange={onPerPageChangeHandler} perPageOptions={selectItems} />
+        <PerPageSelect onPerPageChange={onPerPageChangeHandler} perPageOptions={perPageOptions} />
       </div>
     </div>
   )

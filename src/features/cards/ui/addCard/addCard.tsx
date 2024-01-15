@@ -19,8 +19,9 @@ export type CardValues = {
 }
 type Props = {
   cardValues?: CardValues
+  onSubmit: (data: FormData) => void
 }
-export const AddCard = ({ cardValues }: Props) => {
+export const AddCard = ({ cardValues, onSubmit }: Props) => {
   const options: Option[] = [
     { title: 'Text', value: 'text' },
     { title: 'Picture', value: 'picture' },
@@ -44,9 +45,15 @@ export const AddCard = ({ cardValues }: Props) => {
     resolver: zodResolver(addCardFormSchema),
   })
 
-  const onSubmit = handleSubmit(data => {
-    console.log(data)
-  })
+  const onSubmitHandler = (data: addCardFormValues) => {
+    const formData = new FormData()
+
+    formData.append('question', data.question)
+    formData.append('answer', data.answer)
+    questionCover && formData.append('questionImg', questionCover)
+    answerCover && formData.append('answerImg', answerCover)
+    onSubmit(formData)
+  }
 
   const questionFormat = watch('questionFormat')
   const answerFormat = watch('answerFormat')
@@ -72,7 +79,7 @@ export const AddCard = ({ cardValues }: Props) => {
 
   return (
     <Modal isOpen={open} onOpenChange={changeOpen} title={'Add New Card'}>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={handleSubmit(onSubmitHandler)}>
         <ControlledSelect
           control={control}
           fullWidth

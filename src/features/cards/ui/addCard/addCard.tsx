@@ -1,13 +1,12 @@
-import { ChangeEvent, useState } from 'react'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { Image } from '@/assets/icons/image'
 import { Button } from '@/components/ui/button'
-import { ControlledTextField } from '@/components/ui/controlled/controlled-textField'
 import { ControlledSelect } from '@/components/ui/controlled/controlledSelect'
 import Modal from '@/components/ui/modal/modal'
 import { Option } from '@/components/ui/select'
 import { Typography } from '@/components/ui/typography'
+import { AddCardFormField } from '@/features/cards/ui/addCard/addCardFormField/addCardFormField'
 import { addCardFormSchema, addCardFormValues } from '@/features/cards/ui/addCard/addCardFormSchema'
 import { zodResolver } from '@hookform/resolvers/zod'
 
@@ -58,21 +57,11 @@ export const AddCard = ({ cardValues, onSubmit }: Props) => {
   const questionFormat = watch('questionFormat')
   const answerFormat = watch('answerFormat')
 
-  const onChangeQuestionCover = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files![0]
-
-    setQuestionCover(file)
-    if (!file) {
-      return
-    }
+  const onChangeQuestionCover = (data: File) => {
+    setQuestionCover(data)
   }
-  const onChangeAnswerCover = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files![0]
-
-    setAnswerCover(file)
-    if (!file) {
-      return
-    }
+  const onChangeAnswerCover = (data: File) => {
+    setAnswerCover(data)
   }
   const questionImage = questionCover ? URL.createObjectURL(questionCover) : cardValues?.questionImg
   const answerImage = answerCover ? URL.createObjectURL(answerCover) : cardValues?.answerImg
@@ -88,49 +77,22 @@ export const AddCard = ({ cardValues, onSubmit }: Props) => {
           options={options}
           placeholder={'Data format type'}
         />
-        {questionFormat === 'text' && (
-          <ControlledTextField control={control} fullWidth label={'Question'} name={'question'} />
-        )}
-        {questionFormat === 'picture' && (
-          <>
-            {questionImage && (
-              <div>
-                <img alt={'card img'} src={questionImage} />
-              </div>
-            )}
-            <Typography as={'label'} htmlFor={'questionImageInput'} variant={'subtitle2'}>
-              <Button fullWidth type={'button'} variant={'secondary'}>
-                <Image />
-                <Typography as={'span'} variant={'subtitle2'}>
-                  {'Change Cover'}
-                </Typography>
-              </Button>
-              <input id={'questionImageInput'} onChange={onChangeQuestionCover} type={'file'} />
-            </Typography>
-          </>
-        )}
-
-        {answerFormat === 'text' && (
-          <ControlledTextField control={control} fullWidth label={'Answer'} name={'answer'} />
-        )}
-        {answerFormat === 'picture' && (
-          <>
-            {answerImage && (
-              <div>
-                <img alt={'card img'} src={answerImage} />
-              </div>
-            )}
-            <Typography as={'label'} htmlFor={'answerImageInput'} variant={'subtitle2'}>
-              <Button fullWidth type={'button'} variant={'secondary'}>
-                <Image />
-                <Typography as={'span'} variant={'subtitle2'}>
-                  {'Change Cover'}
-                </Typography>
-              </Button>
-              <input id={'answerImageInput'} onChange={onChangeAnswerCover} type={'file'} />
-            </Typography>
-          </>
-        )}
+        <AddCardFormField
+          control={control}
+          fieldFormat={questionFormat}
+          imageURL={questionImage}
+          label={'Question'}
+          name={'question'}
+          onLoadFileCover={onChangeQuestionCover}
+        />
+        <AddCardFormField
+          control={control}
+          fieldFormat={answerFormat}
+          imageURL={answerImage}
+          label={'Answer'}
+          name={'answer'}
+          onLoadFileCover={onChangeAnswerCover}
+        />
         <div>
           <Button onClick={closeModal} type={'reset'} variant={'secondary'}>
             <Typography variant={'subtitle2'}>Cancel</Typography>

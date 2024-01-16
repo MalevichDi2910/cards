@@ -10,20 +10,19 @@ import { TextField } from '@/components/ui/textField'
 import { Typography } from '@/components/ui/typography'
 import { useMeQuery } from '@/features/auth/api/authApi'
 import { useGetCardsQuery } from '@/features/cards/api/cardsApi'
-import { cardsActions } from '@/features/cards/modal/cardsSlice'
-import { CardsTable } from '@/features/cards/ui/cardsTable/cardsTable'
-import { useGetDeckQuery } from '@/features/decks/api'
-import { PackHeader } from '@/pages/deckPage/packHeader'
-
-import s from './deckPage.module.scss'
-
 import {
   selectCardsCurrentPage,
   selectCardsOuestion,
   selectCardsPageSize,
   selectCardsSortParams,
   selectSelectItems,
-} from '../../features/cards/modal'
+} from '@/features/cards/modal'
+import { cardsActions } from '@/features/cards/modal/cardsSlice'
+import { CardsTable } from '@/features/cards/ui/cardsTable/cardsTable'
+import { useGetDeckQuery } from '@/features/decks/api'
+import { PackHeader } from '@/pages/deckPage/packHeader'
+
+import s from './deckPage.module.scss'
 
 export const DeckPage = () => {
   const dispatch = useAppDispatch()

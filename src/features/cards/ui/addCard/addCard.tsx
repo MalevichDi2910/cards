@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useParams } from 'react-router-dom'
 
 import { Button } from '@/components/ui/button'
 import { ControlledSelect } from '@/components/ui/controlled/controlledSelect'
 import Modal from '@/components/ui/modal/modal'
 import { Option } from '@/components/ui/select'
 import { Typography } from '@/components/ui/typography'
+import { useCreateCardMutation } from '@/features/cards/api'
 import { AddCardFormField } from '@/features/cards/ui/addCard/addCardFormField/addCardFormField'
 import { addCardFormSchema, addCardFormValues } from '@/features/cards/ui/addCard/addCardFormSchema'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -18,13 +20,15 @@ export type CardValues = {
 }
 type Props = {
   cardValues?: CardValues
-  onSubmit: (data: FormData) => void
 }
-export const AddCard = ({ cardValues, onSubmit }: Props) => {
+export const AddCard = ({ cardValues }: Props) => {
   const options: Option[] = [
     { title: 'Text', value: 'text' },
     { title: 'Picture', value: 'picture' },
   ]
+
+  const { id = '' } = useParams<{ id: string }>()
+  const [createCard] = useCreateCardMutation()
 
   const [open, setOpen] = useState(false)
   const [questionCover, setQuestionCover] = useState<File | null>(null)
@@ -43,15 +47,16 @@ export const AddCard = ({ cardValues, onSubmit }: Props) => {
     },
     resolver: zodResolver(addCardFormSchema),
   })
-
-  const onSubmitHandler = (data: addCardFormValues) => {
+  const onSubmitHandler = async (data: addCardFormValues) => {
     const formData = new FormData()
 
     formData.append('question', data.question)
     formData.append('answer', data.answer)
     questionCover && formData.append('questionImg', questionCover)
     answerCover && formData.append('answerImg', answerCover)
-    onSubmit(formData)
+    await createCard({ body: formData, id }).then(() => {
+      closeModal()
+    })
   }
 
   const questionFormat = watch('questionFormat')

@@ -7,3 +7,11 @@ export type AuthResponseType = {
   name: string
   updated: string
 }
+
+export type LoginResponseType = { accessToken: string }
+
+export type LoginRequestType = {
+  email: string
+  password: string
+  rememberMe: boolean
+}

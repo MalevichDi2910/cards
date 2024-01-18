@@ -3,9 +3,7 @@ import { useForm } from 'react-hook-form'
 import { useParams } from 'react-router-dom'
 
 import { Button } from '@/components/ui/button'
-import { ControlledSelect } from '@/components/ui/controlled/controlledSelect'
 import Modal from '@/components/ui/modal/modal'
-import { Option } from '@/components/ui/select'
 import { Typography } from '@/components/ui/typography'
 import { useCreateCardMutation } from '@/features/cards/api'
 import { AddCardFormField } from '@/features/cards/ui/addCard/addCardFormField/addCardFormField'
@@ -22,11 +20,6 @@ type Props = {
   cardValues?: CardValues
 }
 export const AddCard = ({ cardValues }: Props) => {
-  const options: Option[] = [
-    { title: 'Text', value: 'text' },
-    { title: 'Picture', value: 'picture' },
-  ]
-
   const { id = '' } = useParams<{ id: string }>()
   const [createCard] = useCreateCardMutation()
 
@@ -40,7 +33,7 @@ export const AddCard = ({ cardValues }: Props) => {
   const closeModal = () => {
     setOpen(false)
   }
-  const { control, handleSubmit, watch } = useForm<addCardFormValues>({
+  const { control, handleSubmit } = useForm<addCardFormValues>({
     defaultValues: {
       answer: cardValues?.answer || '',
       question: cardValues?.question || '',
@@ -59,9 +52,6 @@ export const AddCard = ({ cardValues }: Props) => {
     })
   }
 
-  const questionFormat = watch('questionFormat')
-  const answerFormat = watch('answerFormat')
-
   const onChangeQuestionCover = (data: File) => {
     setQuestionCover(data)
   }
@@ -74,17 +64,8 @@ export const AddCard = ({ cardValues }: Props) => {
   return (
     <Modal isOpen={open} onOpenChange={changeOpen} title={'Add New Card'}>
       <form onSubmit={handleSubmit(onSubmitHandler)}>
-        <ControlledSelect
-          control={control}
-          fullWidth
-          label={'Choose a question format'}
-          name={'questionFormat'}
-          options={options}
-          placeholder={'Data format type'}
-        />
         <AddCardFormField
           control={control}
-          fieldFormat={questionFormat}
           imageURL={questionImage}
           label={'Question'}
           name={'question'}
@@ -92,7 +73,6 @@ export const AddCard = ({ cardValues }: Props) => {
         />
         <AddCardFormField
           control={control}
-          fieldFormat={answerFormat}
           imageURL={answerImage}
           label={'Answer'}
           name={'answer'}

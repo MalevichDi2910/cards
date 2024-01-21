@@ -21,8 +21,17 @@ export const cardsApi = baseApi.injectEndpoints({
           }
         },
       }),
+      updateCard: builder.query<Card, { body: FormData; id: string }>({
+        query: ({ body, id }) => {
+          return {
+            body,
+            method: 'PATCH',
+            url: `v1/cards/${id}`,
+          }
+        },
+      }),
     }
   },
 })
 
-export const { useCreateCardMutation, useGetCardsQuery } = cardsApi
+export const { useCreateCardMutation, useGetCardsQuery, useUpdateCardQuery } = cardsApi

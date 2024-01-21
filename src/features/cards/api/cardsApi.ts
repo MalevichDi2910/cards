@@ -21,7 +21,7 @@ export const cardsApi = baseApi.injectEndpoints({
           }
         },
       }),
-      updateCard: builder.query<Card, { body: FormData; id: string }>({
+      updateCard: builder.mutation<Card, { body: FormData; id: string }>({
         query: ({ body, id }) => {
           return {
             body,
@@ -34,4 +34,4 @@ export const cardsApi = baseApi.injectEndpoints({
   },
 })
 
-export const { useCreateCardMutation, useGetCardsQuery, useUpdateCardQuery } = cardsApi
+export const { useCreateCardMutation, useGetCardsQuery, useUpdateCardMutation } = cardsApi

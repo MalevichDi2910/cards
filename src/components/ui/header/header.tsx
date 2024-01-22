@@ -16,7 +16,7 @@ import c from '@/components/ui/dropDownMenu/dropDownMenu.module.scss'
 
 export type HeaderProps = {
   isLoggedIn?: boolean
-  user?: { email: string; name: string; src: string }
+  user?: { email?: string; name?: string; src?: string }
 }
 export const Header = ({ isLoggedIn, user }: HeaderProps) => {
   return (
@@ -34,13 +34,13 @@ export const Header = ({ isLoggedIn, user }: HeaderProps) => {
                 className={c.avatar}
                 size={'small'}
                 src={user.src}
-                userName={user.name}
+                userName={user.name!}
               ></Avatar>
             }
           >
             <DropDownItem asChild onSelect={() => {}}>
               <div className={c.photoAndEmail}>
-                <Avatar size={'small'} src={user.src} userName={user.name} />
+                <Avatar size={'small'} src={user.src} userName={user.name!} />
                 <div className={c.nameAndEmail}>
                   <Typography as={'div'} className={c.userName} variant={'subtitle2'}>
                     {user.name}

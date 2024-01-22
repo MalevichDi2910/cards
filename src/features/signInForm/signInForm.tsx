@@ -33,7 +33,7 @@ export const SignInForm = () => {
   const isAuthenticated = !isError
 
   if (isAuthenticated) {
-    return <Navigate replace to={'/'} />
+    return <Navigate replace to={'/v1/'} />
   }
 
   return (
@@ -63,7 +63,7 @@ export const SignInForm = () => {
           <Typography
             as={Link}
             className={s.forgotPassword}
-            to={'/forgot-password'}
+            to={'/v1/forgot-password'}
             variant={'body2'}
           >
             Forgot Password?
@@ -75,7 +75,7 @@ export const SignInForm = () => {
         <Typography as={'p'} className={s.text} variant={'body2'}>
           {`Don't have an account?`}
         </Typography>
-        <Button as={Link} className={s.signUp} to={'/sign-up'} variant={'link'}>
+        <Button as={Link} className={s.signUp} to={'/v1/sign-up'} variant={'link'}>
           Sign Up
         </Button>
       </Card>

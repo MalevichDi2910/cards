@@ -1,13 +1,11 @@
 import { useParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '@/common/services/store'
-import { Button } from '@/components/ui/button'
 import { GoBack } from '@/components/ui/goBack'
 import { Loader } from '@/components/ui/loader'
 import { Pagination } from '@/components/ui/pagination'
 import { Sort, Table } from '@/components/ui/table'
 import { TextField } from '@/components/ui/textField'
-import { Typography } from '@/components/ui/typography'
 import { useMeQuery } from '@/features/auth/api/authApi'
 import { useGetCardsQuery } from '@/features/cards/api/cardsApi'
 import {
@@ -18,6 +16,7 @@ import {
   selectSelectItems,
 } from '@/features/cards/modal'
 import { cardsActions } from '@/features/cards/modal/cardsSlice'
+import { AddCard } from '@/features/cards/ui/addCard'
 import { CardsTable } from '@/features/cards/ui/cardsTable/cardsTable'
 import { useGetDeckQuery } from '@/features/decks/api'
 import { PackHeader } from '@/pages/deckPage/packHeader'
@@ -29,11 +28,11 @@ export const DeckPage = () => {
   const question = useAppSelector(selectCardsOuestion)
   const currentPage = useAppSelector(selectCardsCurrentPage)
   const sort = useAppSelector(selectCardsSortParams)
-  const cardsPerPage = useAppSelector(selectCardsPageSize)
+  const itemsPerPage = useAppSelector(selectCardsPageSize)
   const selectItems = useAppSelector(selectSelectItems)
 
   const { id = '' } = useParams<{ id: string }>()
-  const queryParams = { id, params: { cardsPerPage, currentPage, question } }
+  const queryParams = { id, params: { currentPage, itemsPerPage, question } }
   const { data: deckData, isLoading } = useGetCardsQuery(queryParams)
   const { data: user } = useMeQuery()
   const { data: deck } = useGetDeckQuery({ id })
@@ -72,7 +71,7 @@ export const DeckPage = () => {
             onChange={onChangeSetPage}
             onPerPageChange={onChangeSetCardsPerPage}
             page={currentPage}
-            perPage={cardsPerPage}
+            perPage={itemsPerPage}
             perPageOptions={selectItems}
           />
         </div>
@@ -81,9 +80,7 @@ export const DeckPage = () => {
         <>
           <Table.Empty text={'This pack is empty. Click add new card to fill this pack'} />
           <Table.Empty>
-            <Button>
-              <Typography variant={'subtitle2'}>Add New Card</Typography>
-            </Button>
+            <AddCard />
           </Table.Empty>
         </>
       )}

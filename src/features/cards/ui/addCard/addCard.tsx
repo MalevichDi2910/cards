@@ -60,33 +60,42 @@ export const AddCard = ({ cardValues }: Props) => {
   }
   const questionImage = questionCover ? URL.createObjectURL(questionCover) : cardValues?.questionImg
   const answerImage = answerCover ? URL.createObjectURL(answerCover) : cardValues?.answerImg
+  const trigger = (
+    <Button>
+      <Typography as={'span'} variant={'subtitle2'}>
+        Add New Card
+      </Typography>
+    </Button>
+  )
 
   return (
-    <Modal isOpen={open} onOpenChange={changeOpen} title={'Add New Card'}>
-      <form onSubmit={handleSubmit(onSubmitHandler)}>
-        <AddCardFormField
-          control={control}
-          imageURL={questionImage}
-          label={'Question'}
-          name={'question'}
-          onLoadFileCover={onChangeQuestionCover}
-        />
-        <AddCardFormField
-          control={control}
-          imageURL={answerImage}
-          label={'Answer'}
-          name={'answer'}
-          onLoadFileCover={onChangeAnswerCover}
-        />
-        <div>
-          <Button onClick={closeModal} type={'reset'} variant={'secondary'}>
-            <Typography variant={'subtitle2'}>Cancel</Typography>
-          </Button>
-          <Button type={'submit'}>
-            <Typography variant={'subtitle2'}>Add New Card</Typography>
-          </Button>
-        </div>
-      </form>
-    </Modal>
+    <>
+      <Modal isOpen={open} onOpenChange={changeOpen} title={'Add New Card'} trigger={trigger}>
+        <form onSubmit={handleSubmit(onSubmitHandler)}>
+          <AddCardFormField
+            control={control}
+            imageURL={questionImage}
+            label={'Question'}
+            name={'question'}
+            onLoadFileCover={onChangeQuestionCover}
+          />
+          <AddCardFormField
+            control={control}
+            imageURL={answerImage}
+            label={'Answer'}
+            name={'answer'}
+            onLoadFileCover={onChangeAnswerCover}
+          />
+          <div>
+            <Button onClick={closeModal} type={'reset'} variant={'secondary'}>
+              <Typography variant={'subtitle2'}>Cancel</Typography>
+            </Button>
+            <Button type={'submit'}>
+              <Typography variant={'subtitle2'}>Add New Card</Typography>
+            </Button>
+          </div>
+        </form>
+      </Modal>
+    </>
   )
 }

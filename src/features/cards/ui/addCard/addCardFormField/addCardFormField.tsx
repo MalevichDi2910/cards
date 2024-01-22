@@ -7,6 +7,8 @@ import { ControlledTextField } from '@/components/ui/controlled/controlled-textF
 import { Typography } from '@/components/ui/typography'
 import { addCardFormValues } from '@/features/cards/ui/addCard/addCardFormSchema'
 
+import s from './addCardFormField.module.scss'
+
 type Props = {
   control: Control<addCardFormValues>
   imageURL: null | string | undefined
@@ -28,21 +30,36 @@ export const AddCardFormField = ({ control, imageURL, label, name, onLoadFileCov
 
   return (
     <>
-      <ControlledTextField control={control} label={label} name={name} />
+      {' '}
+      <Typography as={'p'} className={s.label} variant={'subtitle2'}>
+        {`${label}:`}
+      </Typography>
+      <ControlledTextField
+        control={control}
+        fullWidth
+        label={label}
+        name={name}
+        placeholder={'Name'}
+      />
       <>
         {imageURL && (
-          <div>
+          <div className={s.imageField}>
             <img alt={'card img'} src={imageURL} />
           </div>
         )}
-        <Typography as={'label'} onClick={() => ref.current?.click()} variant={'subtitle2'}>
+        <Typography
+          as={'label'}
+          className={s.loader}
+          onClick={() => ref.current?.click()}
+          variant={'subtitle2'}
+        >
           <Button fullWidth type={'button'} variant={'secondary'}>
             <Image />
             <Typography as={'span'} variant={'subtitle2'}>
               {'Change Cover'}
             </Typography>
           </Button>
-          <input onChange={onChangeLoadFileCover} ref={ref} type={'file'} />
+          <input className={s.fileInput} onChange={onChangeLoadFileCover} ref={ref} type={'file'} />
         </Typography>
       </>
     </>

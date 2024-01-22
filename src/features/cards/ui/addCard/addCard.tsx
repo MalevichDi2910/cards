@@ -8,7 +8,10 @@ import { Typography } from '@/components/ui/typography'
 import { useCreateCardMutation } from '@/features/cards/api'
 import { AddCardFormField } from '@/features/cards/ui/addCard/addCardFormField/addCardFormField'
 import { addCardFormSchema, addCardFormValues } from '@/features/cards/ui/addCard/addCardFormSchema'
+import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
+
+import s from './addCard.module.scss'
 
 export type CardValues = {
   answer: string
@@ -71,7 +74,8 @@ export const AddCard = ({ cardValues }: Props) => {
   return (
     <>
       <Modal isOpen={open} onOpenChange={changeOpen} title={'Add New Card'} trigger={trigger}>
-        <form onSubmit={handleSubmit(onSubmitHandler)}>
+        <form className={s.form} onSubmit={handleSubmit(onSubmitHandler)}>
+          <DevTool control={control} />
           <AddCardFormField
             control={control}
             imageURL={questionImage}
@@ -86,7 +90,7 @@ export const AddCard = ({ cardValues }: Props) => {
             name={'answer'}
             onLoadFileCover={onChangeAnswerCover}
           />
-          <div>
+          <div className={s.actionBlock}>
             <Button onClick={closeModal} type={'reset'} variant={'secondary'}>
               <Typography variant={'subtitle2'}>Cancel</Typography>
             </Button>

@@ -17,7 +17,7 @@ export const publicRoutes: RouteObject[] = [
         path: '/v1/sign-up',
       },
       {
-        element: <DeckPage />,
+        element: <h1>not-found</h1>,
         path: '/v1/not-found',
       },
     ],

@@ -1,8 +1,8 @@
 import { z } from 'zod'
 
-export type PackFormValues = z.infer<typeof packFormSchema>
+export type DeckFormSchema = z.infer<typeof deckFormSchema>
 
-export const packFormSchema = z.object({
+export const deckFormSchema = z.object({
   namePack: z.string().min(1),
   privatePack: z.boolean().optional().default(false),
 })

@@ -21,6 +21,13 @@ export const publicRoutes: RouteObject[] = [
         path: '/v1/not-found',
       },
     ],
+import { SignInForm } from '@/features/SignInForm'
+import { Decks } from '@/pages/decks'
+
+export const publicRoutes: RouteObject[] = [
+  {
+    element: <SignInForm />,
+    path: '/sign-in',
   },
 ]
 
@@ -40,6 +47,8 @@ export const privateRoutes: RouteObject[] = [
   {
     element: <SignInForm />,
     path: '/v1/',
+    element: <Decks />,
+    path: '/decks',
   },
   { element: <DeckPage />, path: `v1/decks/:id/cards` },
 ]

@@ -12,7 +12,7 @@ export type PerPageSelectProps = {
 export const PerPageSelect: FC<PerPageSelectProps> = ({ onPerPageChange, perPageOptions }) => {
   return (
     <div className={s.selectBox}>
-      Показать
+      Show
       <Select
         className={s.select}
         onChange={onPerPageChange}
@@ -20,7 +20,7 @@ export const PerPageSelect: FC<PerPageSelectProps> = ({ onPerPageChange, perPage
         placeholder={perPageOptions[0].title}
         variant={'pagination'}
       />
-      на странице
+      in page
     </div>
   )
 }

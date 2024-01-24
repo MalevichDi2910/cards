@@ -1,5 +1,5 @@
 export type AuthResponseType = {
-  avatar: string
+  avatar?: null | string
   created: string
   email: string
   id: string

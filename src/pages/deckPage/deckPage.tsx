@@ -17,6 +17,8 @@ import {
 } from '@/features/cards/modal'
 import { cardsActions } from '@/features/cards/modal/cardsSlice'
 import { AddCard } from '@/features/cards/ui/addCard'
+} from '@/features/cards/model'
+import { cardsActions } from '@/features/cards/model/cardsSlice'
 import { CardsTable } from '@/features/cards/ui/cardsTable/cardsTable'
 import { useGetDeckQuery } from '@/features/decks/api'
 import { PackHeader } from '@/pages/deckPage/packHeader'

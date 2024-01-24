@@ -15,6 +15,7 @@ export const authApi = baseApi.injectEndpoints({
         },
       }),
       me: builder.query<AuthResponseType | null, void>({
+        providesTags: ['Me'],
         query: () => {
           return {
             url: `v1/auth/me`,

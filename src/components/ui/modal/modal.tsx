@@ -51,7 +51,7 @@ const Modal = forwardRef<ElementRef<typeof Dialog.Root>, ModalPropsType>(
             {title && closeIcon && (
               <Dialog.Close asChild>
                 <button aria-label={'Close'} className={s.IconButton}>
-                  {<XMark size={1.5} />}
+                  <XMark size={1.5} />
                 </button>
               </Dialog.Close>
             )}

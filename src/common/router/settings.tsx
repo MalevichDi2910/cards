@@ -21,6 +21,7 @@ export const publicRoutes: RouteObject[] = [
         path: '/v1/not-found',
       },
     ],
+  }
 import { SignInForm } from '@/features/SignInForm'
 import { Decks } from '@/pages/decks'
 

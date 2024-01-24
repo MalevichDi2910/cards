@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import {
   useCreateDeckMutation,
   useDeleteDeckMutation,
+  useGetDeckQuery,
   useGetDecksQuery,
 } from '@/common/services/decks'
 import { useAppDispatch, useAppSelector } from '@/common/services/store'
@@ -11,7 +12,6 @@ import { Pagination } from '@/components/ui/pagination'
 import { Sort } from '@/components/ui/table'
 import { Typography } from '@/components/ui/typography'
 import { useMeQuery } from '@/features/auth/api'
-import { useGetDeckQuery } from '@/features/decks/api'
 import {
   decksActions,
   selectDecksCurrentPage,

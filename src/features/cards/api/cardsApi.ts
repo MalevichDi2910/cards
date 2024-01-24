@@ -14,10 +14,11 @@ export const cardsApi = baseApi.injectEndpoints({
         },
       }),
       getCards: builder.query<CardsResponseType, { id: string; params: CardsParams }>({
+        providesTags: ['Cards'],
         query: ({ id, params }) => {
           return {
+            params: params,
             url: `v1/decks/${id}/cards`,
-            ...(params ? { params: params } : null),
           }
         },
       }),

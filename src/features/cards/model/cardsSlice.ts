@@ -27,6 +27,9 @@ export const cardSlice = createSlice({
     setPageSize: (state, action: PayloadAction<{ pageSize: number }>) => {
       state.pageSize = action.payload.pageSize
     },
+    setQuestion: (state, action: PayloadAction<{ question: string }>) => {
+      state.question = action.payload.question
+    },
     setSort: (state, action: PayloadAction<{ sortParams: Sort }>) => {
       state.sortParams = action.payload.sortParams
     },

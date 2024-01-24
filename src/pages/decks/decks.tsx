@@ -1,10 +1,17 @@
-import { useCreateDeckMutation, useGetDecksQuery } from '@/common/services/decks'
+import { useParams } from 'react-router-dom'
+
+import {
+  useCreateDeckMutation,
+  useDeleteDeckMutation,
+  useGetDecksQuery,
+} from '@/common/services/decks'
 import { useAppDispatch, useAppSelector } from '@/common/services/store'
 import { Loader } from '@/components/ui/loader'
 import { Pagination } from '@/components/ui/pagination'
 import { Sort } from '@/components/ui/table'
 import { Typography } from '@/components/ui/typography'
 import { useMeQuery } from '@/features/auth/api'
+import { useGetDeckQuery } from '@/features/decks/api'
 import {
   decksActions,
   selectDecksCurrentPage,
@@ -16,7 +23,7 @@ import {
   selectShowMyDecks,
 } from '@/features/decks/model'
 import { FilterForDecks } from '@/pages/decks/filter-for-decks'
-import { AddPack } from '@/pages/decks/modals/modals-for-decks/add-pack'
+import { AddDeck } from '@/pages/decks/modals/modals-for-decks/add-deck'
 import { TableForDecks } from '@/pages/decks/table-for-decks'
 
 import s from './decks.module.scss'
@@ -33,8 +40,15 @@ export const Decks = () => {
 
   const sortedString = sort ? `${sort.key}-${sort.direction}` : null
 
+  const { id = '' } = useParams<{ id: string }>()
   const { data: user } = useMeQuery()
+  const { data: deck } = useGetDeckQuery({ id })
   const [createDeck, deckCreationStatus] = useCreateDeckMutation()
+  const [deleteDeck] = useDeleteDeckMutation()
+
+  const removeDeck = (deckId: string) => {
+    deleteDeck(deckId)
+  }
 
   const {
     data: decks,
@@ -91,7 +105,7 @@ export const Decks = () => {
       <div className={s.container}>
         <div className={s.title}>
           <Typography variant={'large'}>Packs list</Typography>
-          <AddPack
+          <AddDeck
             disabled={deckCreationStatus.isLoading}
             onCreateDeck={() => createDeck({ name: 'New deck' })}
           />
@@ -106,7 +120,13 @@ export const Decks = () => {
           setShowMyDecks={onChangeSetShowMyDecks}
           showMyDecks={showMyDecks}
         />
-        <TableForDecks decks={decks} setSort={onChangeSort} sort={sort} />
+        <TableForDecks
+          deck={deck}
+          decks={decks}
+          removeDeck={() => removeDeck(id)}
+          setSort={onChangeSort}
+          sort={sort}
+        />
         <Pagination
           count={decks?.pagination?.totalPages || 1}
           onChange={onChangeSetPage}

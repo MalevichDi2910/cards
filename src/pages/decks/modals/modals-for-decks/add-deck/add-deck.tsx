@@ -5,10 +5,11 @@ import { Button } from '@/components/ui/button'
 import { ControlledCheckbox } from '@/components/ui/controlled/controlled-checkbox'
 import { ControlledTextField } from '@/components/ui/controlled/controlled-textField'
 import Modal from '@/components/ui/modal/modal'
+import { Typography } from '@/components/ui/typography'
 import {
-  PackFormValues,
-  packFormSchema,
-} from '@/pages/decks/modals/modals-for-decks/pack-form-schema'
+  DeckFormSchema,
+  deckFormSchema,
+} from '@/pages/decks/modals/modals-for-decks/deck-form-schema'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import s from '@/components/ui/modal/modal.module.scss'
@@ -18,22 +19,27 @@ type AddPackProps = {
   onCreateDeck: () => void
 }
 
-export const AddPack = ({ disabled, onCreateDeck }: AddPackProps) => {
+export const AddDeck = ({ disabled, onCreateDeck }: AddPackProps) => {
   const {
     control,
     formState: { errors },
-  } = useForm<PackFormValues>({ resolver: zodResolver(packFormSchema) })
+  } = useForm<DeckFormSchema>({ resolver: zodResolver(deckFormSchema) })
   const [open, setOpen] = useState<boolean>(false)
-  const changeOpen = (open: boolean) => {
-    setOpen(open)
+  const onAddDeckHandler = () => {
+    setOpen(!open)
+    onCreateDeck()
+  }
+
+  const onChangeOpen = () => {
+    setOpen(!open)
   }
 
   return (
     <>
-      <Button disabled={disabled} onClick={() => setOpen(true)} variant={'primary'}>
-        Add new pack
+      <Button disabled={disabled} onClick={onChangeOpen} variant={'primary'}>
+        <Typography variant={'subtitle2'}>Add New Deck</Typography>
       </Button>
-      <Modal closeIcon isOpen={open} onOpenChange={changeOpen} title={'Add new pack'}>
+      <Modal closeIcon isOpen={open} onOpenChange={onChangeOpen} title={'Add new pack'}>
         <ControlledTextField
           control={control}
           errorMessage={errors.namePack?.message}
@@ -50,9 +56,11 @@ export const AddPack = ({ disabled, onCreateDeck }: AddPackProps) => {
         ></ControlledCheckbox>
         <div className={s.FooterTwoButtonsContainer}>
           <div className={s.FooterTwoButtons}>
-            <Button variant={'secondary'}>Cancel</Button>
-            <Button onClick={onCreateDeck} onSubmit={undefined} variant={'primary'}>
-              Add new pack
+            <Button onClick={onChangeOpen} type={'reset'} variant={'secondary'}>
+              <Typography variant={'subtitle2'}>Cancel</Typography>
+            </Button>
+            <Button onClick={onAddDeckHandler} type={'submit'} variant={'primary'}>
+              <Typography variant={'subtitle2'}>Add New Deck</Typography>
             </Button>
           </div>
         </div>

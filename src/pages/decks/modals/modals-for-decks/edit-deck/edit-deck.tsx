@@ -6,31 +6,33 @@ import { Button } from '@/components/ui/button'
 import { ControlledCheckbox } from '@/components/ui/controlled/controlled-checkbox'
 import { ControlledTextField } from '@/components/ui/controlled/controlled-textField'
 import Modal from '@/components/ui/modal/modal'
+import { Typography } from '@/components/ui/typography'
 import {
-  PackFormValues,
-  packFormSchema,
-} from '@/pages/decks/modals/modals-for-decks/pack-form-schema'
+  DeckFormSchema,
+  deckFormSchema,
+} from '@/pages/decks/modals/modals-for-decks/deck-form-schema'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import s from '@/components/ui/modal/modal.module.scss'
 
-export const EditPack = () => {
+export const EditDeck = () => {
   const {
     control,
     formState: { errors },
-  } = useForm<PackFormValues>({ resolver: zodResolver(packFormSchema) })
+  } = useForm<DeckFormSchema>({ resolver: zodResolver(deckFormSchema) })
 
   const [open, setOpen] = useState<boolean>(false)
-  const changeOpen = (open: boolean) => {
-    setOpen(open)
+
+  const onChangeOpen = () => {
+    setOpen(!open)
   }
 
   return (
     <>
-      <button onClick={() => setOpen(true)}>
+      <button onClick={onChangeOpen}>
         <Edit />
       </button>
-      <Modal closeIcon isOpen={open} onOpenChange={changeOpen} title={'Edit Pack'}>
+      <Modal closeIcon isOpen={open} onOpenChange={onChangeOpen} title={'Edit Pack'}>
         <ControlledTextField
           control={control}
           errorMessage={errors.namePack?.message}
@@ -47,8 +49,10 @@ export const EditPack = () => {
         ></ControlledCheckbox>
         <div className={s.FooterTwoButtonsContainer}>
           <div className={s.FooterTwoButtons}>
-            <Button variant={'secondary'}>Cancel</Button>
-            <Button onSubmit={undefined} variant={'primary'}>
+            <Button onClick={onChangeOpen} type={'reset'} variant={'secondary'}>
+              <Typography variant={'subtitle2'}>Cancel</Typography>
+            </Button>
+            <Button type={'submit'} variant={'primary'}>
               Save Changes
             </Button>
           </div>

@@ -1,7 +1,7 @@
 import { CreateDeckArgs, GetDecksArgs, GetDecksResponse } from '@/common/services/api'
 import { baseApi } from '@/common/services/api/baseApi'
 
-const decksService = baseApi.injectEndpoints({
+const decksApi = baseApi.injectEndpoints({
   endpoints: builder => {
     return {
       createDeck: builder.mutation<void, CreateDeckArgs>({
@@ -14,15 +14,23 @@ const decksService = baseApi.injectEndpoints({
           }
         },
       }),
+      deleteDeck: builder.mutation<any, string>({
+        invalidatesTags: ['Decks'],
+        query: id => ({
+          method: 'DELETE',
+          params: { id },
+          url: `v1/decks/${id}`,
+        }),
+      }),
       getDecks: builder.query<GetDecksResponse, GetDecksArgs | void>({
         providesTags: ['Decks'],
         query: args => ({
           params: args ?? {},
-          url: `v1/decks`,
+          url: `v2/decks`,
         }),
       }),
     }
   },
 })
 
-export const { useCreateDeckMutation, useGetDecksQuery } = decksService
+export const { useCreateDeckMutation, useDeleteDeckMutation, useGetDecksQuery } = decksApi

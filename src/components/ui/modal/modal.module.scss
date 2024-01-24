@@ -63,10 +63,6 @@ input {
     &:hover {
       background-color: var(--color-dark-500);
     }
-
-    &:focus {
-      box-shadow: 0 0 0 2px var(--color-dark-100);
-    }
   }
 
   .FooterOneButton {
@@ -97,6 +93,10 @@ input {
       padding-bottom: 24px;
     }
   }
+}
+
+p {
+  margin: 0;
 }
 
 .BodyText {

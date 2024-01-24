@@ -1,15 +1,18 @@
 import { RouteObject } from 'react-router-dom'
 
+import { SignInForm } from '@/features/SignInForm'
+import { Decks } from '@/pages/decks'
+
 export const publicRoutes: RouteObject[] = [
   {
-    element: <div>SignInPage</div>,
+    element: <SignInForm />,
     path: '/sign-in',
   },
 ]
 
 export const privateRoutes: RouteObject[] = [
   {
-    element: <div>ProfilePage</div>,
-    path: '/profile',
+    element: <Decks />,
+    path: '/decks',
   },
 ]

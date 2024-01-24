@@ -1,0 +1,10 @@
+.icons {
+  display: flex;
+  justify-content: space-between;
+  width: 70px;
+}
+
+.name:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}

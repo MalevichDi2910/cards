@@ -7,18 +7,27 @@ import { Typography } from '@/components/ui/typography'
 
 import s from '@/components/ui/modal/modal.module.scss'
 
-export const DeletePack = () => {
+type DeletePackProps = {
+  removeDeck: () => void
+}
+
+export const DeleteDeck = ({ removeDeck }: DeletePackProps) => {
   const [open, setOpen] = useState<boolean>(false)
-  const changeOpen = (open: boolean) => {
-    setOpen(open)
+  const onDeleteDeckHandler = () => {
+    setOpen(!open)
+    removeDeck()
+  }
+
+  const onChangeOpen = () => {
+    setOpen(!open)
   }
 
   return (
     <>
-      <button onClick={() => setOpen(true)}>
+      <button onClick={onChangeOpen}>
         <Trash />
       </button>
-      <Modal closeIcon isOpen={open} onOpenChange={changeOpen} title={'Delete Pack'}>
+      <Modal closeIcon isOpen={open} onOpenChange={onChangeOpen} title={'Delete Pack'}>
         <div>
           <Typography as={'p'} variant={'body1'}>
             Do you really want to remove <Typography variant={'subtitle1'}>Pack Name</Typography>?
@@ -29,8 +38,10 @@ export const DeletePack = () => {
         </div>
         <div className={s.FooterTwoButtonsContainer}>
           <div className={s.FooterTwoButtons}>
-            <Button variant={'secondary'}>Cancel</Button>
-            <Button onSubmit={undefined} variant={'primary'}>
+            <Button onClick={onChangeOpen} type={'reset'} variant={'secondary'}>
+              <Typography variant={'subtitle2'}>Cancel</Typography>
+            </Button>
+            <Button onClick={onDeleteDeckHandler} type={'submit'} variant={'primary'}>
               Delete Pack
             </Button>
           </div>

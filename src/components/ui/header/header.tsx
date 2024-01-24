@@ -24,42 +24,14 @@ export const Header = ({ isLoggedIn, user }: HeaderProps) => {
   const navigate = useNavigate()
 
   const signOutOfProfile = () => {
-    navigate('/sign-in')
+    navigate('v1/sign-in')
   }
 
   const goToMyProfile = () => {
-    navigate('/profile')
+    navigate('v1/profile')
   }
 
   return (
-    <div className={s.headerContainer}>
-      <ItIncubator height={'36'} width={'157'} />
-      {isLoggedIn && user && (
-        <div className={s.nameWithDropDown}>
-          <Typography className={s.text} variant={'subtitle1'}>
-            {user.name}
-          </Typography>
-          <DropDownMenu
-            align={'end'}
-            trigger={
-              <Avatar
-                className={c.avatar}
-                size={'small'}
-                src={user.src}
-                userName={user.name!}
-              ></Avatar>
-            }
-          >
-            <DropDownItem asChild onSelect={() => {}}>
-              <div className={c.photoAndEmail}>
-                <Avatar size={'small'} src={user.src} userName={user.name!} />
-                <div className={c.nameAndEmail}>
-                  <Typography as={'div'} className={c.userName} variant={'subtitle2'}>
-                    {user.name}
-                  </Typography>
-                  <div className={c.userEmail}>
-                    <Typography as={'div'} variant={'caption'}>
-                      {user.email}
     <div className={s.container}>
       <div className={s.wrapper}>
         <ItIncubator height={'36'} width={'157'} />
@@ -75,13 +47,13 @@ export const Header = ({ isLoggedIn, user }: HeaderProps) => {
                   className={c.avatar}
                   size={'small'}
                   src={user.src}
-                  userName={user.name}
+                  userName={user.name!}
                 ></Avatar>
               }
             >
               <DropDownItem asChild onSelect={() => {}}>
                 <div className={c.photoAndEmail}>
-                  <Avatar size={'small'} src={user.src} userName={user.name} />
+                  <Avatar size={'small'} src={user.src} userName={user.name!} />
                   <div className={c.nameAndEmail}>
                     <Typography as={'div'} className={c.userName} variant={'subtitle2'}>
                       {user.name}

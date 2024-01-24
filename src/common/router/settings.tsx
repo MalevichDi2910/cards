@@ -1,9 +1,12 @@
-import { RouteObject } from 'react-router-dom'
+import { Navigate, RouteObject } from 'react-router-dom'
 
+import { CreateNewPasswordForm } from '@/features/createNewPasswordForm'
+import { ForgotPasswordForm } from '@/features/forgot-password'
 import { PersonalInfo } from '@/features/personal-information'
 import { RegisterForm } from '@/features/register-form'
 import { SignInForm } from '@/features/signInForm'
 import { DeckPage } from '@/pages/deckPage/deckPage'
+import { Decks } from '@/pages/decks'
 
 export const publicRoutes: RouteObject[] = [
   {
@@ -20,15 +23,9 @@ export const publicRoutes: RouteObject[] = [
         element: <h1>not-found</h1>,
         path: '/v1/not-found',
       },
+      { element: <ForgotPasswordForm />, path: '/v1/forgot-password' },
+      { element: <CreateNewPasswordForm />, path: `/v1/create-new-password/:token` },
     ],
-  }
-import { SignInForm } from '@/features/SignInForm'
-import { Decks } from '@/pages/decks'
-
-export const publicRoutes: RouteObject[] = [
-  {
-    element: <SignInForm />,
-    path: '/sign-in',
   },
 ]
 
@@ -45,11 +42,8 @@ export const privateRoutes: RouteObject[] = [
     ),
     path: '/v1/profile',
   },
-  {
-    element: <SignInForm />,
-    path: '/v1/',
-    element: <Decks />,
-    path: '/decks',
-  },
   { element: <DeckPage />, path: `v1/decks/:id/cards` },
+  { element: <Navigate to={'/v1/decks'} />, path: '/v1/' },
+  { element: <Decks />, path: 'v1/decks' },
+  { element: <h1>Learn</h1>, path: 'v1/decks/:id/learn' },
 ]

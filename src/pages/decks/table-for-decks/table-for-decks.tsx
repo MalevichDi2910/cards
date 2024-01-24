@@ -1,18 +1,22 @@
+import { useNavigate } from 'react-router-dom'
+
 import { PlayCircle } from '@/assets/icons/playCircle'
-import { GetDecksResponse } from '@/common/services/api'
+import { GetDecksResponse, GetDecksResponseItems } from '@/common/services/api'
 import { Column, Sort, Table, TableHeader } from '@/components/ui/table'
-import { DeletePack } from '@/pages/decks/modals/modals-for-decks/delete-pack'
-import { EditPack } from '@/pages/decks/modals/modals-for-decks/edit-pack'
+import { DeleteDeck } from '@/pages/decks/modals/modals-for-decks/delete-deck'
+import { EditDeck } from '@/pages/decks/modals/modals-for-decks/edit-deck'
 
 import s from './table-for-decks.module.scss'
 
 type TableForDecksProps = {
+  deck: GetDecksResponseItems | undefined
   decks: GetDecksResponse | undefined
+  removeDeck: () => void
   setSort: (sort: Sort | null) => void
   sort: Sort | null
 }
 
-export const TableForDecks = ({ decks, setSort, sort }: TableForDecksProps) => {
+export const TableForDecks = ({ deck, decks, removeDeck, setSort, sort }: TableForDecksProps) => {
   const tableColumn: Column[] = [
     { key: 'name', sortable: true, title: 'Name' },
     { key: 'cardsCount', sortable: true, title: 'Cards' },
@@ -21,6 +25,11 @@ export const TableForDecks = ({ decks, setSort, sort }: TableForDecksProps) => {
     { key: 'actions', sortable: false, title: '' },
   ]
 
+  const navigate = useNavigate()
+  const toGetDeck = () => {
+    navigate(`v1/decks/${deck?.id}`)
+  }
+
   return (
     <Table.Root>
       <TableHeader columns={tableColumn} onSort={setSort} sort={sort} />
@@ -28,15 +37,17 @@ export const TableForDecks = ({ decks, setSort, sort }: TableForDecksProps) => {
         {decks?.items?.map(deck => {
           return (
             <Table.Row key={deck?.id}>
-              <Table.Cell className={s.name}>{deck?.name}</Table.Cell>
+              <Table.Cell className={s.name} onClick={toGetDeck}>
+                {deck?.name}
+              </Table.Cell>
               <Table.Cell>{deck?.cardsCount}</Table.Cell>
               <Table.Cell>{new Date(deck?.updated).toLocaleDateString()}</Table.Cell>
               <Table.Cell>{deck?.author?.name}</Table.Cell>
               <Table.Cell>
                 <div className={s.icons}>
                   <PlayCircle />
-                  <EditPack />
-                  <DeletePack />
+                  <EditDeck />
+                  <DeleteDeck removeDeck={removeDeck} />
                 </div>
               </Table.Cell>
             </Table.Row>

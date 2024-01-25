@@ -10,6 +10,7 @@ export const store = configureStore({
   middleware: getDefaultMiddleware => getDefaultMiddleware().concat(baseApi.middleware),
   reducer: {
     [baseApi.reducerPath]: baseApi.reducer,
+    [cardSlice.name]: cardSlice.reducer,
     [cardSlice.reducerPath]: cardSlice.reducer,
     [decksSlice.reducerPath]: decksSlice.reducer,
   },

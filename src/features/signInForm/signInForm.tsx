@@ -1,11 +1,14 @@
 import { useForm } from 'react-hook-form'
+import { Link, Navigate } from 'react-router-dom'
 
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { ControlledCheckbox } from '@/components/ui/controlled/controlled-checkbox/controlled-checkbox'
 import { ControlledTextField } from '@/components/ui/controlled/controlled-textField'
+import { Loader } from '@/components/ui/loader'
 import { Typography } from '@/components/ui/typography'
-import { SignInFormSchema, SignInFormValues } from '@/features/SignInForm/SignInFormSchema'
+import { LoginRequestType, useLoginMutation, useMeQuery } from '@/features/auth/api'
+import { SignInFormSchema, SignInFormValues } from '@/features/signInForm/signInFormSchema'
 import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
 
@@ -18,9 +21,20 @@ export const SignInForm = () => {
     handleSubmit,
   } = useForm<SignInFormValues>({ resolver: zodResolver(SignInFormSchema) })
 
-  const onSubmit = handleSubmit(data => {
-    console.log(data)
-  })
+  const { isError, isLoading } = useMeQuery()
+  const [login] = useLoginMutation()
+  const onSubmit = (loginData: LoginRequestType) => {
+    login(loginData)
+  }
+
+  if (isLoading) {
+    return <Loader />
+  }
+  const isAuthenticated = !isError
+
+  if (isAuthenticated) {
+    return <Navigate replace to={'/v1/'} />
+  }
 
   return (
     <>
@@ -28,7 +42,7 @@ export const SignInForm = () => {
         <Typography as={'h1'} className={s.title} variant={'large'}>
           Sign In
         </Typography>
-        <form className={s.form} onSubmit={onSubmit}>
+        <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
           <DevTool control={control} />
           <ControlledTextField
             control={control}
@@ -46,7 +60,12 @@ export const SignInForm = () => {
             type={'password'}
           />
           <ControlledCheckbox control={control} label={'Remember me'} name={'rememberMe'} />
-          <Typography as={'p'} className={s.forgotPassword} variant={'body2'}>
+          <Typography
+            as={Link}
+            className={s.forgotPassword}
+            to={'/v1/forgot-password'}
+            variant={'body2'}
+          >
             Forgot Password?
           </Typography>
           <Button className={s.signIn} fullWidth type={'submit'}>
@@ -56,7 +75,7 @@ export const SignInForm = () => {
         <Typography as={'p'} className={s.text} variant={'body2'}>
           {`Don't have an account?`}
         </Typography>
-        <Button as={'a'} className={s.signUp} href={'/sign-up'} variant={'link'}>
+        <Button as={Link} className={s.signUp} to={'/v1/sign-up'} variant={'link'}>
           Sign Up
         </Button>
       </Card>

@@ -65,6 +65,7 @@ export const DeckPage = () => {
       {isEmptyCard && (
         <div>
           <TextField
+            fullWidth
             onChangeValue={onChangeQuestion}
             placeholder={'Input search'}
             type={'search'}
@@ -86,13 +87,16 @@ export const DeckPage = () => {
           />
         </div>
       )}
-      {!isOwner && !isEmptyCard && (
+      {isOwner && !isEmptyCard && (
         <>
           <Table.Empty text={'This pack is empty. Click add new card to fill this pack'} />
           <Table.Empty>
             <AddCard />
           </Table.Empty>
         </>
+      )}
+      {!isOwner && !isEmptyCard && (
+        <Table.Empty text={'This pack is empty, go back to learn other decks.'} />
       )}
     </div>
   )

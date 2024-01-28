@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom'
 import {
   useCreateDeckMutation,
   useDeleteDeckMutation,
-  useGetDeckQuery,
   useGetDecksQuery,
 } from '@/common/services/decks'
 import { useAppDispatch, useAppSelector } from '@/common/services/store'
@@ -42,7 +41,6 @@ export const Decks = () => {
 
   const { id = '' } = useParams<{ id: string }>()
   const { data: user } = useMeQuery()
-  const { data: deck } = useGetDeckQuery({ id })
   const [createDeck, deckCreationStatus] = useCreateDeckMutation()
   const [deleteDeck] = useDeleteDeckMutation()
 
@@ -120,21 +118,24 @@ export const Decks = () => {
           setShowMyDecks={onChangeSetShowMyDecks}
           showMyDecks={showMyDecks}
         />
-        <TableForDecks
-          deck={deck}
-          decks={decks}
-          removeDeck={() => removeDeck(id)}
-          setSort={onChangeSort}
-          sort={sort}
-        />
-        <Pagination
-          count={decks?.pagination?.totalPages || 1}
-          onChange={onChangeSetPage}
-          onPerPageChange={onChangeSetCardsPerPage}
-          page={currentPage}
-          perPage={pageSize}
-          perPageOptions={selectItems}
-        />
+        {decks && decks.items.length > 0 && (
+          <>
+            <TableForDecks
+              decks={decks}
+              removeDeck={() => removeDeck(id)}
+              setSort={onChangeSort}
+              sort={sort}
+            />
+            <Pagination
+              count={decks?.pagination?.totalPages || 1}
+              onChange={onChangeSetPage}
+              onPerPageChange={onChangeSetCardsPerPage}
+              page={currentPage}
+              perPage={pageSize}
+              perPageOptions={selectItems}
+            />
+          </>
+        )}
       </div>
     </>
   )

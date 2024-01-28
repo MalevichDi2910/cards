@@ -65,7 +65,6 @@ export const DeckPage = () => {
       {isEmptyCard && (
         <div>
           <TextField
-            className={s.input}
             onChangeValue={onChangeQuestion}
             placeholder={'Input search'}
             type={'search'}

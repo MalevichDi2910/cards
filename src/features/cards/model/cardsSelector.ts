@@ -1,6 +1,6 @@
 import { RootState } from '@/common/services/store'
 
-export const selectCardsOuestion = (state: RootState) => state.cards.question
+export const selectCardsQuestion = (state: RootState) => state.cards.question
 
 export const selectCardsCurrentPage = (state: RootState) => state.cards.currentPage
 

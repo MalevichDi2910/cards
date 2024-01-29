@@ -33,7 +33,7 @@ export const SignInForm = () => {
   const isAuthenticated = !isError
 
   if (isAuthenticated) {
-    return <Navigate replace to={'/v1/'} />
+    return <Navigate to={'/'} />
   }
 
   return (

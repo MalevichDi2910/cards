@@ -27,8 +27,8 @@ export const PackHeader = ({ deck, isEmptyCard, isOwner }: Props) => {
           </DropDownMenu>
         )}
       </div>
-      {isOwner && <AddCard />}
-      {!isOwner && (
+      {isOwner && isEmptyCard && <AddCard />}
+      {!isOwner && isEmptyCard && (
         <Button as={Link} to={`v1/decks/${deck.id}/learn`}>
           <Typography variant={'subtitle2'}>Learn to Pack</Typography>
         </Button>

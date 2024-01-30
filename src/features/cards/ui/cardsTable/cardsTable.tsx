@@ -50,7 +50,7 @@ export const CardsTable = ({ cards, isOwner, onSort, sort }: Props) => {
                 <Rating rating={card.grade} />
               </Table.Cell>
               {isOwner && (
-                <Table.Cell>
+                <Table.Cell className={s.cellsButton}>
                   <IconButton icon={<Edit />} size={1} />
                   <IconButton icon={<Delete />} size={1} />
                 </Table.Cell>

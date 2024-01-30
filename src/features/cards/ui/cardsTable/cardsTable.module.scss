@@ -10,4 +10,18 @@
   .cellUpdated {
     width: 200px;
   }
+
+  .cellsButton {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    width: 105px;
+    height: 37px;
+    padding: 6px 24px;
+  }
+
+  .cellButton {
+    padding: 6px 24px 0;
+  }
 }

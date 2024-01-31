@@ -5,10 +5,22 @@
   .cellQuestion,
   .cellAnswer {
     width: 310px;
+
+    .iconAndTextWrapper {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+
+      .image {
+        max-width: 160px;
+        height: 100%;
+        max-height: 62px;
+      }
+    }
   }
 
   .cellUpdated {
-    width: 200px;
+    width: 250px;
   }
 
   .cellsButton {

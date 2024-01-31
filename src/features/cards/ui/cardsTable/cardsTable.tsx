@@ -38,10 +38,20 @@ export const CardsTable = ({ cards, isOwner, onSort, sort }: Props) => {
           return (
             <Table.Row key={card.id}>
               <Table.Cell className={s.cellQuestion}>
-                <Typography variant={'body2'}>{card.question}</Typography>
+                <div className={s.iconAndTextWrapper}>
+                  {card.questionImg && (
+                    <img alt={'Card question'} className={s.image} src={card.questionImg} />
+                  )}
+                  <Typography variant={'body2'}>{card.question}</Typography>
+                </div>
               </Table.Cell>
               <Table.Cell className={s.cellAnswer}>
-                <Typography variant={'body2'}>{card.answer}</Typography>
+                <div className={s.iconAndTextWrapper}>
+                  {card.answerImg && (
+                    <img alt={'Card answer'} className={s.image} src={card.answerImg} />
+                  )}
+                  <Typography variant={'body2'}>{card.answer}</Typography>
+                </div>
               </Table.Cell>
               <Table.Cell className={s.cellUpdated}>
                 <Typography variant={'body2'}>{cardDate(card.updated)}</Typography>

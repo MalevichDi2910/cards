@@ -7,8 +7,6 @@ import { RegisterForm } from '@/features/register-form'
 import { SignInForm } from '@/features/signInForm'
 import { DeckPage } from '@/pages/deckPage/deckPage'
 import { Decks } from '@/pages/decks'
-
-import { DeckPage } from '@/pages/deckPage/deckPage'
 import { SingleCard } from '@/pages/singlePack/singleCard'
 
 export const publicRoutes: RouteObject[] = [

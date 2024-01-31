@@ -1,17 +1,17 @@
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 
+import {
+  useGetDeckQuery,
+  useGetRandomCardQuery,
+  useSaveCardGradeMutation,
+} from '@/common/services/decks'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { GoBack } from '@/components/ui/goBack'
 import { Loader } from '@/components/ui/loader'
 import { RadioGroup } from '@/components/ui/radioGroup'
 import { Typography } from '@/components/ui/typography'
-import {
-  useGetDeckQuery,
-  useGetRandomCardQuery,
-  useSaveCardGradeMutation,
-} from '@/features/decks/api'
 
 import s from '@/pages/singlePack/singleCard.module.scss'
 

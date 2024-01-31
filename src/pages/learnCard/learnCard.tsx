@@ -13,9 +13,9 @@ import { Loader } from '@/components/ui/loader'
 import { RadioGroup } from '@/components/ui/radioGroup'
 import { Typography } from '@/components/ui/typography'
 
-import s from '@/pages/singlePack/singleCard.module.scss'
+import s from '@/pages/learnCard/learnCard.module.scss'
 
-export const SingleCard = () => {
+export const LearnCard = () => {
   const { id = '' } = useParams<{ id: string }>()
   // const id = 'clr3b62x2051uzk2vxpvfbrbm' /// for testing purposes only
   const { data: deck, isLoading: isDeckLoading } = useGetDeckQuery({ id })
@@ -32,13 +32,13 @@ export const SingleCard = () => {
     { title: 'Knew the answer', value: '5' },
   ]
 
-  const showNexQuestion = () => {
+  const showNextQuestion = () => {
     saveRating({
       cardId: question?.id,
       grade: Number(rating),
       id,
     })
-    setShowAnswer(false)
+    setShowAnswer(!showAnswer)
     setRating('1')
   }
 
@@ -67,7 +67,7 @@ export const SingleCard = () => {
           {!showAnswer && (
             <Button
               className={s.showAnswerButton}
-              onClick={() => setShowAnswer(true)}
+              onClick={() => setShowAnswer(!showAnswer)}
               variant={'primary'}
             >
               Show Answer
@@ -86,7 +86,7 @@ export const SingleCard = () => {
               </div>
               <Button
                 className={s.nextQuestionButton}
-                onClick={showNexQuestion}
+                onClick={showNextQuestion}
                 variant={'primary'}
               >
                 Next Question

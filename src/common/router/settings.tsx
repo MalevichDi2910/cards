@@ -7,7 +7,7 @@ import { RegisterForm } from '@/features/register-form'
 import { SignInForm } from '@/features/signInForm'
 import { DeckPage } from '@/pages/deckPage/deckPage'
 import { Decks } from '@/pages/decks'
-import { SingleCard } from '@/pages/singlePack/singleCard'
+import { LearnCard } from '@/pages/learnCard/learnCard'
 
 export const publicRoutes: RouteObject[] = [
   {
@@ -29,7 +29,7 @@ export const publicRoutes: RouteObject[] = [
     ],
   },
   {
-    element: <SingleCard />,
+    element: <LearnCard />,
     path: '/test',
   },
   {

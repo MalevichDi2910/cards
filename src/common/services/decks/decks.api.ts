@@ -51,7 +51,7 @@ const decksApi = baseApi.injectEndpoints({
         },
       }),
       saveCardGrade: builder.mutation<
-        {},
+        void,
         { cardId: string | undefined; grade: number; id: string }
       >({
         invalidatesTags: ['Learn'],

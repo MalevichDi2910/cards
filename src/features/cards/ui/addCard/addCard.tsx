@@ -43,8 +43,8 @@ export const AddCard = ({ cardValues }: Props) => {
     },
     resolver: zodResolver(addCardFormSchema),
   })
+
   const onSubmitHandler = async (data: addCardFormValues) => {
-    console.log('FFFFFF')
     const formData = new FormData()
 
     formData.append('question', data.question)

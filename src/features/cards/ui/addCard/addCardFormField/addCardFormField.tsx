@@ -30,7 +30,6 @@ export const AddCardFormField = ({ control, imageURL, label, name, onLoadFileCov
 
   return (
     <>
-      {' '}
       <Typography as={'p'} className={s.label} variant={'subtitle2'}>
         {`${label}:`}
       </Typography>

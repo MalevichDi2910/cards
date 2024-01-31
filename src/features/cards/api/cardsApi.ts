@@ -5,11 +5,12 @@ export const cardsApi = baseApi.injectEndpoints({
   endpoints: builder => {
     return {
       createCard: builder.mutation<Card, { body: FormData; id: string }>({
+        invalidatesTags: ['Cards'],
         query: ({ body, id }) => {
           return {
-            body,
-            method: `POST`,
-            url: `v1/decks/${id}/cards`,
+            body: body,
+            method: 'POST',
+            url: `/v1/decks/${id}/cards`,
           }
         },
       }),

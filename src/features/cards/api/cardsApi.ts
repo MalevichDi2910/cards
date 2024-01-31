@@ -14,11 +14,12 @@ export const cardsApi = baseApi.injectEndpoints({
           }
         },
       }),
-      deleteCards: builder.mutation<void, { cardId: string; deckId: string }>({
-        query: ({ cardId }) => {
+      deleteCards: builder.mutation<void, { id: string }>({
+        invalidatesTags: ['Cards'],
+        query: ({ id }) => {
           return {
             method: 'DELETE',
-            url: `/v1/cards/${cardId}`,
+            url: `/v1/cards/${id}`,
           }
         },
       }),

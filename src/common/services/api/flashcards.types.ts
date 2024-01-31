@@ -45,3 +45,19 @@ export type GetDeckLearnResponse = {
   shots: number
   updated: string
 }
+
+export type GetDecksArgs = {
+  authorId?: string
+  currentPage?: number
+  itemsPerPage?: number
+  maxCardsCount?: number
+  minCardsCount?: number
+  name?: string
+  orderBy?: null | string
+}
+
+export type CreateDeckArgs = {
+  cover?: null | string
+  isPrivate?: boolean
+  name: string
+}

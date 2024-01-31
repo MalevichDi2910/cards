@@ -15,6 +15,7 @@ type ModalPropsType = {
   isOpen?: boolean
   onOpenChange: (open: boolean) => void
   title?: string
+  trigger?: ReactNode
 } & ComponentPropsWithoutRef<typeof Dialog.Root>
 
 const Modal = forwardRef<ElementRef<typeof Dialog.Root>, ModalPropsType>(
@@ -27,13 +28,16 @@ const Modal = forwardRef<ElementRef<typeof Dialog.Root>, ModalPropsType>(
       isOpen = false,
       onOpenChange,
       title,
+      trigger,
       ...restProps
     },
     ref
   ) => {
     return (
       <Dialog.Root onOpenChange={onOpenChange} open={isOpen} {...restProps}>
-        <Dialog.Trigger asChild ref={ref}></Dialog.Trigger>
+        <Dialog.Trigger asChild ref={ref}>
+          {trigger}
+        </Dialog.Trigger>
         <Dialog.Portal>
           <Dialog.Overlay className={s.DialogOverlay} />
           <Dialog.Content className={s.DialogContent}>
@@ -47,7 +51,7 @@ const Modal = forwardRef<ElementRef<typeof Dialog.Root>, ModalPropsType>(
             {title && closeIcon && (
               <Dialog.Close asChild>
                 <button aria-label={'Close'} className={s.IconButton}>
-                  {<XMark size={1.5} />}
+                  <XMark size={1.5} />
                 </button>
               </Dialog.Close>
             )}

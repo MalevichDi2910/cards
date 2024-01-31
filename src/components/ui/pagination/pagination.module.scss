@@ -18,8 +18,10 @@
 }
 
 .root {
+  display: flex;
   gap: 25px;
-  margin: 15px;
+  justify-content: center;
+  margin-top: 30px;
 
   .container {
     display: flex;

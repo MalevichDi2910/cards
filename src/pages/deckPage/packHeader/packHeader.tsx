@@ -4,6 +4,7 @@ import { GetDecksResponseItems } from '@/common/services/api/flashcards.types'
 import { Button } from '@/components/ui/button'
 import { DropDownMenu } from '@/components/ui/dropDownMenu'
 import { Typography } from '@/components/ui/typography'
+import { AddCard } from '@/features/cards/ui/addCard'
 import { DropDownDeckTools } from '@/pages/deckPage/dropDownDeckTools'
 
 import s from './packHeader.module.scss'
@@ -19,7 +20,6 @@ export const PackHeader = ({ deck, isEmptyCard, isOwner }: Props) => {
       <div className={s.deckOwnerWrapper}>
         <Typography as={'h1'} variant={'large'}>
           {isOwner && isEmptyCard ? 'My Pack' : 'Friends Pack'}
-          {!isEmptyCard && `${deck.name} Pack `}
         </Typography>
         {isOwner && (
           <DropDownMenu>
@@ -27,12 +27,8 @@ export const PackHeader = ({ deck, isEmptyCard, isOwner }: Props) => {
           </DropDownMenu>
         )}
       </div>
-      {isOwner && (
-        <Button>
-          <Typography variant={'subtitle2'}>Add New Card</Typography>
-        </Button>
-      )}
-      {!isOwner && (
+      {isOwner && isEmptyCard && <AddCard />}
+      {!isOwner && isEmptyCard && (
         <Button as={Link} to={`v1/decks/${deck.id}/learn`}>
           <Typography variant={'subtitle2'}>Learn to Pack</Typography>
         </Button>

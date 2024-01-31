@@ -1,12 +1,14 @@
 import { GetDecksResponsePagination } from '@/common/services/api/flashcards.types'
 
+type CardGradeType = 0 | 1 | 2 | 3 | 4 | 5
+
 export type Card = {
   answer: string
   answerImg: null | string
   answerVideo: string
   created: string
   deckId: string
-  grade: number
+  grade: CardGradeType
   id: string
   question: string
   questionImg: null | string

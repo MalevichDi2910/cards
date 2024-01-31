@@ -36,7 +36,7 @@ export const AddCard = ({ cardValues }: Props) => {
   const closeModal = () => {
     setOpen(false)
   }
-  const { control, handleSubmit } = useForm<addCardFormValues>({
+  const { control, handleSubmit, reset } = useForm<addCardFormValues>({
     defaultValues: {
       answer: cardValues?.answer || '',
       question: cardValues?.question || '',
@@ -53,6 +53,7 @@ export const AddCard = ({ cardValues }: Props) => {
     answerCover && formData.append('answerImg', answerCover)
     await createCard({ body: formData, id }).then(() => {
       closeModal()
+      reset()
     })
   }
 

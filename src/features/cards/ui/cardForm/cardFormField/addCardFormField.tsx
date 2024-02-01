@@ -16,7 +16,7 @@ type Props = {
   name: 'answer' | 'question'
   onLoadFileCover: (data: File) => void
 } & ComponentPropsWithoutRef<'input'>
-export const AddCardFormField = ({ control, imageURL, label, name, onLoadFileCover }: Props) => {
+export const CardFormField = ({ control, imageURL, label, name, onLoadFileCover }: Props) => {
   const ref = useRef<HTMLInputElement>(null)
   const onChangeLoadFileCover = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files![0]

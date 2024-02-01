@@ -6,29 +6,15 @@ import { Button } from '@/components/ui/button'
 import Modal from '@/components/ui/modal/modal'
 import { Typography } from '@/components/ui/typography'
 import { useCreateCardMutation } from '@/features/cards/api'
-import { AddCardFormField } from '@/features/cards/ui/addCard/addCardFormField/addCardFormField'
-import { addCardFormSchema, addCardFormValues } from '@/features/cards/ui/addCard/addCardFormSchema'
-import { DevTool } from '@hookform/devtools'
-import { zodResolver } from '@hookform/resolvers/zod'
+import { addCardFormValues } from '@/features/cards/ui/addCard/addCardFormSchema'
+import { CardForm } from '@/features/cards/ui/cardForm/cardForm'
 
-import s from './addCard.module.scss'
-
-export type CardValues = {
-  answer: string
-  answerImg: null | string | undefined
-  question: string
-  questionImg: null | string | undefined
-}
-type Props = {
-  cardValues?: CardValues
-}
-export const AddCard = ({ cardValues }: Props) => {
+export const AddCard = () => {
   const { id = '' } = useParams<{ id: string }>()
   const [createCard] = useCreateCardMutation()
-
+  const { reset } = useForm<addCardFormValues>()
   const [open, setOpen] = useState(false)
-  const [questionCover, setQuestionCover] = useState<File | null>(null)
-  const [answerCover, setAnswerCover] = useState<File | null>(null)
+
   const changeOpen = (open: boolean) => {
     setOpen(open)
   }
@@ -36,35 +22,12 @@ export const AddCard = ({ cardValues }: Props) => {
   const closeModal = () => {
     setOpen(false)
   }
-  const { control, handleSubmit, reset } = useForm<addCardFormValues>({
-    defaultValues: {
-      answer: cardValues?.answer || '',
-      question: cardValues?.question || '',
-    },
-    resolver: zodResolver(addCardFormSchema),
-  })
-
-  const onSubmitHandler = async (data: addCardFormValues) => {
-    const formData = new FormData()
-
-    formData.append('question', data.question)
-    formData.append('answer', data.answer)
-    questionCover && formData.append('questionImg', questionCover)
-    answerCover && formData.append('answerImg', answerCover)
-    await createCard({ body: formData, id }).then(() => {
+  const onSubmit = async (body: FormData) => {
+    await createCard({ body: body, id }).then(() => {
       closeModal()
       reset()
     })
   }
-
-  const onChangeQuestionCover = (data: File) => {
-    setQuestionCover(data)
-  }
-  const onChangeAnswerCover = (data: File) => {
-    setAnswerCover(data)
-  }
-  const questionImage = questionCover ? URL.createObjectURL(questionCover) : cardValues?.questionImg
-  const answerImage = answerCover ? URL.createObjectURL(answerCover) : cardValues?.answerImg
   const trigger = (
     <Button>
       <Typography as={'span'} variant={'subtitle2'}>
@@ -76,31 +39,7 @@ export const AddCard = ({ cardValues }: Props) => {
   return (
     <>
       <Modal isOpen={open} onOpenChange={changeOpen} title={'Add New Card'} trigger={trigger}>
-        <form className={s.form} onSubmit={handleSubmit(onSubmitHandler)}>
-          <DevTool control={control} />
-          <AddCardFormField
-            control={control}
-            imageURL={questionImage}
-            label={'Question'}
-            name={'question'}
-            onLoadFileCover={onChangeQuestionCover}
-          />
-          <AddCardFormField
-            control={control}
-            imageURL={answerImage}
-            label={'Answer'}
-            name={'answer'}
-            onLoadFileCover={onChangeAnswerCover}
-          />
-          <div className={s.actionBlock}>
-            <Button onClick={closeModal} type={'reset'} variant={'secondary'}>
-              <Typography variant={'subtitle2'}>Cancel</Typography>
-            </Button>
-            <Button type={'submit'}>
-              <Typography variant={'subtitle2'}>Add New Card</Typography>
-            </Button>
-          </div>
-        </form>
+        <CardForm buttonTitle={'Add New Card'} closeModal={closeModal} onSubmit={onSubmit} />
       </Modal>
     </>
   )

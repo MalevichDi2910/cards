@@ -7,7 +7,7 @@ import { addCardFormSchema, addCardFormValues } from '@/features/cards/ui/addCar
 import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import s from '@/features/cards/ui/addCard/addCard.module.scss'
+import s from '@/features/cards/ui/cardForm/cardForm.module.scss'
 
 import { CardFormField } from './cardFormField'
 

@@ -16,16 +16,14 @@ export const RadioGroup = forwardRef<ElementRef<typeof RadixRadioGroup.Root>, Ra
       <RadixRadioGroup.Root
         aria-label={'View density'}
         className={s.RadioGroupRoot}
-        defaultValue={options[0].value}
+        defaultValue={options[0]?.value}
         disabled={disabled}
+        onValueChange={onValueChange}
         ref={ref}
         {...restProps}
       >
         {options.map(option => (
-          <div
-            key={option.value}
-            style={{ alignItems: 'center', display: 'flex', marginLeft: '10px' }}
-          >
+          <div key={option.value} style={{ alignItems: 'center', display: 'flex' }}>
             <RadixRadioGroup.Item
               className={s.RadioGroupItem}
               id={option.value}

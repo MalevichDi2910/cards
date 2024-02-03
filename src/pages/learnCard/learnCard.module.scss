@@ -1,0 +1,47 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+
+  .title {
+    color: var(--color-light-100);
+    text-align: center;
+  }
+
+  .question {
+    margin-top: 45px;
+    color: var(--color-light-100);
+  }
+
+  .attempts {
+    margin-top: 1px;
+    color: var(--color-dark-100);
+  }
+
+  .showAnswerButton {
+    margin-top: 41px;
+    margin-bottom: 28px;
+  }
+
+  .answer {
+    margin-top: 35px;
+  }
+
+  .rateTitle {
+    margin-top: 12px;
+    font-weight: 700;
+  }
+
+  .rateRadio {
+    margin-top: 13px;
+  }
+
+  .nextQuestionButton {
+    margin-top: 29px;
+    margin-bottom: 4px;
+  }
+}
+
+.link {
+  margin-bottom: 36px;
+}

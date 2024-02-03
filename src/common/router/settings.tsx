@@ -28,14 +28,6 @@ export const publicRoutes: RouteObject[] = [
       { element: <CreateNewPasswordForm />, path: `/v1/create-new-password/:token` },
     ],
   },
-  {
-    element: <LearnCard />,
-    path: '/test',
-  },
-  {
-    element: <DeckPage />,
-    path: '/deck',
-  },
 ]
 
 export const privateRoutes: RouteObject[] = [
@@ -54,5 +46,5 @@ export const privateRoutes: RouteObject[] = [
   { element: <DeckPage />, path: `v1/decks/:id/cards` },
   { element: <Navigate to={'/v2/decks'} />, path: '/' },
   { element: <Decks />, path: 'v2/decks' },
-  { element: <h1>Learn</h1>, path: 'v1/decks/:id/learn' },
+  { element: <LearnCard />, path: 'v1/decks/:id/learn' },
 ]

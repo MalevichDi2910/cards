@@ -7,6 +7,7 @@ import Modal from '@/components/ui/modal/modal'
 import { Typography } from '@/components/ui/typography'
 import { useDeleteCardsMutation } from '@/features/cards/api'
 
+import s from './deleteCard.module.scss'
 type Props = {
   id: string
 }
@@ -32,11 +33,11 @@ export const DeleteCard = ({ id }: Props) => {
   return (
     <>
       <Modal isOpen={open} onOpenChange={changeOpen} title={'Delete Card'} trigger={trigger}>
-        <div>
+        <div className={s.root}>
           <Typography variant={'body1'}>
             Do you really want to remove this card from deck. <br></br>Card will be deleted.
           </Typography>
-          <div>
+          <div className={s.buttonContainer}>
             <Button onClick={closeModal} type={'button'} variant={'secondary'}>
               <Typography variant={'subtitle2'}>Cancel</Typography>
             </Button>

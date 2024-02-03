@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 
 import { Button } from '@/components/ui/button'
 import { Typography } from '@/components/ui/typography'
-import { addCardFormSchema, addCardFormValues } from '@/features/cards/ui/addCard/addCardFormSchema'
+import { CardFormValues, cardFormSchema } from '@/features/cards/ui/cardForm/cardFormSchema'
 import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
 
@@ -27,14 +27,18 @@ type Props = {
 export const CardForm = ({ buttonTitle, cardValues, closeModal, onSubmit }: Props) => {
   const [questionCover, setQuestionCover] = useState<File | null>(null)
   const [answerCover, setAnswerCover] = useState<File | null>(null)
-  const { control, handleSubmit } = useForm<addCardFormValues>({
+  const {
+    control,
+    formState: { errors },
+    handleSubmit,
+  } = useForm<CardFormValues>({
     defaultValues: {
       answer: cardValues?.answer || '',
       question: cardValues?.question || '',
     },
-    resolver: zodResolver(addCardFormSchema),
+    resolver: zodResolver(cardFormSchema),
   })
-  const onSubmitHandler = async (data: addCardFormValues) => {
+  const onSubmitHandler = async (data: CardFormValues) => {
     const formData = new FormData()
 
     formData.append('question', data.question)
@@ -59,6 +63,7 @@ export const CardForm = ({ buttonTitle, cardValues, closeModal, onSubmit }: Prop
         <DevTool control={control} />
         <CardFormField
           control={control}
+          errors={errors.question?.message}
           imageURL={questionImage}
           label={'Question'}
           name={'question'}
@@ -66,6 +71,7 @@ export const CardForm = ({ buttonTitle, cardValues, closeModal, onSubmit }: Prop
         />
         <CardFormField
           control={control}
+          errors={errors.answer?.message}
           imageURL={answerImage}
           label={'Answer'}
           name={'answer'}

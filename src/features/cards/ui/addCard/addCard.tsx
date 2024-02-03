@@ -6,13 +6,13 @@ import { Button } from '@/components/ui/button'
 import Modal from '@/components/ui/modal/modal'
 import { Typography } from '@/components/ui/typography'
 import { useCreateCardMutation } from '@/features/cards/api'
-import { addCardFormValues } from '@/features/cards/ui/addCard/addCardFormSchema'
 import { CardForm } from '@/features/cards/ui/cardForm/cardForm'
+import { CardFormValues } from '@/features/cards/ui/cardForm/cardFormSchema'
 
 export const AddCard = () => {
   const { id = '' } = useParams<{ id: string }>()
   const [createCard] = useCreateCardMutation()
-  const { reset } = useForm<addCardFormValues>()
+  const { reset } = useForm<CardFormValues>()
   const [open, setOpen] = useState(false)
 
   const changeOpen = (open: boolean) => {

@@ -5,15 +5,15 @@ import { Edit } from '@/assets/icons/edit'
 import { IconButton } from '@/components/ui/iconButton'
 import Modal from '@/components/ui/modal/modal'
 import { Card, useUpdateCardMutation } from '@/features/cards/api'
-import { addCardFormValues } from '@/features/cards/ui/addCard/addCardFormSchema'
 import { CardForm } from '@/features/cards/ui/cardForm/cardForm'
+import { CardFormValues } from '@/features/cards/ui/cardForm/cardFormSchema'
 
 type Props = {
   card: Card
 }
 export const EditCard = ({ card }: Props) => {
   const [updateCard] = useUpdateCardMutation()
-  const { reset } = useForm<addCardFormValues>()
+  const { reset } = useForm<CardFormValues>()
   const { answer, answerImg, id, question, questionImg } = card
   const [open, setOpen] = useState(false)
   const cardValues = { answer, answerImg, question, questionImg }

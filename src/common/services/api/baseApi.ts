@@ -15,5 +15,5 @@ export const baseApi = createApi({
   reducerPath: 'baseApi',
   refetchOnFocus: true,
   refetchOnReconnect: true,
-  tagTypes: ['Decks', 'Me', 'Cards'],
+  tagTypes: ['Decks', 'Me', 'Cards', 'Learn'],
 })

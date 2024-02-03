@@ -7,6 +7,7 @@ import { RegisterForm } from '@/features/register-form'
 import { SignInForm } from '@/features/signInForm'
 import { DeckPage } from '@/pages/deckPage/deckPage'
 import { Decks } from '@/pages/decks'
+import { LearnCard } from '@/pages/learnCard/learnCard'
 
 export const publicRoutes: RouteObject[] = [
   {
@@ -26,6 +27,14 @@ export const publicRoutes: RouteObject[] = [
       { element: <ForgotPasswordForm />, path: '/v1/forgot-password' },
       { element: <CreateNewPasswordForm />, path: `/v1/create-new-password/:token` },
     ],
+  },
+  {
+    element: <LearnCard />,
+    path: '/test',
+  },
+  {
+    element: <DeckPage />,
+    path: '/deck',
   },
 ]
 

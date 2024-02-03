@@ -4,7 +4,8 @@
 
   .cellQuestion,
   .cellAnswer {
-    width: 310px;
+    max-width: 310px;
+    word-break: break-all;
 
     .iconAndTextWrapper {
       display: flex;

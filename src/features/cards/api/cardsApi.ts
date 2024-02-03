@@ -33,6 +33,7 @@ export const cardsApi = baseApi.injectEndpoints({
         },
       }),
       updateCard: builder.mutation<Card, { body: FormData; id: string }>({
+        invalidatesTags: ['Cards'],
         query: ({ body, id }) => {
           return {
             body,

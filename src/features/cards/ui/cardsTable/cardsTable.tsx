@@ -1,11 +1,11 @@
 import { Delete } from '@/assets/icons/delete'
-import { Edit } from '@/assets/icons/edit'
 import { IconButton } from '@/components/ui/iconButton'
 import { Rating } from '@/components/ui/rating'
 import { Sort, Table, TableHeader } from '@/components/ui/table'
 import { Typography } from '@/components/ui/typography'
 import { Card } from '@/features/cards/api/cardsApi.types'
 import { getColumnsData } from '@/features/cards/ui/cardsTable/columnsData'
+import { EditCard } from '@/features/cards/ui/editCard'
 
 import s from './cardsTable.module.scss'
 
@@ -38,10 +38,20 @@ export const CardsTable = ({ cards, isOwner, onSort, sort }: Props) => {
           return (
             <Table.Row key={card.id}>
               <Table.Cell className={s.cellQuestion}>
-                <Typography variant={'body2'}>{card.question}</Typography>
+                <div className={s.iconAndTextWrapper}>
+                  {card.questionImg && (
+                    <img alt={'Card question'} className={s.image} src={card.questionImg} />
+                  )}
+                  <Typography variant={'body2'}>{card.question}</Typography>
+                </div>
               </Table.Cell>
               <Table.Cell className={s.cellAnswer}>
-                <Typography variant={'body2'}>{card.answer}</Typography>
+                <div className={s.iconAndTextWrapper}>
+                  {card.answerImg && (
+                    <img alt={'Card answer'} className={s.image} src={card.answerImg} />
+                  )}
+                  <Typography variant={'body2'}>{card.answer}</Typography>
+                </div>
               </Table.Cell>
               <Table.Cell className={s.cellUpdated}>
                 <Typography variant={'body2'}>{cardDate(card.updated)}</Typography>
@@ -50,8 +60,8 @@ export const CardsTable = ({ cards, isOwner, onSort, sort }: Props) => {
                 <Rating rating={card.grade} />
               </Table.Cell>
               {isOwner && (
-                <Table.Cell>
-                  <IconButton icon={<Edit />} size={1} />
+                <Table.Cell className={s.cellsButton}>
+                  <EditCard card={card} />
                   <IconButton icon={<Delete />} size={1} />
                 </Table.Cell>
               )}

@@ -10,12 +10,11 @@ import s from './table-for-decks.module.scss'
 
 type TableForDecksProps = {
   decks: GetDecksResponse
-  removeDeck: () => void
   setSort: (sort: Sort | null) => void
   sort: Sort | null
 }
 
-export const TableForDecks = ({ decks, removeDeck, setSort, sort }: TableForDecksProps) => {
+export const TableForDecks = ({ decks, setSort, sort }: TableForDecksProps) => {
   const tableColumn: Column[] = [
     { key: 'name', sortable: true, title: 'Name' },
     { key: 'cardsCount', sortable: true, title: 'Cards' },
@@ -40,8 +39,8 @@ export const TableForDecks = ({ decks, removeDeck, setSort, sort }: TableForDeck
               <Table.Cell>
                 <div className={s.icons}>
                   <PlayCircle />
-                  <EditDeck />
-                  <DeleteDeck removeDeck={removeDeck} />
+                  <EditDeck deckId={deck.id} />
+                  <DeleteDeck deckId={deck.id} />
                 </div>
               </Table.Cell>
             </Table.Row>

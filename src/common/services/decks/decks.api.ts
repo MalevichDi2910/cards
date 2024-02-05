@@ -51,6 +51,7 @@ const decksApi = baseApi.injectEndpoints({
           method: 'PATCH',
           url: `v1/decks/${id}`,
         }),
+      }),
       getRandomCard: builder.query<GetDeckLearnResponse, { id: string }>({
         providesTags: ['Learn'],
         query: ({ id }) => {

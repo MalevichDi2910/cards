@@ -46,3 +46,21 @@ export type CreateDeckArgs = {
   isPrivate?: boolean
   name: string
 }
+
+export type UpdateDeckResponse = {
+  author: GetDecksResponseItemsAuthor
+  cardsCount: number
+  cover?: null | string
+  created: string
+  id: string
+  isPrivate?: boolean
+  name: string
+  updated: string
+  userId: string
+}
+
+export type ArgUpdateDeckType = {
+  cover?: null | string
+  isPrivate?: boolean
+  name: string
+}

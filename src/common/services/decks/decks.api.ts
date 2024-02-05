@@ -1,6 +1,7 @@
 import {
   ArgUpdateDeckType,
   CreateDeckArgs,
+  GetDeckLearnResponse,
   GetDecksArgs,
   GetDecksResponse,
   GetDecksResponseItems,
@@ -50,6 +51,26 @@ const decksApi = baseApi.injectEndpoints({
           method: 'PATCH',
           url: `v1/decks/${id}`,
         }),
+      getRandomCard: builder.query<GetDeckLearnResponse, { id: string }>({
+        providesTags: ['Learn'],
+        query: ({ id }) => {
+          return {
+            url: `v1/decks/${id}/learn`,
+          }
+        },
+      }),
+      saveCardGrade: builder.mutation<
+        void,
+        { cardId: string | undefined; grade: number; id: string }
+      >({
+        invalidatesTags: ['Learn'],
+        query: ({ cardId, grade, id }) => {
+          return {
+            body: { cardId, grade },
+            method: `POST`,
+            url: `v1/decks/${id}/learn`,
+          }
+        },
       }),
     }
   },
@@ -61,4 +82,6 @@ export const {
   useGetDeckQuery,
   useGetDecksQuery,
   useUpdateDeckMutation,
+  useGetRandomCardQuery,
+  useSaveCardGradeMutation,
 } = decksApi

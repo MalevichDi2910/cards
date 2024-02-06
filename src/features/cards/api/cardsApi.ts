@@ -5,7 +5,7 @@ export const cardsApi = baseApi.injectEndpoints({
   endpoints: builder => {
     return {
       createCard: builder.mutation<Card, { body: FormData; id: string }>({
-        invalidatesTags: ['Cards'],
+        invalidatesTags: ['Cards', 'Decks'],
         query: ({ body, id }) => {
           return {
             body: body,
@@ -24,7 +24,7 @@ export const cardsApi = baseApi.injectEndpoints({
         },
       }),
       getCards: builder.query<CardsResponseType, { id: string; params: CardsParams }>({
-        providesTags: ['Cards'],
+        providesTags: ['Cards', 'Decks'],
         query: ({ id, params }) => {
           return {
             params: params,
@@ -33,7 +33,7 @@ export const cardsApi = baseApi.injectEndpoints({
         },
       }),
       updateCard: builder.mutation<Card, { body: FormData; id: string }>({
-        invalidatesTags: ['Cards'],
+        invalidatesTags: ['Cards', 'Decks'],
         query: ({ body, id }) => {
           return {
             body,

@@ -5,7 +5,7 @@ export const cardsApi = baseApi.injectEndpoints({
   endpoints: builder => {
     return {
       createCard: builder.mutation<Card, { body: FormData; id: string }>({
-        invalidatesTags: ['Cards'],
+        invalidatesTags: ['Cards', 'Decks'],
         query: ({ body, id }) => {
           return {
             body: body,
@@ -14,8 +14,17 @@ export const cardsApi = baseApi.injectEndpoints({
           }
         },
       }),
+      deleteCards: builder.mutation<void, { id: string }>({
+        invalidatesTags: ['Cards'],
+        query: ({ id }) => {
+          return {
+            method: 'DELETE',
+            url: `/v1/cards/${id}`,
+          }
+        },
+      }),
       getCards: builder.query<CardsResponseType, { id: string; params: CardsParams }>({
-        providesTags: ['Cards'],
+        providesTags: ['Cards', 'Decks'],
         query: ({ id, params }) => {
           return {
             params: params,
@@ -24,7 +33,7 @@ export const cardsApi = baseApi.injectEndpoints({
         },
       }),
       updateCard: builder.mutation<Card, { body: FormData; id: string }>({
-        invalidatesTags: ['Cards'],
+        invalidatesTags: ['Cards', 'Decks'],
         query: ({ body, id }) => {
           return {
             body,
@@ -37,4 +46,9 @@ export const cardsApi = baseApi.injectEndpoints({
   },
 })
 
-export const { useCreateCardMutation, useGetCardsQuery, useUpdateCardMutation } = cardsApi
+export const {
+  useCreateCardMutation,
+  useDeleteCardsMutation,
+  useGetCardsQuery,
+  useUpdateCardMutation,
+} = cardsApi

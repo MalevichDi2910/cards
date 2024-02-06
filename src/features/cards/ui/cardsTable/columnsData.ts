@@ -12,7 +12,7 @@ export const columnsData: Column[] = [
     title: 'Answer',
   },
   {
-    key: 'lastUpdated',
+    key: 'updated',
     sortable: true,
     title: 'Last Updated',
   },

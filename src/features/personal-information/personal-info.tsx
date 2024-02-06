@@ -32,7 +32,7 @@ export const PersonalInfo = ({ user }: Props) => {
   const navigate = useNavigate()
 
   const logOut = () => {
-    navigate('/sign-in')
+    navigate('/v1/sign-in')
   }
 
   const onSubmit = handleSubmit(data => {

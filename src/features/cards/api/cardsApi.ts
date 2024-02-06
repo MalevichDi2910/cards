@@ -14,6 +14,15 @@ export const cardsApi = baseApi.injectEndpoints({
           }
         },
       }),
+      deleteCards: builder.mutation<void, { id: string }>({
+        invalidatesTags: ['Cards'],
+        query: ({ id }) => {
+          return {
+            method: 'DELETE',
+            url: `/v1/cards/${id}`,
+          }
+        },
+      }),
       getCards: builder.query<CardsResponseType, { id: string; params: CardsParams }>({
         providesTags: ['Cards'],
         query: ({ id, params }) => {
@@ -37,4 +46,9 @@ export const cardsApi = baseApi.injectEndpoints({
   },
 })
 
-export const { useCreateCardMutation, useGetCardsQuery, useUpdateCardMutation } = cardsApi
+export const {
+  useCreateCardMutation,
+  useDeleteCardsMutation,
+  useGetCardsQuery,
+  useUpdateCardMutation,
+} = cardsApi

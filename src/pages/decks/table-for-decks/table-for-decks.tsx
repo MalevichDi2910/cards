@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom'
 import { PlayCircle } from '@/assets/icons/playCircle'
 import { GetDecksResponse } from '@/common/services/api'
 import { Column, Sort, Table, TableHeader } from '@/components/ui/table'
-import { DeleteDeck } from '@/pages/decks/modals/modals-for-decks/delete-deck'
-import { EditDeck } from '@/pages/decks/modals/modals-for-decks/edit-deck'
 
 import s from './table-for-decks.module.scss'
+
+import { DeleteDeck } from '../../../features/decks/ui/delete-deck'
+import { EditDeck } from '../../../features/decks/ui/edit-deck'
 
 type TableForDecksProps = {
   decks: GetDecksResponse
@@ -30,8 +31,13 @@ export const TableForDecks = ({ decks, setSort, sort }: TableForDecksProps) => {
         {decks?.items.map(deck => {
           return (
             <Table.Row key={deck.id}>
-              <Table.Cell className={s.name}>
-                <Link to={`/v1/decks/${deck.id}/cards`}>{deck.name}</Link>
+              <Table.Cell className={s.cellDeck}>
+                <div className={s.iconAndTextWrapper}>
+                  {deck.cover && <img alt={'Deck cover'} className={s.image} src={deck.cover} />}
+                  <Link className={s.name} to={`/v1/decks/${deck.id}/cards`}>
+                    {deck.name}
+                  </Link>
+                </div>
               </Table.Cell>
               <Table.Cell>{deck.cardsCount}</Table.Cell>
               <Table.Cell>{new Date(deck.updated).toLocaleDateString()}</Table.Cell>

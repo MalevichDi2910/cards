@@ -7,6 +7,7 @@ import { RegisterForm } from '@/features/register-form'
 import { SignInForm } from '@/features/signInForm'
 import { DeckPage } from '@/pages/deckPage/deckPage'
 import { Decks } from '@/pages/decks'
+import { LearnCard } from '@/pages/learnCard/learnCard'
 
 export const publicRoutes: RouteObject[] = [
   {
@@ -45,5 +46,5 @@ export const privateRoutes: RouteObject[] = [
   { element: <DeckPage />, path: `v1/decks/:id/cards` },
   { element: <Navigate to={'/v2/decks'} />, path: '/' },
   { element: <Decks />, path: 'v2/decks' },
-  { element: <h1>Learn</h1>, path: 'v1/decks/:id/learn' },
+  { element: <LearnCard />, path: 'v1/decks/:id/learn' },
 ]

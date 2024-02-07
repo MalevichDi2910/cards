@@ -4,10 +4,37 @@
 
   .cellQuestion,
   .cellAnswer {
-    width: 310px;
+    max-width: 310px;
+    word-break: break-all;
+
+    .iconAndTextWrapper {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+
+      .image {
+        max-width: 160px;
+        height: 100%;
+        max-height: 62px;
+      }
+    }
   }
 
   .cellUpdated {
-    width: 200px;
+    width: 250px;
+  }
+
+  .cellsButton {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    width: 105px;
+    height: 37px;
+    padding: 6px 24px;
+  }
+
+  .cellButton {
+    padding: 6px 24px 0;
   }
 }

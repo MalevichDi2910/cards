@@ -17,9 +17,15 @@ import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import s from './personal-info.module.scss'
+export type ProfileDataType = {
+  email: string
+  name: string
+  src?: string
+}
 
 type Props = {
-  user: { email: string; name: string; src: string }
+  update: (data: PersonalInfoFormValues) => void
+  user: ProfileDataType
 }
 
 export const PersonalInfo = ({ user }: Props) => {
@@ -79,10 +85,10 @@ export const PersonalInfo = ({ user }: Props) => {
           <DevTool control={control} />
           <ControlledTextField
             control={control}
-            errorMessage={errors.nickname?.message}
+            errorMessage={errors.name?.message}
             fullWidth
             label={'Nickname'}
-            name={'nickname'}
+            name={'name'}
             placeholder={user.name}
           />
           <Button className={s.saveButton} fullWidth variant={'primary'}>

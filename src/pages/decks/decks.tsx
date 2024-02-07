@@ -16,10 +16,11 @@ import {
   selectShowMyDecks,
 } from '@/features/decks/model'
 import { FilterForDecks } from '@/pages/decks/filter-for-decks'
-import { AddDeck } from '@/pages/decks/modals/modals-for-decks/add-deck'
 import { TableForDecks } from '@/pages/decks/table-for-decks'
 
 import s from './decks.module.scss'
+
+import { AddDeck } from '../../features/decks/ui/add-deck'
 
 export const Decks = () => {
   const dispatch = useAppDispatch()

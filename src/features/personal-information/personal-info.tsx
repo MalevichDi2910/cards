@@ -28,26 +28,21 @@ type Props = {
   user: ProfileDataType
 }
 
-export const PersonalInfo = ({ user }: Props) => {
+export const PersonalInfo = ({ update, user }: Props) => {
+  const [editMode, setEditMode] = useState<boolean>(false)
   const {
     control,
     formState: { errors },
     handleSubmit,
   } = useForm<PersonalInfoFormValues>({ resolver: zodResolver(PersonalInfoSchema) })
-
+  const onSubmitHandler = (data: PersonalInfoFormValues) => {
+    update(data)
+    setEditMode(false)
+  }
   const navigate = useNavigate()
-
   const logOut = () => {
     navigate('/v1/sign-in')
   }
-
-  const onSubmit = handleSubmit(data => {
-    console.log(data)
-    setEditMode(false)
-  })
-
-  const [editMode, setEditMode] = useState<boolean>(false)
-
   const onChangeAvatarHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
 
@@ -81,7 +76,7 @@ export const PersonalInfo = ({ user }: Props) => {
         </form>
       </div>
       {editMode && (
-        <form className={s.editBottomWrapper} onSubmit={onSubmit}>
+        <form className={s.editBottomWrapper} onSubmit={handleSubmit(onSubmitHandler)}>
           <DevTool control={control} />
           <ControlledTextField
             control={control}
@@ -89,9 +84,8 @@ export const PersonalInfo = ({ user }: Props) => {
             fullWidth
             label={'Nickname'}
             name={'name'}
-            placeholder={user.name}
           />
-          <Button className={s.saveButton} fullWidth variant={'primary'}>
+          <Button className={s.saveButton} fullWidth type={'submit'} variant={'primary'}>
             Save Changes
           </Button>
         </form>

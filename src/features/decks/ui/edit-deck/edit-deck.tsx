@@ -11,11 +11,8 @@ import { ControlledCheckbox } from '@/components/ui/controlled/controlled-checkb
 import { ControlledTextField } from '@/components/ui/controlled/controlled-textField'
 import Modal from '@/components/ui/modal/modal'
 import { Typography } from '@/components/ui/typography'
+import { DeckFormSchema, deckFormSchema } from '@/features/decks/ui/deck-form-schema'
 import { modalsActions, selectNameDeck, selectPrivateDeck } from '@/features/modals'
-import {
-  DeckFormSchema,
-  deckFormSchema,
-} from '@/pages/decks/modals/modals-for-decks/deck-form-schema'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import s from '@/components/ui/modal/modal.module.scss'
@@ -33,15 +30,10 @@ export const EditDeck = ({ deckId }: EditDeckProps) => {
   const dispatch = useDispatch()
   const nameDeck = useAppSelector(selectNameDeck)
   const isPrivate = useAppSelector(selectPrivateDeck)
-  // const openModal = useAppSelector(selectOpenModal)
 
   const [updateDeck] = useUpdateDeckMutation()
 
   const [open, setOpen] = useState<boolean>(false)
-
-  // const onChangeOpen = (openModal: boolean) => {
-  //   dispatch(modalsActions.setOpenModal({ openModal }))
-  // }
 
   const onChangeOpen = () => {
     setOpen(!open)
@@ -86,7 +78,7 @@ export const EditDeck = ({ deckId }: EditDeckProps) => {
           checked={isPrivate}
           control={control}
           label={'Private deck'}
-          name={'privateDeck'}
+          name={'isPrivate'}
           onValueChange={() => onChangePrivateDeck(!isPrivate)}
         ></ControlledCheckbox>
         <div className={s.FooterTwoButtonsContainer}>

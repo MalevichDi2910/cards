@@ -2,12 +2,9 @@ import { useState } from 'react'
 
 import Trash from '@/assets/icons/trash'
 import { useDeleteDeckMutation } from '@/common/services/decks'
-// import { useAppDispatch, useAppSelector } from '@/common/services/store'
 import { Button } from '@/components/ui/button'
 import Modal from '@/components/ui/modal/modal'
 import { Typography } from '@/components/ui/typography'
-// import { selectModalsOpen } from '@/features/modals/modalsSelector'
-// import { modalsActions } from '@/features/modals/modalsSlice'
 
 import s from '@/components/ui/modal/modal.module.scss'
 
@@ -15,24 +12,17 @@ type DeleteDeckProps = {
   deckId: string
 }
 export const DeleteDeck = ({ deckId }: DeleteDeckProps) => {
-  // const dispatch = useAppDispatch()
-  // const openModal = useAppSelector(selectOpenModal)
-
   const [deleteDeck] = useDeleteDeckMutation()
 
   const [open, setOpen] = useState<boolean>(false)
 
-  // const onChangeOpen = (openModal: boolean) => {
-  //   dispatch(modalsActions.setOpen({ openModal }))
-  // }
-
-  const onChangeOpen = (open: boolean) => {
-    setOpen(open)
+  const onChangeOpen = () => {
+    setOpen(!open)
   }
 
   const removeDeck = async (deckId: string) => {
     try {
-      await deleteDeck(deckId).then(() => onChangeOpen(!open))
+      await deleteDeck(deckId).then(() => onChangeOpen())
     } catch (error) {
       console.error('Error removing deck:', error)
     }
@@ -40,7 +30,7 @@ export const DeleteDeck = ({ deckId }: DeleteDeckProps) => {
 
   return (
     <>
-      <button onClick={() => onChangeOpen(!open)}>
+      <button onClick={onChangeOpen}>
         <Trash />
       </button>
       <Modal closeIcon isOpen={open} onOpenChange={onChangeOpen} title={'Delete Pack'}>
@@ -54,7 +44,7 @@ export const DeleteDeck = ({ deckId }: DeleteDeckProps) => {
         </div>
         <div className={s.FooterTwoButtonsContainer}>
           <div className={s.FooterTwoButtons}>
-            <Button onClick={() => onChangeOpen(!open)} type={'reset'} variant={'secondary'}>
+            <Button onClick={onChangeOpen} type={'reset'} variant={'secondary'}>
               <Typography variant={'subtitle2'}>Cancel</Typography>
             </Button>
             <Button onClick={() => removeDeck(deckId)} type={'submit'} variant={'primary'}>

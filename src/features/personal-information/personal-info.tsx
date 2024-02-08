@@ -1,6 +1,5 @@
 import { ChangeEvent, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
 
 import { Edit } from '@/assets/icons/edit'
 import LogOut from '@/assets/icons/logOut'
@@ -9,6 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { ControlledTextField } from '@/components/ui/controlled/controlled-textField'
 import { Typography } from '@/components/ui/typography'
+import { useLogoutMutation } from '@/features/auth/api'
 import {
   PersonalInfoFormValues,
   PersonalInfoSchema,
@@ -30,6 +30,7 @@ type Props = {
 
 export const PersonalInfo = ({ update, user }: Props) => {
   const [editMode, setEditMode] = useState<boolean>(false)
+  const [logout] = useLogoutMutation()
   const {
     control,
     formState: { errors },
@@ -39,9 +40,8 @@ export const PersonalInfo = ({ update, user }: Props) => {
     update(data)
     setEditMode(false)
   }
-  const navigate = useNavigate()
   const logOut = () => {
-    navigate('/v1/sign-in')
+    logout()
   }
   const onChangeAvatarHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]

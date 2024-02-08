@@ -44,4 +44,4 @@ export const authApi = baseApi.injectEndpoints({
   },
 })
 
-export const { useLoginMutation, useMeQuery, useUpdateProfileMutation } = authApi
+export const { useLoginMutation, useLogoutMutation, useMeQuery, useUpdateProfileMutation } = authApi

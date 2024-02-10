@@ -43,14 +43,6 @@ const decksApi = baseApi.injectEndpoints({
           url: `v2/decks`,
         }),
       }),
-      updateDeck: builder.mutation<UpdateDeckResponse, { body: ArgUpdateDeckType; id: string }>({
-        invalidatesTags: ['Decks'],
-        query: ({ body, id }) => ({
-          body,
-          method: 'PATCH',
-          url: `v1/decks/${id}`,
-        }),
-      }),
       getRandomCard: builder.query<GetDeckLearnResponse, { id: string }>({
         providesTags: ['Learn'],
         query: ({ id }) => {
@@ -89,7 +81,6 @@ export const {
   useDeleteDeckMutation,
   useGetDeckQuery,
   useGetDecksQuery,
-  useUpdateDeckMutation,
   useGetRandomCardQuery,
   useSaveCardGradeMutation,
   useUpdateDeckMutation,

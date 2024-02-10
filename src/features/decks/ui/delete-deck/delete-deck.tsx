@@ -1,25 +1,31 @@
 import { useState } from 'react'
 
 import Trash from '@/assets/icons/trash'
+import { useDeleteDeckMutation } from '@/common/services/decks'
 import { Button } from '@/components/ui/button'
 import Modal from '@/components/ui/modal/modal'
 import { Typography } from '@/components/ui/typography'
 
 import s from '@/components/ui/modal/modal.module.scss'
 
-type DeletePackProps = {
-  removeDeck: () => void
+type DeleteDeckProps = {
+  deckId: string
 }
+export const DeleteDeck = ({ deckId }: DeleteDeckProps) => {
+  const [deleteDeck] = useDeleteDeckMutation()
 
-export const DeleteDeck = ({ removeDeck }: DeletePackProps) => {
   const [open, setOpen] = useState<boolean>(false)
-  const onDeleteDeckHandler = () => {
-    setOpen(!open)
-    removeDeck()
-  }
 
   const onChangeOpen = () => {
     setOpen(!open)
+  }
+
+  const removeDeck = async (deckId: string) => {
+    try {
+      await deleteDeck(deckId).then(() => onChangeOpen())
+    } catch (error) {
+      console.error('Error removing deck:', error)
+    }
   }
 
   return (
@@ -41,7 +47,7 @@ export const DeleteDeck = ({ removeDeck }: DeletePackProps) => {
             <Button onClick={onChangeOpen} type={'reset'} variant={'secondary'}>
               <Typography variant={'subtitle2'}>Cancel</Typography>
             </Button>
-            <Button onClick={onDeleteDeckHandler} type={'submit'} variant={'primary'}>
+            <Button onClick={() => removeDeck(deckId)} type={'submit'} variant={'primary'}>
               Delete Pack
             </Button>
           </div>

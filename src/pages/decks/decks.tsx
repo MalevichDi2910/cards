@@ -1,10 +1,4 @@
-import { useParams } from 'react-router-dom'
-
-import {
-  useCreateDeckMutation,
-  useDeleteDeckMutation,
-  useGetDecksQuery,
-} from '@/common/services/decks'
+import { useGetDecksQuery } from '@/common/services/decks'
 import { useAppDispatch, useAppSelector } from '@/common/services/store'
 import { Loader } from '@/components/ui/loader'
 import { Pagination } from '@/components/ui/pagination'
@@ -22,10 +16,11 @@ import {
   selectShowMyDecks,
 } from '@/features/decks/model'
 import { FilterForDecks } from '@/pages/decks/filter-for-decks'
-import { AddDeck } from '@/pages/decks/modals/modals-for-decks/add-deck'
 import { TableForDecks } from '@/pages/decks/table-for-decks'
 
 import s from './decks.module.scss'
+
+import { AddDeck } from '../../features/decks/ui/add-deck'
 
 export const Decks = () => {
   const dispatch = useAppDispatch()
@@ -39,14 +34,7 @@ export const Decks = () => {
 
   const sortedString = sort ? `${sort.key}-${sort.direction}` : null
 
-  const { id = '' } = useParams<{ id: string }>()
   const { data: user } = useMeQuery()
-  const [createDeck, deckCreationStatus] = useCreateDeckMutation()
-  const [deleteDeck] = useDeleteDeckMutation()
-
-  const removeDeck = (deckId: string) => {
-    deleteDeck(deckId)
-  }
 
   const {
     data: decks,
@@ -103,10 +91,7 @@ export const Decks = () => {
       <div className={s.container}>
         <div className={s.title}>
           <Typography variant={'large'}>Packs list</Typography>
-          <AddDeck
-            disabled={deckCreationStatus.isLoading}
-            onCreateDeck={() => createDeck({ name: 'New deck' })}
-          />
+          <AddDeck />
         </div>
         <FilterForDecks
           range={range}
@@ -120,12 +105,7 @@ export const Decks = () => {
         />
         {decks && decks.items.length > 0 && (
           <>
-            <TableForDecks
-              decks={decks}
-              removeDeck={() => removeDeck(id)}
-              setSort={onChangeSort}
-              sort={sort}
-            />
+            <TableForDecks decks={decks} setSort={onChangeSort} sort={sort} />
             <Pagination
               count={decks?.pagination?.totalPages || 1}
               onChange={onChangeSetPage}

@@ -3,6 +3,7 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { baseApi } from '@/common/services/api/baseApi'
 import { cardSlice } from '@/features/cards/model/cardsSlice'
 import { decksSlice } from '@/features/decks/model'
+import { modalsSlice } from '@/features/modals/modalsSlice'
 import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
 
@@ -12,7 +13,10 @@ export const store = configureStore({
     [baseApi.reducerPath]: baseApi.reducer,
     [cardSlice.name]: cardSlice.reducer,
     [cardSlice.reducerPath]: cardSlice.reducer,
+    [decksSlice.name]: decksSlice.reducer,
     [decksSlice.reducerPath]: decksSlice.reducer,
+    [modalsSlice.name]: modalsSlice.reducer,
+    [modalsSlice.reducerPath]: modalsSlice.reducer,
   },
 })
 

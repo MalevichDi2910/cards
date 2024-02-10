@@ -6,19 +6,19 @@ export type ControlledCheckboxProps<T extends FieldValues> = Pick<
   UseControllerProps<T>,
   'control' | 'name'
 > &
-  Omit<CheckBoxProps, 'checked' | 'onValueChange'>
+  Omit<CheckBoxProps, 'onChange' | 'value'>
 
 export const ControlledCheckbox = <T extends FieldValues>({
   control,
   name,
-  ...rest
+  ...CheckBoxProps
 }: ControlledCheckboxProps<T>) => {
   const {
-    field: { onChange, value, ...field },
+    field: { onChange, value },
   } = useController({
     control,
     name,
   })
 
-  return <Checkbox {...rest} {...field} checked={value} id={name} onValueChange={onChange} />
+  return <Checkbox {...{ checked: value, id: name, onChange, ...CheckBoxProps }} />
 }

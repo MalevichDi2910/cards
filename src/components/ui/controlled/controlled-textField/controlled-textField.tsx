@@ -6,7 +6,7 @@ export type ControlledTextFieldProps<T extends FieldValues> = Pick<
   UseControllerProps<T>,
   'control' | 'name'
 > &
-  Omit<TextFieldProps, 'onChangeValue' | 'value'>
+  Omit<TextFieldProps, 'name' | 'onChangeValue'>
 
 export const ControlledTextField = <T extends FieldValues>({
   control,

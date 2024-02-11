@@ -18,9 +18,9 @@ import { zodResolver } from '@hookform/resolvers/zod'
 
 import s from './personal-info.module.scss'
 export type ProfileDataType = {
+  avatar?: string
   email: string
   name: string
-  src?: string
 }
 
 type Props = {
@@ -57,7 +57,7 @@ export const PersonalInfo = ({ update, user }: Props) => {
       <Typography variant={'large'}>Personal Information</Typography>
       <div className={s.avatarWithIconWrapper}>
         <form className={s.avatarWithIcon}>
-          <Avatar size={'large'} src={user.src} userName={user.name}></Avatar>
+          <Avatar size={'large'} src={user.avatar} userName={user.name}></Avatar>
           <Button
             as={'label'}
             className={s.editButton}

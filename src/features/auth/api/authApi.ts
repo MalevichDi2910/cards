@@ -1,6 +1,11 @@
 import { baseApi } from '@/common/services/api'
 
-import { AuthResponseType, LoginRequestType, LoginResponseType } from './authApi.types'
+import {
+  AuthResponseType,
+  LoginRequestType,
+  LoginResponseType,
+  SignUpParamsType,
+} from './authApi.types'
 
 export const authApi = baseApi.injectEndpoints({
   endpoints: builder => {
@@ -31,6 +36,14 @@ export const authApi = baseApi.injectEndpoints({
           }
         },
       }),
+      signUp: builder.mutation<AuthResponseType, SignUpParamsType>({
+        invalidatesTags: ['Me'],
+        query: params => ({
+          body: params,
+          method: 'POST',
+          url: 'v1/auth/sign-up',
+        }),
+      }),
       updateProfile: builder.mutation<AuthResponseType, FormData>({
         query: body => {
           return {
@@ -44,4 +57,10 @@ export const authApi = baseApi.injectEndpoints({
   },
 })
 
-export const { useLoginMutation, useLogoutMutation, useMeQuery, useUpdateProfileMutation } = authApi
+export const {
+  useLoginMutation,
+  useLogoutMutation,
+  useMeQuery,
+  useSignUpMutation,
+  useUpdateProfileMutation,
+} = authApi

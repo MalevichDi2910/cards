@@ -15,3 +15,12 @@ export type LoginRequestType = {
   password: string
   rememberMe: boolean
 }
+
+export type SignUpParamsType = {
+  email: string
+  html?: string
+  name?: string
+  password: string
+  sendConfirmationEmail?: boolean
+  subject?: string
+}

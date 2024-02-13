@@ -17,7 +17,7 @@ import s from '@/pages/learnCard/learnCard.module.scss'
 
 export const LearnCard = () => {
   const { id = '' } = useParams<{ id: string }>()
-  // const id = 'clr3b62x2051uzk2vxpvfbrbm' /// for testing purposes only
+  // const id = 'cln1kv7ns0oypvo2q3qc4hcgj' /// for testing purposes only
   const { data: deck, isLoading: isDeckLoading } = useGetDeckQuery({ id })
   const { data: question, isLoading: isCardLoading } = useGetRandomCardQuery({ id })
   const [saveRating, { error, isLoading: isRatingLoading }] = useSaveCardGradeMutation()
@@ -61,6 +61,11 @@ export const LearnCard = () => {
           <Typography className={s.question} variant={'body1'}>
             <b>Question:</b> {question?.question}
           </Typography>
+          {question && question.questionImg && (
+            <div className={s.imgDiv}>
+              <img alt={'Question Image'} className={s.img} src={question.questionImg} />
+            </div>
+          )}
           <Typography className={s.attempts} variant={'body1'}>
             Количество попыток ответов на вопрос: <b>{question?.shots}</b>
           </Typography>
@@ -78,6 +83,11 @@ export const LearnCard = () => {
               <Typography className={s.answer} variant={'body1'}>
                 <b>Answer:</b> {question?.answer}
               </Typography>
+              {question && question.answerImg && (
+                <div className={s.imgDiv}>
+                  <img alt={'Answer Image'} className={s.img} src={question.answerImg} />
+                </div>
+              )}
               <Typography className={s.rateTitle} variant={'subtitle1'}>
                 Rate yourself:
               </Typography>

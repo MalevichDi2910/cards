@@ -13,7 +13,7 @@ export type LoginResponseType = { accessToken: string }
 export type LoginRequestType = {
   email: string
   password: string
-  rememberMe: boolean
+  rememberMe?: boolean
 }
 
 export type SignUpParamsType = {

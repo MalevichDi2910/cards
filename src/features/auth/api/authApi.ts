@@ -15,7 +15,7 @@ export const authApi = baseApi.injectEndpoints({
           return {
             body,
             method: 'POST',
-            url: `v1/auth/login`,
+            url: 'v1/auth/login',
           }
         },
       }),

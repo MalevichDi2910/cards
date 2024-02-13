@@ -19,13 +19,20 @@ export const SignInForm = () => {
     control,
     formState: { errors },
     handleSubmit,
-  } = useForm<SignInFormValues>({ resolver: zodResolver(SignInFormSchema) })
+  } = useForm<SignInFormValues>({
+    defaultValues: {
+      email: '',
+      password: '',
+      rememberMe: false,
+    },
+    resolver: zodResolver(SignInFormSchema),
+  })
 
   const { isError, isLoading } = useMeQuery()
   const [login] = useLoginMutation()
-  const onSubmit = (loginData: LoginRequestType) => {
+  const onSubmit = handleSubmit((loginData: LoginRequestType) => {
     login(loginData)
-  }
+  })
 
   if (isLoading) {
     return <Loader />
@@ -42,7 +49,7 @@ export const SignInForm = () => {
         <Typography as={'h1'} className={s.title} variant={'large'}>
           Sign In
         </Typography>
-        <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
+        <form className={s.form} onSubmit={onSubmit}>
           <DevTool control={control} />
           <ControlledTextField
             control={control}

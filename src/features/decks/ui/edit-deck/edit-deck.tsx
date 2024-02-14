@@ -1,35 +1,18 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useDispatch } from 'react-redux'
 
 import { Edit } from '@/assets/icons/edit'
-import { ArgUpdateDeckType } from '@/common/services/api'
 import { useUpdateDeckMutation } from '@/common/services/decks'
-import { useAppSelector } from '@/common/services/store'
-import { Button } from '@/components/ui/button'
-import { ControlledCheckbox } from '@/components/ui/controlled/controlled-checkbox'
-import { ControlledTextField } from '@/components/ui/controlled/controlled-textField'
+import { IconButton } from '@/components/ui/iconButton'
 import Modal from '@/components/ui/modal/modal'
-import { Typography } from '@/components/ui/typography'
-import { DeckFormSchema, deckFormSchema } from '@/features/decks/ui/deck-form-schema'
-import { modalsActions, selectNameDeck, selectPrivateDeck } from '@/features/modals'
-import { zodResolver } from '@hookform/resolvers/zod'
-
-import s from '@/components/ui/modal/modal.module.scss'
+import { DeckForm } from '@/features/decks/ui/deck-form'
+import { DeckFormSchema } from '@/features/decks/ui/deck-form-schema'
 
 type EditDeckProps = {
   deckId: string
 }
 export const EditDeck = ({ deckId }: EditDeckProps) => {
-  const {
-    control,
-    formState: { errors },
-    reset,
-  } = useForm<DeckFormSchema>({ resolver: zodResolver(deckFormSchema) })
-
-  const dispatch = useDispatch()
-  const nameDeck = useAppSelector(selectNameDeck)
-  const isPrivate = useAppSelector(selectPrivateDeck)
+  const { reset } = useForm<DeckFormSchema>()
 
   const [updateDeck] = useUpdateDeckMutation()
 
@@ -38,10 +21,14 @@ export const EditDeck = ({ deckId }: EditDeckProps) => {
   const onChangeOpen = () => {
     setOpen(!open)
   }
-  const onUpdateDeck = async (body: ArgUpdateDeckType, id: string) => {
+
+  const closeModal = () => {
+    setOpen(false)
+  }
+  const onSubmit = async (body: FormData) => {
     try {
-      await updateDeck({ body, id }).then(() => {
-        onChangeOpen()
+      await updateDeck({ body: body, id: deckId }).then(() => {
+        closeModal()
         reset()
       })
     } catch (error) {
@@ -49,52 +36,18 @@ export const EditDeck = ({ deckId }: EditDeckProps) => {
     }
   }
 
-  const onChangeNameDeck = (nameDeck: string) => {
-    dispatch(modalsActions.setNameDeck({ nameDeck }))
-  }
-
-  const onChangePrivateDeck = (isPrivate: boolean) => {
-    dispatch(modalsActions.setPrivateDeck({ isPrivate }))
-  }
+  const trigger = <IconButton icon={<Edit />} size={1} />
 
   return (
     <>
-      <button onClick={onChangeOpen}>
-        <Edit />
-      </button>
-      <Modal closeIcon isOpen={open} onOpenChange={onChangeOpen} title={'Edit Pack'}>
-        <ControlledTextField
-          control={control}
-          errorMessage={errors.nameDeck?.message}
-          fullWidth
-          label={'Name Deck'}
-          name={'nameDeck'}
-          onChange={e => onChangeNameDeck(e.currentTarget.value)}
-          placeholder={'Name'}
-          type={'text'}
-          value={nameDeck}
-        />
-        <ControlledCheckbox
-          checked={isPrivate}
-          control={control}
-          label={'Private deck'}
-          name={'isPrivate'}
-          onValueChange={() => onChangePrivateDeck(!isPrivate)}
-        ></ControlledCheckbox>
-        <div className={s.FooterTwoButtonsContainer}>
-          <div className={s.FooterTwoButtons}>
-            <Button onClick={onChangeOpen} type={'reset'} variant={'secondary'}>
-              <Typography variant={'subtitle2'}>Cancel</Typography>
-            </Button>
-            <Button
-              onClick={() => onUpdateDeck({ isPrivate, name: nameDeck }, deckId)}
-              type={'submit'}
-              variant={'primary'}
-            >
-              Save Changes
-            </Button>
-          </div>
-        </div>
+      <Modal
+        closeIcon
+        isOpen={open}
+        onOpenChange={onChangeOpen}
+        title={'Edit Pack'}
+        trigger={trigger}
+      >
+        <DeckForm buttonTitle={'Save Changes'} closeModal={closeModal} onSubmit={onSubmit} />
       </Modal>
     </>
   )

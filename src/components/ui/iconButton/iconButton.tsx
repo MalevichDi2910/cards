@@ -1,12 +1,13 @@
 import {
+  CSSProperties,
   ComponentPropsWithoutRef,
   ElementRef,
-  ReactNode,
-  forwardRef,
-  CSSProperties,
-  cloneElement,
   ReactElement,
+  ReactNode,
+  cloneElement,
+  forwardRef,
 } from 'react'
+
 import { clsx } from 'clsx'
 
 import s from './iconButton.module.scss'
@@ -21,13 +22,13 @@ export const IconButton = forwardRef<ElementRef<'button'>, Props>(
     const size = sizeProp ? `${sizeProp}rem` : '1rem'
 
     const buttonStyle: CSSProperties = {
-      width: size,
       height: size,
+      width: size,
     }
     const IconButtonClassName = clsx(s.root, className)
 
     return (
-      <button className={IconButtonClassName} style={buttonStyle} ref={ref} {...restProps}>
+      <button className={IconButtonClassName} ref={ref} style={buttonStyle} {...restProps}>
         {cloneElement(icon as ReactElement, { size })}
       </button>
     )

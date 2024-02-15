@@ -3,17 +3,17 @@ import { Navigate, RouteObject } from 'react-router-dom'
 import { CreateNewPasswordForm } from '@/features/createNewPasswordForm'
 import { ForgotPasswordForm } from '@/features/forgot-password'
 import { RegisterForm } from '@/features/register-form'
-import { SignInForm } from '@/features/signInForm'
 import { DeckPage } from '@/pages/deckPage/deckPage'
 import { Decks } from '@/pages/decks'
 import { LearnCard } from '@/pages/learnCard/learnCard'
 import { Profile } from '@/pages/profile'
+import { SignInPage } from '@/pages/signInPage/signInPage'
 
 export const publicRoutes: RouteObject[] = [
   {
     children: [
       {
-        element: <SignInForm />,
+        element: <SignInPage />,
         path: '/v1/sign-in',
       },
       {

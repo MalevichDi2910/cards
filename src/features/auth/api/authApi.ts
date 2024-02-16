@@ -4,6 +4,7 @@ import {
   AuthResponseType,
   LoginRequestType,
   LoginResponseType,
+  ResetPasswordParamsType,
   SignUpParamsType,
 } from './authApi.types'
 
@@ -36,6 +37,13 @@ export const authApi = baseApi.injectEndpoints({
           }
         },
       }),
+      resetPassword: builder.mutation<void, ResetPasswordParamsType>({
+        query: ({ password, token }) => ({
+          body: { password },
+          method: 'POST',
+          url: `v1/auth/reset-password/${token}`,
+        }),
+      }),
       signUp: builder.mutation<AuthResponseType, SignUpParamsType>({
         invalidatesTags: ['Me'],
         query: params => ({
@@ -61,6 +69,7 @@ export const {
   useLoginMutation,
   useLogoutMutation,
   useMeQuery,
+  useResetPasswordMutation,
   useSignUpMutation,
   useUpdateProfileMutation,
 } = authApi

@@ -13,15 +13,18 @@ import { zodResolver } from '@hookform/resolvers/zod'
 
 import s from './createNewPasswordForm.module.scss'
 
-export const CreateNewPasswordForm = () => {
+type Props = {
+  onSubmit: (data: CreateNewPasswordFormValues) => void
+}
+
+export const CreateNewPasswordForm = ({ onSubmit }: Props) => {
   const {
     control,
     formState: { errors },
     handleSubmit,
-  } = useForm<CreateNewPasswordFormValues>({ resolver: zodResolver(CreateNewPasswordFormSchema) })
-
-  const onSubmit = handleSubmit(data => {
-    console.log(data)
+  } = useForm<CreateNewPasswordFormValues>({
+    defaultValues: { password: '' },
+    resolver: zodResolver(CreateNewPasswordFormSchema),
   })
 
   return (
@@ -30,7 +33,7 @@ export const CreateNewPasswordForm = () => {
         <Typography as={'h1'} className={s.title} variant={'large'}>
           Create new password
         </Typography>
-        <form className={s.form} onSubmit={onSubmit}>
+        <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
           <DevTool control={control} />
           <ControlledTextField
             control={control}

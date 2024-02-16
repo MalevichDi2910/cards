@@ -1,8 +1,8 @@
 import { Navigate, RouteObject } from 'react-router-dom'
 
-import { CreateNewPasswordForm } from '@/features/createNewPasswordForm'
 import { ForgotPasswordForm } from '@/features/forgot-password'
 import { RegisterForm } from '@/features/register-form'
+import { CreateNewPasswordPage } from '@/pages/createNewPasswordPage'
 import { DeckPage } from '@/pages/deckPage/deckPage'
 import { Decks } from '@/pages/decks'
 import { LearnCard } from '@/pages/learnCard/learnCard'
@@ -25,7 +25,7 @@ export const publicRoutes: RouteObject[] = [
         path: '/v1/not-found',
       },
       { element: <ForgotPasswordForm />, path: '/v1/forgot-password' },
-      { element: <CreateNewPasswordForm />, path: `/v1/create-new-password/:token` },
+      { element: <CreateNewPasswordPage />, path: `/v1/create-new-password/:token` },
     ],
   },
 ]

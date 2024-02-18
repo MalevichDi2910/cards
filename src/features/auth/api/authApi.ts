@@ -12,6 +12,7 @@ export const authApi = baseApi.injectEndpoints({
   endpoints: builder => {
     return {
       login: builder.mutation<LoginResponseType, LoginRequestType>({
+        invalidatesTags: ['Me'],
         query: body => {
           return {
             body,

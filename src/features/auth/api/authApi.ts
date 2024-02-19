@@ -54,6 +54,7 @@ export const authApi = baseApi.injectEndpoints({
         }),
       }),
       updateProfile: builder.mutation<AuthResponseType, FormData>({
+        invalidatesTags: ['Me'],
         query: body => {
           return {
             body,

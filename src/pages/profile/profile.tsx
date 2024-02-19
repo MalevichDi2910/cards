@@ -6,6 +6,8 @@ import {
   ProfileDataType,
 } from '@/features/personal-information'
 
+import s from './profile.module.scss'
+
 export const Profile = () => {
   const { data } = useMeQuery()
   const [updateProfile] = useUpdateProfileMutation()
@@ -26,13 +28,13 @@ export const Profile = () => {
   }
 
   return (
-    <>
-      <GoBack title={'Back to Decks List'} />
+    <div className={s.root}>
+      <GoBack className={s.link} title={'Back to Decks List'} />
       <PersonalInfo
         onLoadFileCover={onUpdateAvatar}
         update={onUpdateProfile}
         user={data as ProfileDataType}
       />
-    </>
+    </div>
   )
 }

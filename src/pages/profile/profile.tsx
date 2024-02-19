@@ -1,3 +1,4 @@
+import { GoBack } from '@/components/ui/goBack'
 import { useMeQuery, useUpdateProfileMutation } from '@/features/auth/api'
 import {
   PersonalInfo,
@@ -25,10 +26,13 @@ export const Profile = () => {
   }
 
   return (
-    <PersonalInfo
-      onLoadFileCover={onUpdateAvatar}
-      update={onUpdateProfile}
-      user={data as ProfileDataType}
-    />
+    <>
+      <GoBack title={'Back to Decks List'} />
+      <PersonalInfo
+        onLoadFileCover={onUpdateAvatar}
+        update={onUpdateProfile}
+        user={data as ProfileDataType}
+      />
+    </>
   )
 }

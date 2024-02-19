@@ -1,6 +1,5 @@
 import { ChangeEvent, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
 
 import { Edit } from '@/assets/icons/edit'
 import LogOut from '@/assets/icons/logOut'
@@ -9,6 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { ControlledTextField } from '@/components/ui/controlled/controlled-textField'
 import { Typography } from '@/components/ui/typography'
+import { useLogoutMutation } from '@/features/auth/api'
 import {
   PersonalInfoFormValues,
   PersonalInfoSchema,
@@ -17,31 +17,32 @@ import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import s from './personal-info.module.scss'
-
-type Props = {
-  user: { email: string; name: string; src: string }
+export type ProfileDataType = {
+  avatar?: string
+  email: string
+  name: string
 }
 
-export const PersonalInfo = ({ user }: Props) => {
+type Props = {
+  update: (data: PersonalInfoFormValues) => void
+  user: ProfileDataType
+}
+
+export const PersonalInfo = ({ update, user }: Props) => {
+  const [editMode, setEditMode] = useState<boolean>(false)
+  const [logout] = useLogoutMutation()
   const {
     control,
     formState: { errors },
     handleSubmit,
   } = useForm<PersonalInfoFormValues>({ resolver: zodResolver(PersonalInfoSchema) })
-
-  const navigate = useNavigate()
-
-  const logOut = () => {
-    navigate('/v1/sign-in')
-  }
-
-  const onSubmit = handleSubmit(data => {
-    console.log(data)
+  const onSubmitHandler = (data: PersonalInfoFormValues) => {
+    update(data)
     setEditMode(false)
-  })
-
-  const [editMode, setEditMode] = useState<boolean>(false)
-
+  }
+  const logOut = () => {
+    logout()
+  }
   const onChangeAvatarHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
 
@@ -56,7 +57,7 @@ export const PersonalInfo = ({ user }: Props) => {
       <Typography variant={'large'}>Personal Information</Typography>
       <div className={s.avatarWithIconWrapper}>
         <form className={s.avatarWithIcon}>
-          <Avatar size={'large'} src={user.src} userName={user.name}></Avatar>
+          <Avatar size={'large'} src={user.avatar} userName={user.name}></Avatar>
           <Button
             as={'label'}
             className={s.editButton}
@@ -75,17 +76,16 @@ export const PersonalInfo = ({ user }: Props) => {
         </form>
       </div>
       {editMode && (
-        <form className={s.editBottomWrapper} onSubmit={onSubmit}>
+        <form className={s.editBottomWrapper} onSubmit={handleSubmit(onSubmitHandler)}>
           <DevTool control={control} />
           <ControlledTextField
             control={control}
-            errorMessage={errors.nickname?.message}
+            errorMessage={errors.name?.message}
             fullWidth
             label={'Nickname'}
-            name={'nickname'}
-            placeholder={user.name}
+            name={'name'}
           />
-          <Button className={s.saveButton} fullWidth variant={'primary'}>
+          <Button className={s.saveButton} fullWidth type={'submit'} variant={'primary'}>
             Save Changes
           </Button>
         </form>

@@ -1,9 +1,11 @@
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { ControlledTextField } from '@/components/ui/controlled/controlled-textField/controlled-textField'
 import { Typography } from '@/components/ui/typography'
+import { useSignUpMutation } from '@/features/auth/api'
 import {
   RegisterFormValues,
   registerFormSchema,
@@ -18,10 +20,23 @@ export const RegisterForm = () => {
     control,
     formState: { errors },
     handleSubmit,
-  } = useForm<RegisterFormValues>({ resolver: zodResolver(registerFormSchema) })
+  } = useForm<RegisterFormValues>({
+    defaultValues: {
+      confirmPassword: '',
+      email: '',
+      password: '',
+    },
+    resolver: zodResolver(registerFormSchema),
+  })
+  const [signUp] = useSignUpMutation()
+  const navigate = useNavigate()
 
   const onSubmit = handleSubmit(data => {
-    console.log(data)
+    const { email, password } = data
+
+    signUp({ email, password }).then(() => {
+      navigate('/v1/sign-in')
+    })
   })
 
   return (

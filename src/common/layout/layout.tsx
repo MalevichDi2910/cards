@@ -1,20 +1,13 @@
-import { Outlet, useOutletContext } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 
 import { Header } from '@/components/ui/header'
 import { Loader } from '@/components/ui/loader'
-import { useMeQuery } from '@/features/auth/api'
-
-type AuthContext = {
-  isAuthenticated: boolean
-}
-
-export function useAuthContext() {
-  return useOutletContext<AuthContext>()
-}
+import { useLogoutMutation, useMeQuery } from '@/features/auth/api'
 
 export const Layout = () => {
   const { data, isError, isLoading } = useMeQuery()
+  const [logout] = useLogoutMutation()
   const isAuthenticated = !isError && !isLoading
 
   if (isLoading) {
@@ -37,6 +30,7 @@ export const Layout = () => {
       />
       <Header
         isLoggedIn={isAuthenticated}
+        logout={logout}
         user={{ email: data?.email, name: data?.name, src: data?.avatar }}
       />
       <Outlet />

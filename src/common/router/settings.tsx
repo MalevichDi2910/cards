@@ -1,19 +1,19 @@
 import { Navigate, RouteObject } from 'react-router-dom'
 
-import { CreateNewPasswordForm } from '@/features/createNewPasswordForm'
 import { ForgotPasswordForm } from '@/features/forgot-password'
-import { PersonalInfo } from '@/features/personal-information'
 import { RegisterForm } from '@/features/register-form'
-import { SignInForm } from '@/features/signInForm'
+import { CreateNewPasswordPage } from '@/pages/createNewPasswordPage'
 import { DeckPage } from '@/pages/deckPage/deckPage'
 import { Decks } from '@/pages/decks'
 import { LearnCard } from '@/pages/learnCard/learnCard'
+import { Profile } from '@/pages/profile'
+import { SignInPage } from '@/pages/signInPage/signInPage'
 
 export const publicRoutes: RouteObject[] = [
   {
     children: [
       {
-        element: <SignInForm />,
+        element: <SignInPage />,
         path: '/v1/sign-in',
       },
       {
@@ -25,22 +25,14 @@ export const publicRoutes: RouteObject[] = [
         path: '/v1/not-found',
       },
       { element: <ForgotPasswordForm />, path: '/v1/forgot-password' },
-      { element: <CreateNewPasswordForm />, path: `/v1/create-new-password/:token` },
+      { element: <CreateNewPasswordPage />, path: `/v1/create-new-password/:token` },
     ],
   },
 ]
 
 export const privateRoutes: RouteObject[] = [
   {
-    element: (
-      <PersonalInfo
-        user={{
-          email: 'example@google.com',
-          name: 'kukus',
-          src: 'https://andrii-flashcards.s3.eu-central-1.amazonaws.com/aeaf3a9f-fd81-4f03-9910-654915efb4b5-Ellipse%2045.png',
-        }}
-      />
-    ),
+    element: <Profile />,
     path: '/v1/profile',
   },
   { element: <DeckPage />, path: `v1/decks/:id/cards` },

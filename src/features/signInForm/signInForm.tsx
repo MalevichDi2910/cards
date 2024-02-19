@@ -1,40 +1,34 @@
 import { useForm } from 'react-hook-form'
-import { Link, Navigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { ControlledCheckbox } from '@/components/ui/controlled/controlled-checkbox/controlled-checkbox'
 import { ControlledTextField } from '@/components/ui/controlled/controlled-textField'
-import { Loader } from '@/components/ui/loader'
 import { Typography } from '@/components/ui/typography'
-import { LoginRequestType, useLoginMutation, useMeQuery } from '@/features/auth/api'
 import { SignInFormSchema, SignInFormValues } from '@/features/signInForm/signInFormSchema'
 import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import s from './signInForm.module.scss'
 
-export const SignInForm = () => {
+type Props = {
+  onSubmit: (data: SignInFormValues) => void
+}
+
+export const SignInForm = ({ onSubmit }: Props) => {
   const {
     control,
     formState: { errors },
     handleSubmit,
-  } = useForm<SignInFormValues>({ resolver: zodResolver(SignInFormSchema) })
-
-  const { isError, isLoading } = useMeQuery()
-  const [login] = useLoginMutation()
-  const onSubmit = (loginData: LoginRequestType) => {
-    login(loginData)
-  }
-
-  if (isLoading) {
-    return <Loader />
-  }
-  const isAuthenticated = !isError
-
-  if (isAuthenticated) {
-    return <Navigate to={'/'} />
-  }
+  } = useForm<SignInFormValues>({
+    defaultValues: {
+      email: '',
+      password: '',
+      rememberMe: false,
+    },
+    resolver: zodResolver(SignInFormSchema),
+  })
 
   return (
     <>

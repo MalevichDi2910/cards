@@ -18,15 +18,11 @@ import c from '@/components/ui/dropDownMenu/dropDownMenu.module.scss'
 
 export type HeaderProps = {
   isLoggedIn?: boolean
-  user?: { email?: string; name?: string; src?: null | string }
+  logout: () => void
+  user?: { email?: string; name?: string; src?: string }
 }
-export const Header = ({ isLoggedIn, user }: HeaderProps) => {
+export const Header = ({ isLoggedIn, logout, user }: HeaderProps) => {
   const navigate = useNavigate()
-
-  const signOutOfProfile = () => {
-    navigate('v1/sign-in')
-  }
-
   const goToMyProfile = () => {
     navigate('v1/profile')
   }
@@ -76,8 +72,7 @@ export const Header = ({ isLoggedIn, user }: HeaderProps) => {
               <DropDownSeparator />
               <DropDownItemWithIcon
                 icon={<LogOut size={1} />}
-                onClick={signOutOfProfile}
-                onSelect={() => {}}
+                onSelect={logout}
                 text={'Sign Out'}
               />
             </DropDownMenu>

@@ -1,10 +1,11 @@
 import { useNavigate } from 'react-router-dom'
 
-import { Delete } from '@/assets/icons/delete'
-import { Edit } from '@/assets/icons/edit'
 import { PlayCircle } from '@/assets/icons/playCircle'
 import { GetDecksResponseItems } from '@/common/services/api/flashcards.types'
-import { DropDownItemWithIcon, DropDownSeparator } from '@/components/ui/dropDownMenu'
+import { DropDownItem, DropDownItemWithIcon, DropDownSeparator } from '@/components/ui/dropDownMenu'
+import { Typography } from '@/components/ui/typography'
+import { DeleteDeck } from '@/features/decks/ui/delete-deck'
+import { EditDeck } from '@/features/decks/ui/edit-deck'
 
 type Props = {
   deck: GetDecksResponseItems
@@ -12,16 +13,22 @@ type Props = {
 export const DropDownDeckTools = ({ deck }: Props) => {
   const navigate = useNavigate()
   const toLearnDeck = () => {
-    navigate(`v1/decks/${deck.id}/learn`)
+    navigate(`/v1/decks/${deck.id}/learn`)
   }
 
   return (
     <>
       <DropDownItemWithIcon icon={<PlayCircle size={1} />} onSelect={toLearnDeck} text={'Learn'} />
       <DropDownSeparator />
-      <DropDownItemWithIcon icon={<Edit size={1} />} onSelect={() => {}} text={'Edit'} />
+      <DropDownItem asChild onSelect={() => {}}>
+        <EditDeck deckId={deck.id} />
+        <Typography variant={'caption'}>{'Edit'}</Typography>
+      </DropDownItem>
       <DropDownSeparator />
-      <DropDownItemWithIcon icon={<Delete size={1} />} onSelect={() => {}} text={'Delete'} />
+      <DropDownItem asChild onSelect={() => {}}>
+        <DeleteDeck deckId={deck.id} />
+        <Typography variant={'caption'}>{'Delete'}</Typography>
+      </DropDownItem>
     </>
   )
 }

@@ -16,5 +16,19 @@ export const Profile = () => {
     await updateProfile(formData)
   }
 
-  return <PersonalInfo update={onUpdateProfile} user={data as ProfileDataType} />
+  const onUpdateAvatar = async (data: File) => {
+    const formData = new FormData()
+
+    await formData.append('avatar', data)
+
+    updateProfile(formData)
+  }
+
+  return (
+    <PersonalInfo
+      onLoadFileCover={onUpdateAvatar}
+      update={onUpdateProfile}
+      user={data as ProfileDataType}
+    />
+  )
 }

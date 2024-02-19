@@ -1,5 +1,4 @@
 import {
-  ArgUpdateDeckType,
   GetDeckLearnResponse,
   GetDecksArgs,
   GetDecksResponse,
@@ -64,7 +63,7 @@ const decksApi = baseApi.injectEndpoints({
           }
         },
       }),
-      updateDeck: builder.mutation<UpdateDeckResponse, { body: ArgUpdateDeckType; id: string }>({
+      updateDeck: builder.mutation<UpdateDeckResponse, { body: FormData; id: string }>({
         invalidatesTags: ['Decks'],
         query: ({ body, id }) => ({
           body,

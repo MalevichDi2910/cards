@@ -3,6 +3,7 @@ import { useState } from 'react'
 import Trash from '@/assets/icons/trash'
 import { useDeleteDeckMutation } from '@/common/services/decks'
 import { Button } from '@/components/ui/button'
+import { IconButton } from '@/components/ui/iconButton'
 import Modal from '@/components/ui/modal/modal'
 import { Typography } from '@/components/ui/typography'
 
@@ -28,12 +29,17 @@ export const DeleteDeck = ({ deckId }: DeleteDeckProps) => {
     }
   }
 
+  const trigger = <IconButton icon={<Trash />} size={1} />
+
   return (
     <>
-      <button onClick={onChangeOpen}>
-        <Trash />
-      </button>
-      <Modal closeIcon isOpen={open} onOpenChange={onChangeOpen} title={'Delete Pack'}>
+      <Modal
+        closeIcon
+        isOpen={open}
+        onOpenChange={onChangeOpen}
+        title={'Delete Pack'}
+        trigger={trigger}
+      >
         <div>
           <Typography as={'p'} variant={'body1'}>
             Do you really want to remove <Typography variant={'subtitle1'}>Pack Name</Typography>?

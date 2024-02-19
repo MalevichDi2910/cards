@@ -56,8 +56,6 @@ export const DeckForm = ({ buttonTitle, closeModal, onSubmit }: Props) => {
           control={control}
           errors={errors.nameDeck?.message}
           imageURL={uploadImage}
-          label={'Name Deck'}
-          name={'nameDeck'}
           onLoadFileCover={onSetUploadImage}
         />
         <div className={s.actionBlock}>

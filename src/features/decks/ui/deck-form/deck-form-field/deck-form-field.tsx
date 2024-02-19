@@ -17,18 +17,9 @@ type Props = {
   control: Control<DeckFormSchema>
   errors?: string | undefined
   imageURL: null | string | undefined
-  label: string
-  name: 'nameDeck'
   onLoadFileCover: (data: File) => void
 } & ComponentPropsWithoutRef<'input'>
-export const DeckFormField = ({
-  control,
-  errors,
-  imageURL,
-  label,
-  name,
-  onLoadFileCover,
-}: Props) => {
+export const DeckFormField = ({ control, errors, imageURL, onLoadFileCover }: Props) => {
   const ref = useRef<HTMLInputElement>(null)
   const dispatch = useDispatch()
 
@@ -58,8 +49,8 @@ export const DeckFormField = ({
         control={control}
         errorMessage={errors}
         fullWidth
-        label={label}
-        name={name}
+        label={'Name Deck'}
+        name={'nameDeck'}
         onChange={e => onChangeNameDeck(e.currentTarget.value)}
         placeholder={'Name'}
         value={nameDeck}

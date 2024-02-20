@@ -12,6 +12,11 @@ export const modalsSlice = createSlice({
   initialState,
   name: 'modals',
   reducers: {
+    setClearModal: (state, _) => {
+      state.openModal = false
+      state.deck.isPrivate = false
+      state.deck.nameDeck = ''
+    },
     setNameDeck: (state, action: PayloadAction<{ nameDeck: string }>) => {
       state.deck.nameDeck = action.payload.nameDeck
     },

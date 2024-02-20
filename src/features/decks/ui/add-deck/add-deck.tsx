@@ -1,33 +1,31 @@
-import { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { useDispatch } from 'react-redux'
 
 import { useCreateDeckMutation } from '@/common/services/decks'
+import { useAppSelector } from '@/common/services/store'
 import { Button } from '@/components/ui/button'
 import Modal from '@/components/ui/modal/modal'
 import { Typography } from '@/components/ui/typography'
 import { DeckForm } from '@/features/decks/ui/deck-form'
-import { DeckFormSchema } from '@/features/decks/ui/deck-form-schema'
+import { modalsActions, selectOpenModal } from '@/features/modals'
 
 export const AddDeck = () => {
-  const { reset } = useForm<DeckFormSchema>()
+  const dispatch = useDispatch()
+  const open = useAppSelector(selectOpenModal)
 
   const [createDeck] = useCreateDeckMutation()
 
-  const [open, setOpen] = useState<boolean>(false)
-
-  const onChangeOpen = () => {
-    setOpen(!open)
+  const onChangeOpen = (openModal: boolean) => {
+    dispatch(modalsActions.setOpenModal({ openModal }))
   }
 
-  const closeModal = () => {
-    setOpen(false)
+  const onChangeClear = () => {
+    dispatch(modalsActions.setClearModal({}))
   }
 
   const onSubmit = async (body: FormData) => {
     try {
       await createDeck({ body }).then(() => {
-        closeModal()
-        reset()
+        onChangeClear()
       })
     } catch (error) {
       console.error('Error adding deck:', error)
@@ -47,11 +45,15 @@ export const AddDeck = () => {
       <Modal
         closeIcon
         isOpen={open}
-        onOpenChange={onChangeOpen}
+        onOpenChange={() => onChangeOpen(!open)}
         title={'Add new deck'}
         trigger={trigger}
       >
-        <DeckForm buttonTitle={'Add New Deck'} closeModal={closeModal} onSubmit={onSubmit} />
+        <DeckForm
+          buttonTitle={'Add New Deck'}
+          closeModal={() => onChangeOpen(!open)}
+          onSubmit={onSubmit}
+        />
       </Modal>
     </>
   )

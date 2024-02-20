@@ -1,3 +1,10 @@
+.root {
+  width: 100%;
+  max-width: 1008px;
+  min-height: 100%;
+  margin: 0 auto;
+  padding-top: 24px;
+}
 .container {
   display: flex;
   flex-direction: column;

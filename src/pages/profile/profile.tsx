@@ -1,9 +1,12 @@
+import { GoBack } from '@/components/ui/goBack'
 import { useMeQuery, useUpdateProfileMutation } from '@/features/auth/api'
 import {
   PersonalInfo,
   PersonalInfoFormValues,
   ProfileDataType,
 } from '@/features/personal-information'
+
+import s from './profile.module.scss'
 
 export const Profile = () => {
   const { data } = useMeQuery()
@@ -16,5 +19,22 @@ export const Profile = () => {
     await updateProfile(formData)
   }
 
-  return <PersonalInfo update={onUpdateProfile} user={data as ProfileDataType} />
+  const onUpdateAvatar = async (data: File) => {
+    const formData = new FormData()
+
+    await formData.append('avatar', data)
+
+    updateProfile(formData)
+  }
+
+  return (
+    <div className={s.root}>
+      <GoBack className={s.link} title={'Back to Decks List'} />
+      <PersonalInfo
+        onLoadFileCover={onUpdateAvatar}
+        update={onUpdateProfile}
+        user={data as ProfileDataType}
+      />
+    </div>
+  )
 }

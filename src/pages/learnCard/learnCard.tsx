@@ -51,7 +51,7 @@ export const LearnCard = () => {
   }
 
   return (
-    <>
+    <div className={s.root}>
       <GoBack className={s.link} title={'Back to Decks List'} />
       <Card variant={'dark'}>
         <div className={s.container}>
@@ -105,6 +105,6 @@ export const LearnCard = () => {
           )}
         </div>
       </Card>
-    </>
+    </div>
   )
 }

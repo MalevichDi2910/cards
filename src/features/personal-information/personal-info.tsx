@@ -24,11 +24,12 @@ export type ProfileDataType = {
 }
 
 type Props = {
+  onLoadFileCover: (data: File) => void
   update: (data: PersonalInfoFormValues) => void
   user: ProfileDataType
 }
 
-export const PersonalInfo = ({ update, user }: Props) => {
+export const PersonalInfo = ({ onLoadFileCover, update, user }: Props) => {
   const [editMode, setEditMode] = useState<boolean>(false)
   const [logout] = useLogoutMutation()
   const {
@@ -46,9 +47,8 @@ export const PersonalInfo = ({ update, user }: Props) => {
   const onChangeAvatarHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
 
-    console.log(file)
-    if (!file) {
-      return
+    if (file) {
+      onLoadFileCover(file)
     }
   }
 

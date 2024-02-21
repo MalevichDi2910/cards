@@ -1,1 +1,1 @@
-export * from './CreateNewPasswordPage'
+export * from './createNewPasswordPage'

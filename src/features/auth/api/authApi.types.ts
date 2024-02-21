@@ -29,3 +29,8 @@ export type ResetPasswordParamsType = {
   password: string
   token: string
 }
+
+export type RecoverPasswordParamsType = {
+  email: string
+  html: string
+}

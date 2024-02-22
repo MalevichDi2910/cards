@@ -14,16 +14,16 @@ import { zodResolver } from '@hookform/resolvers/zod'
 
 import s from './forgot-password.module.scss'
 
-export const ForgotPasswordForm = () => {
+type Props = {
+  onSubmit: (data: ForgotPasswordFormValues) => void
+}
+
+export const ForgotPasswordForm = ({ onSubmit }: Props) => {
   const {
     control,
     formState: { errors },
     handleSubmit,
   } = useForm<ForgotPasswordFormValues>({ resolver: zodResolver(forgotPasswordSchema) })
-
-  const onSubmit = handleSubmit(data => {
-    console.log(data)
-  })
 
   return (
     <>
@@ -31,7 +31,7 @@ export const ForgotPasswordForm = () => {
         <Typography as={'h1'} className={s.title} variant={'large'}>
           Forgot your password?
         </Typography>
-        <form className={s.form} onSubmit={onSubmit}>
+        <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
           <DevTool control={control} />
           <ControlledTextField
             control={control}

@@ -27,10 +27,14 @@ export const Header = ({ isLoggedIn, logout, user }: HeaderProps) => {
     navigate('v1/profile')
   }
 
+  const goToDecks = () => {
+    navigate('/')
+  }
+
   return (
     <div className={s.container}>
       <div className={s.wrapper}>
-        <ItIncubator height={'36'} width={'157'} />
+        <ItIncubator className={s.logo} height={'36'} onClick={goToDecks} width={'157'} />
         {isLoggedIn && user && (
           <div className={s.nameWithDropDown}>
             <Typography className={s.text} variant={'subtitle1'}>
@@ -47,7 +51,7 @@ export const Header = ({ isLoggedIn, logout, user }: HeaderProps) => {
                 ></Avatar>
               }
             >
-              <DropDownItem asChild onSelect={() => {}}>
+              <DropDownItem asChild onClick={goToMyProfile} onSelect={() => {}}>
                 <div className={c.photoAndEmail}>
                   <Avatar size={'small'} src={user.src!} userName={user.name!} />
                   <div className={c.nameAndEmail}>

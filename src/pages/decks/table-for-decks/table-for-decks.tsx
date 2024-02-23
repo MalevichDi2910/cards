@@ -3,11 +3,10 @@ import { Link } from 'react-router-dom'
 import { PlayCircle } from '@/assets/icons/playCircle'
 import { GetDecksResponse } from '@/common/services/api'
 import { Column, Sort, Table, TableHeader } from '@/components/ui/table'
+import { DeleteDeck } from '@/features/decks/ui/delete-deck'
+import { EditDeck } from '@/features/decks/ui/edit-deck'
 
 import s from './table-for-decks.module.scss'
-
-import { DeleteDeck } from '../../../features/decks/ui/delete-deck'
-import { EditDeck } from '../../../features/decks/ui/edit-deck'
 
 type TableForDecksProps = {
   decks: GetDecksResponse

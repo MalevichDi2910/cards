@@ -56,13 +56,10 @@ export type GetDecksArgs = {
   orderBy?: null | string
 }
 
-export type CreateDeckArgs = {
-  cover?: null | string
-  isPrivate?: boolean
-  name: string
-}
-
-export type UpdateDeckResponse = {
+export type DeckResponse = {
+  _count: {
+    card: number
+  }
   author: GetDecksResponseItemsAuthor
   cardsCount: number
   cover?: null | string
@@ -72,10 +69,4 @@ export type UpdateDeckResponse = {
   name: string
   updated: string
   userId: string
-}
-
-export type ArgUpdateDeckType = {
-  cover?: null | string
-  isPrivate?: boolean
-  name: string
 }

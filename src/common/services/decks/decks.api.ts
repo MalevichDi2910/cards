@@ -1,17 +1,37 @@
 import {
+  DeckResponse,
   GetDeckLearnResponse,
   GetDecksArgs,
   GetDecksResponse,
   GetDecksResponseItems,
-  UpdateDeckResponse,
 } from '@/common/services/api'
 import { baseApi } from '@/common/services/api/baseApi'
+import { RootState } from '@/common/services/store'
 
 const decksApi = baseApi.injectEndpoints({
   endpoints: builder => {
     return {
-      createDeck: builder.mutation<void, { body: FormData }>({
+      createDeck: builder.mutation<GetDecksResponseItems, { body: FormData }>({
         invalidatesTags: ['Decks'],
+        onQueryStarted: async (_, { dispatch, getState, queryFulfilled }) => {
+          const state = getState() as RootState
+          const currentPage = state.decks.currentPage
+          const name = state.decks.search
+          const minCards = state.decks.range[0]
+          const maxCards = state.decks.range[1]
+
+          const res = await queryFulfilled
+
+          dispatch(
+            decksApi.util.updateQueryData(
+              'getDecks',
+              { currentPage, maxCardsCount: maxCards, minCardsCount: minCards, name },
+              draft => {
+                draft.items.unshift(res.data)
+              }
+            )
+          )
+        },
         query: ({ body }) => {
           return {
             body,
@@ -20,9 +40,9 @@ const decksApi = baseApi.injectEndpoints({
           }
         },
       }),
-      deleteDeck: builder.mutation<void, string>({
+      deleteDeck: builder.mutation<void, { id: string }>({
         invalidatesTags: ['Decks'],
-        query: id => ({
+        query: ({ id }) => ({
           method: 'DELETE',
           url: `v1/decks/${id}`,
         }),
@@ -63,8 +83,33 @@ const decksApi = baseApi.injectEndpoints({
           }
         },
       }),
-      updateDeck: builder.mutation<UpdateDeckResponse, { body: FormData; id: string }>({
+      updateDeck: builder.mutation<DeckResponse, { body: FormData; id: string }>({
         invalidatesTags: ['Decks'],
+        onQueryStarted: async ({ id, ...body }, { dispatch, getState, queryFulfilled }) => {
+          const state = getState() as RootState
+          const currentPage = state.decks.currentPage
+          const name = state.decks.search
+          const minCards = state.decks.range[0]
+          const maxCards = state.decks.range[1]
+
+          dispatch(
+            decksApi.util.updateQueryData(
+              'getDecks',
+              { currentPage, maxCardsCount: maxCards, minCardsCount: minCards, name },
+              draft => {
+                const deck = draft.items.find(deck => deck.id === id)
+
+                if (deck) {
+                  Object.assign(deck, {
+                    ...deck,
+                    ...body,
+                  })
+                }
+              }
+            )
+          )
+          await queryFulfilled
+        },
         query: ({ body, id }) => ({
           body,
           method: 'PATCH',

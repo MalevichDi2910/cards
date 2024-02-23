@@ -21,7 +21,7 @@ export const DropDownDeckTools = ({ deck }: Props) => {
       <DropDownItemWithIcon icon={<PlayCircle size={1} />} onSelect={toLearnDeck} text={'Learn'} />
       <DropDownSeparator />
       <DropDownItem asChild onSelect={() => {}}>
-        <EditDeck deckId={deck.id} />
+        <EditDeck deckId={deck.id} isPrivate={deck.isPrivate} name={deck.name} />
         <Typography variant={'caption'}>{'Edit'}</Typography>
       </DropDownItem>
       <DropDownSeparator />

@@ -1,19 +1,17 @@
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
 
 import { Edit } from '@/assets/icons/edit'
 import { useUpdateDeckMutation } from '@/common/services/decks'
 import { IconButton } from '@/components/ui/iconButton'
 import Modal from '@/components/ui/modal/modal'
 import { DeckForm } from '@/features/decks/ui/deck-form'
-import { modalsActions } from '@/features/modals'
 
 type EditDeckProps = {
   deckId: string
+  isPrivate: boolean
+  name: string
 }
-export const EditDeck = ({ deckId }: EditDeckProps) => {
-  const dispatch = useDispatch()
-
+export const EditDeck = ({ deckId, isPrivate, name }: EditDeckProps) => {
   const [updateDeck] = useUpdateDeckMutation()
 
   const [open, setOpen] = useState<boolean>(false)
@@ -26,14 +24,10 @@ export const EditDeck = ({ deckId }: EditDeckProps) => {
     setOpen(false)
   }
 
-  const onChangeClear = () => {
-    dispatch(modalsActions.setClearModal({}))
-  }
   const onSubmit = async (body: FormData) => {
     try {
       await updateDeck({ body: body, id: deckId }).then(() => {
         closeModal()
-        onChangeClear()
       })
     } catch (error) {
       console.error('Error updating todo:', error)
@@ -51,7 +45,12 @@ export const EditDeck = ({ deckId }: EditDeckProps) => {
         title={'Edit Pack'}
         trigger={trigger}
       >
-        <DeckForm buttonTitle={'Save Changes'} closeModal={closeModal} onSubmit={onSubmit} />
+        <DeckForm
+          buttonTitle={'Save Changes'}
+          closeModal={closeModal}
+          defaultValues={{ isPrivate, name }}
+          onSubmit={onSubmit}
+        />
       </Modal>
     </>
   )

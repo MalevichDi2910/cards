@@ -23,7 +23,7 @@ export const DeleteDeck = ({ deckId }: DeleteDeckProps) => {
 
   const removeDeck = async (deckId: string) => {
     try {
-      await deleteDeck(deckId).then(() => onChangeOpen())
+      await deleteDeck({ id: deckId }).then(() => onChangeOpen())
     } catch (error) {
       console.error('Error removing deck:', error)
     }

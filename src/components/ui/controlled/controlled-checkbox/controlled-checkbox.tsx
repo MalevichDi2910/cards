@@ -20,5 +20,5 @@ export const ControlledCheckbox = <T extends FieldValues>({
     name,
   })
 
-  return <Checkbox {...{ checked: value, id: name, onChange, ...CheckBoxProps }} />
+  return <Checkbox {...{ checked: value, id: name, onValueChange: onChange, ...CheckBoxProps }} />
 }

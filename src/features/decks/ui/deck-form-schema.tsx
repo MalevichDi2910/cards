@@ -1,10 +1,10 @@
 import { z } from 'zod'
 
-export type DeckFormSchema = z.infer<typeof deckFormSchema>
+export type DeckFormValues = z.infer<typeof deckFormSchema>
 
 export const deckFormSchema = z.object({
   isPrivate: z.boolean().optional().default(false),
-  nameDeck: z
+  name: z
     .string()
     .refine(
       value => value.trim().length > 2,

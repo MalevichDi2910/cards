@@ -61,7 +61,7 @@
 
   &:hover,
   &:focus {
-    color: #8c61ff;
+    color: var(--color-primary-500);
   }
 
   &:not(:last-child) {

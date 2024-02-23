@@ -14,18 +14,18 @@ export const publicRoutes: RouteObject[] = [
     children: [
       {
         element: <SignInPage />,
-        path: '/v1/sign-in',
+        path: '/sign-in',
       },
       {
         element: <RegisterForm />,
-        path: '/v1/sign-up',
+        path: '/sign-up',
       },
       {
         element: <h1>not-found</h1>,
-        path: '/v1/not-found',
+        path: '/not-found',
       },
-      { element: <ForgotPasswordForm />, path: '/v1/forgot-password' },
-      { element: <CreateNewPasswordPage />, path: `/v1/create-new-password/:token` },
+      { element: <ForgotPasswordForm />, path: '/forgot-password' },
+      { element: <CreateNewPasswordPage />, path: `/create-new-password/:token` },
     ],
   },
 ]
@@ -33,10 +33,10 @@ export const publicRoutes: RouteObject[] = [
 export const privateRoutes: RouteObject[] = [
   {
     element: <Profile />,
-    path: '/v1/profile',
+    path: '/profile',
   },
-  { element: <DeckPage />, path: `v1/decks/:id/cards` },
-  { element: <Navigate to={'/v2/decks'} />, path: '/' },
-  { element: <Decks />, path: 'v2/decks' },
-  { element: <LearnCard />, path: 'v1/decks/:id/learn' },
+  { element: <DeckPage />, path: `/decks/:id/cards` },
+  { element: <Navigate to={'/decks'} />, path: '/' },
+  { element: <Decks />, path: '/decks' },
+  { element: <LearnCard />, path: '/decks/:id/learn' },
 ]

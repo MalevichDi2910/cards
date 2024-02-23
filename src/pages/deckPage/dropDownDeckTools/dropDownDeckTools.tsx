@@ -13,7 +13,7 @@ type Props = {
 export const DropDownDeckTools = ({ deck }: Props) => {
   const navigate = useNavigate()
   const toLearnDeck = () => {
-    navigate(`/v1/decks/${deck.id}/learn`)
+    navigate(`/decks/${deck.id}/learn`)
   }
 
   return (

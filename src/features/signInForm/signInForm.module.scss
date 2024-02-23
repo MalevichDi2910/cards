@@ -17,6 +17,10 @@
   .forgotPassword {
     margin: 0;
     text-align: right;
+
+    &:hover {
+      color: var(--color-primary-500);
+    }
   }
 }
 

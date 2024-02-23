@@ -11,7 +11,7 @@ export const CreateNewPasswordPage = () => {
   const onSubmit = (data: { password: string }) => {
     if (token) {
       resetPassword({ ...data, token }).then(() => {
-        navigate('/v1/sign-in')
+        navigate('/sign-in')
       })
     }
   }

@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
@@ -77,7 +77,7 @@ export const RegisterForm = () => {
         <Typography as={'p'} className={s.text} variant={'body2'}>
           Already have an account?
         </Typography>
-        <Button as={'a'} className={s.signIn} href={'/sign-in'} variant={'link'}>
+        <Button as={Link} className={s.signIn} to={'/sign-in'} variant={'link'}>
           Sign In
         </Button>
       </Card>

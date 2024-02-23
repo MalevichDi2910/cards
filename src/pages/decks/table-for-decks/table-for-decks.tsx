@@ -44,7 +44,7 @@ export const TableForDecks = ({ decks, setSort, sort }: TableForDecksProps) => {
               <Table.Cell>
                 <div className={s.icons}>
                   <PlayCircle />
-                  <EditDeck deckId={deck.id} />
+                  <EditDeck deckId={deck.id} isPrivate={deck.isPrivate} name={deck.name} />
                   <DeleteDeck deckId={deck.id} />
                 </div>
               </Table.Cell>

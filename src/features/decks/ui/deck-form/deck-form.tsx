@@ -1,12 +1,10 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { useAppSelector } from '@/common/services/store'
 import { Button } from '@/components/ui/button'
 import { Typography } from '@/components/ui/typography'
 import { DeckFormField } from '@/features/decks/ui/deck-form/deck-form-field'
-import { DeckFormSchema, deckFormSchema } from '@/features/decks/ui/deck-form-schema'
-import { selectNameDeck, selectPrivateDeck } from '@/features/modals'
+import { DeckFormValues, deckFormSchema } from '@/features/decks/ui/deck-form-schema'
 import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
 
@@ -15,29 +13,28 @@ import s from '@/features/cards/ui/cardForm/cardForm.module.scss'
 type Props = {
   buttonTitle: string
   closeModal: () => void
+  defaultValues?: {
+    isPrivate: boolean
+    name: string
+  }
   onSubmit: (data: FormData) => void
 }
-export const DeckForm = ({ buttonTitle, closeModal, onSubmit }: Props) => {
-  const nameDeck = useAppSelector(selectNameDeck)
-  const isPrivate = useAppSelector(selectPrivateDeck)
+export const DeckForm = ({ buttonTitle, closeModal, defaultValues, onSubmit }: Props) => {
   const [image, setImage] = useState<File | null>(null)
 
   const {
     control,
     formState: { errors },
     handleSubmit,
-  } = useForm<DeckFormSchema>({
-    defaultValues: {
-      isPrivate,
-      nameDeck,
-    },
+  } = useForm<DeckFormValues>({
+    defaultValues,
     resolver: zodResolver(deckFormSchema),
   })
-  const onSubmitHandler = async () => {
+  const onSubmitHandler = async (data: DeckFormValues) => {
     const formData = new FormData()
 
-    formData.append('name', nameDeck)
-    formData.append('isPrivate', String(isPrivate))
+    formData.append('name', data.name)
+    formData.append('isPrivate', String(data.isPrivate))
     image && formData.append('cover', image)
     onSubmit(formData)
   }
@@ -54,7 +51,7 @@ export const DeckForm = ({ buttonTitle, closeModal, onSubmit }: Props) => {
         <DevTool control={control} />
         <DeckFormField
           control={control}
-          errors={errors.nameDeck?.message}
+          errors={errors.name?.message}
           imageURL={uploadImage}
           onLoadFileCover={onSetUploadImage}
         />

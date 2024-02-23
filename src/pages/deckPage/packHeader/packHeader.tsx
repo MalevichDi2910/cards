@@ -29,7 +29,7 @@ export const PackHeader = ({ deck, isEmptyCard, isOwner }: Props) => {
       </div>
       {isOwner && isEmptyCard && <AddCard />}
       {!isOwner && isEmptyCard && (
-        <Button as={Link} to={`/v1/decks/${deck.id}/learn`}>
+        <Button as={Link} to={`/decks/${deck.id}/learn`}>
           <Typography variant={'subtitle2'}>Learn to Pack</Typography>
         </Button>
       )}

@@ -57,7 +57,7 @@ export const SignInForm = ({ onSubmit }: Props) => {
           <Typography
             as={Link}
             className={s.forgotPassword}
-            to={'/v1/forgot-password'}
+            to={'/forgot-password'}
             variant={'body2'}
           >
             Forgot Password?
@@ -69,7 +69,7 @@ export const SignInForm = ({ onSubmit }: Props) => {
         <Typography as={'p'} className={s.text} variant={'body2'}>
           {`Don't have an account?`}
         </Typography>
-        <Button as={Link} className={s.signUp} to={'/v1/sign-up'} variant={'link'}>
+        <Button as={Link} className={s.signUp} to={'/sign-up'} variant={'link'}>
           Sign Up
         </Button>
       </Card>

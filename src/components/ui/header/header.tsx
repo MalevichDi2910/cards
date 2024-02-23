@@ -24,7 +24,7 @@ export type HeaderProps = {
 export const Header = ({ isLoggedIn, logout, user }: HeaderProps) => {
   const navigate = useNavigate()
   const goToMyProfile = () => {
-    navigate('v1/profile')
+    navigate('/profile')
   }
 
   const goToDecks = () => {

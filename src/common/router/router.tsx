@@ -14,7 +14,7 @@ const router = createBrowserRouter([
       ...publicRoutes,
     ],
     element: <Layout />,
-    errorElement: <Navigate to={'/v1/not-found'} />,
+    errorElement: <Navigate to={'/not-found'} />,
   },
 ])
 

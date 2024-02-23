@@ -5,5 +5,5 @@ import { useAuthContext } from '@/common/layout/layout'
 export function PrivateRoutes() {
   const { isAuthenticated } = useAuthContext()
 
-  return isAuthenticated ? <Outlet /> : <Navigate to={'/login'} />
+  return isAuthenticated ? <Outlet /> : <Navigate to={'/sign-in'} />
 }

@@ -33,7 +33,7 @@ export const TableForDecks = ({ decks, setSort, sort }: TableForDecksProps) => {
               <Table.Cell className={s.cellDeck}>
                 <div className={s.iconAndTextWrapper}>
                   {deck.cover && <img alt={'Deck cover'} className={s.image} src={deck.cover} />}
-                  <Link className={s.name} to={`/v1/decks/${deck.id}/cards`}>
+                  <Link className={s.name} to={`/decks/${deck.id}/cards`}>
                     {deck.name}
                   </Link>
                 </div>

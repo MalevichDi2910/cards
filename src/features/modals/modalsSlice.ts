@@ -17,14 +17,8 @@ export const modalsSlice = createSlice({
       state.deck.isPrivate = false
       state.deck.nameDeck = ''
     },
-    setNameDeck: (state, action: PayloadAction<{ nameDeck: string }>) => {
-      state.deck.nameDeck = action.payload.nameDeck
-    },
     setOpenModal: (state, action: PayloadAction<{ openModal: boolean }>) => {
       state.openModal = action.payload.openModal
-    },
-    setPrivateDeck: (state, action: PayloadAction<{ isPrivate: boolean }>) => {
-      state.deck.isPrivate = action.payload.isPrivate
     },
   },
 })

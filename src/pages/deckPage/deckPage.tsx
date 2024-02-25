@@ -53,6 +53,9 @@ export const DeckPage = () => {
   const onChangeQuestion = (question: string) => {
     dispatch(cardsActions.setQuestion({ question }))
   }
+  const onClearSearch = () => {
+    dispatch(cardsActions.setQuestion({ question: '' }))
+  }
 
   if (isLoading) {
     return <Loader />
@@ -67,6 +70,7 @@ export const DeckPage = () => {
           <TextField
             fullWidth
             onChangeValue={onChangeQuestion}
+            onClearSearch={onClearSearch}
             placeholder={'Input search'}
             type={'search'}
             value={question}

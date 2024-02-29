@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom'
 
+import { useDebounce } from '@/common/hooks'
 import { useGetDeckQuery } from '@/common/services/decks'
 import { useAppDispatch, useAppSelector } from '@/common/services/store'
 import { GoBack } from '@/components/ui/goBack'
@@ -33,7 +34,15 @@ export const DeckPage = () => {
   const sortedString = sort ? `${sort.key}-${sort.direction}` : undefined
   const { id = '' } = useParams<{ id: string }>()
   //v1/decks/clrrmf7x702o9y42wy2957xuj/cards for example
-  const queryParams = { id, params: { currentPage, itemsPerPage, orderBy: sortedString, question } }
+  const queryParams = {
+    id,
+    params: {
+      currentPage,
+      itemsPerPage,
+      orderBy: sortedString,
+      question: useDebounce(question, 1000),
+    },
+  }
 
   const { data: user } = useMeQuery()
   const { data: deck } = useGetDeckQuery({ id })

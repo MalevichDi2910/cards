@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify'
+
 import Trash from '@/assets/icons/trash'
 import { Button } from '@/components/ui/button'
 import { Slider } from '@/components/ui/slider'
@@ -28,6 +30,7 @@ export const FilterForDecks = ({
   showMyDecks,
 }: FilterForDecksProps) => {
   const onClearFilters = () => {
+    toast.warn('Filters reset')
     setSearch('')
     setRange([0, 100])
     setPage(1)

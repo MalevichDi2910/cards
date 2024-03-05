@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { toast } from 'react-toastify'
 
 import { Edit } from '@/assets/icons/edit'
 import { useUpdateDeckMutation } from '@/common/services/decks'
@@ -28,9 +29,10 @@ export const EditDeck = ({ deckId, isPrivate, name }: EditDeckProps) => {
     try {
       await updateDeck({ body: body, id: deckId }).then(() => {
         closeModal()
+        toast.success('Changed')
       })
-    } catch (error) {
-      console.error('Error updating todo:', error)
+    } catch (error: any) {
+      toast.error(error?.data?.message ?? `the change wasn't saved`)
     }
   }
 

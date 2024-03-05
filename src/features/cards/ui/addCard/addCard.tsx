@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useParams } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 import { Button } from '@/components/ui/button'
 import Modal from '@/components/ui/modal/modal'
@@ -23,10 +24,15 @@ export const AddCard = () => {
     setOpen(false)
   }
   const onSubmit = async (body: FormData) => {
-    await createCard({ body: body, id }).then(() => {
-      closeModal()
-      reset()
-    })
+    try {
+      await createCard({ body: body, id }).then(() => {
+        closeModal()
+        toast.success('Added')
+        reset()
+      })
+    } catch (error: any) {
+      toast.error(error?.data?.message ?? `the card hasn't been added`)
+    }
   }
   const trigger = (
     <Button>

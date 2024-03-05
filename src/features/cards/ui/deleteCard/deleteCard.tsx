@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { toast } from 'react-toastify'
 
 import { Delete } from '@/assets/icons/delete'
 import { Button } from '@/components/ui/button'
@@ -23,9 +24,14 @@ export const DeleteCard = ({ id }: Props) => {
     setOpen(false)
   }
 
-  const deleteCardCallback = () => {
-    deleteCard({ id })
-    closeModal()
+  const deleteCardCallback = async () => {
+    try {
+      await deleteCard({ id })
+      toast.success('Deleted')
+      closeModal()
+    } catch (error: any) {
+      toast.error(error?.data?.message ?? `the card wasn't deleted`)
+    }
   }
 
   const trigger = <IconButton icon={<Delete />} size={1} />

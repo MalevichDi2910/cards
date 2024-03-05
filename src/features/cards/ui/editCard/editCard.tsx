@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { toast } from 'react-toastify'
 
 import { Edit } from '@/assets/icons/edit'
 import { IconButton } from '@/components/ui/iconButton'
@@ -25,10 +26,15 @@ export const EditCard = ({ card }: Props) => {
     setOpen(false)
   }
   const onSubmit = async (body: FormData) => {
-    await updateCard({ body: body, id }).then(() => {
-      closeModal()
-      reset()
-    })
+    try {
+      await updateCard({ body: body, id }).then(() => {
+        closeModal()
+        toast.success('Changed')
+        reset()
+      })
+    } catch (error: any) {
+      toast.error(error?.data?.message ?? `the change wasn't saved`)
+    }
   }
   const trigger = <IconButton icon={<Edit />} size={1} />
 

@@ -1,9 +1,11 @@
 import { Outlet, useOutletContext } from 'react-router-dom'
-import { ToastContainer } from 'react-toastify'
 
 import { Header } from '@/components/ui/header'
 import { Loader } from '@/components/ui/loader'
+import { Toast } from '@/components/ui/toast/toast'
 import { useLogoutMutation, useMeQuery } from '@/features/auth/api'
+
+import 'react-toastify/dist/ReactToastify.css'
 
 type AuthContext = {
   isAuthenticated: boolean
@@ -24,18 +26,7 @@ export const Layout = () => {
 
   return (
     <>
-      <ToastContainer
-        autoClose={4000}
-        closeOnClick
-        draggable
-        hideProgressBar={false}
-        newestOnTop={false}
-        pauseOnFocusLoss
-        pauseOnHover
-        position={'top-center'}
-        rtl={false}
-        theme={'colored'}
-      />
+      <Toast />
       <Header
         isLoggedIn={isAuthenticated}
         logout={logout}

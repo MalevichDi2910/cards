@@ -1,4 +1,5 @@
 import { useDispatch } from 'react-redux'
+import { toast } from 'react-toastify'
 
 import { useCreateDeckMutation } from '@/common/services/decks'
 import { useAppSelector } from '@/common/services/store'
@@ -26,9 +27,10 @@ export const AddDeck = () => {
     try {
       await createDeck({ body }).then(() => {
         onChangeClear()
+        toast.success('Added')
       })
-    } catch (error) {
-      console.error('Error adding deck:', error)
+    } catch (error: any) {
+      toast.error(error?.data?.message ?? `the deck hasn't been added`)
     }
   }
 

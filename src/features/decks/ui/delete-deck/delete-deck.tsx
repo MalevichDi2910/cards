@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { toast } from 'react-toastify'
 
 import Trash from '@/assets/icons/trash'
 import { useDeleteDeckMutation } from '@/common/services/decks'
@@ -23,9 +24,12 @@ export const DeleteDeck = ({ deckId }: DeleteDeckProps) => {
 
   const removeDeck = async (deckId: string) => {
     try {
-      await deleteDeck({ id: deckId }).then(() => onChangeOpen())
-    } catch (error) {
-      console.error('Error removing deck:', error)
+      await deleteDeck({ id: deckId }).then(() => {
+        onChangeOpen()
+        toast.success('Deleted')
+      })
+    } catch (error: any) {
+      toast.error(error?.data?.message ?? `the deck wasn't deleted`)
     }
   }
 

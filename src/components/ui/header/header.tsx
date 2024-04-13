@@ -27,6 +27,10 @@ export const Header = ({ isLoggedIn, logout, user }: HeaderProps) => {
     navigate('/profile')
   }
 
+  const goToSignIn = () => {
+    navigate('/sign-in')
+  }
+
   const goToDecks = () => {
     navigate('/')
   }
@@ -82,7 +86,11 @@ export const Header = ({ isLoggedIn, logout, user }: HeaderProps) => {
             </DropDownMenu>
           </div>
         )}
-        {!isLoggedIn && <Button variant={'primary'}>Sign In</Button>}
+        {!isLoggedIn && (
+          <Button onClick={goToSignIn} variant={'primary'}>
+            Sign In
+          </Button>
+        )}
       </div>
     </div>
   )

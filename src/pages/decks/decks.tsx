@@ -104,7 +104,7 @@ export const Decks = () => {
         />
         {decks && decks.items.length > 0 && (
           <>
-            <TableForDecks decks={decks} setSort={onChangeSort} sort={sort} />
+            <TableForDecks authMe={user} decks={decks} setSort={onChangeSort} sort={sort} />
             <Pagination
               count={decks?.pagination?.totalPages || 1}
               onChange={onChangeSetPage}

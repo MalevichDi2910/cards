@@ -3,18 +3,20 @@ import { Link } from 'react-router-dom'
 import { PlayCircle } from '@/assets/icons/playCircle'
 import { GetDecksResponse } from '@/common/services/api'
 import { Column, Sort, Table, TableHeader } from '@/components/ui/table'
+import { AuthResponseType } from '@/features/auth/api'
 import { DeleteDeck } from '@/features/decks/ui/delete-deck'
 import { EditDeck } from '@/features/decks/ui/edit-deck'
 
 import s from './table-for-decks.module.scss'
 
 type TableForDecksProps = {
+  authMe: AuthResponseType | null | undefined
   decks: GetDecksResponse
   setSort: (sort: Sort | null) => void
   sort: Sort | null
 }
 
-export const TableForDecks = ({ decks, setSort, sort }: TableForDecksProps) => {
+export const TableForDecks = ({ authMe, decks, setSort, sort }: TableForDecksProps) => {
   const tableColumn: Column[] = [
     { key: 'name', sortable: true, title: 'Name' },
     { key: 'cardsCount', sortable: true, title: 'Cards' },
@@ -43,9 +45,15 @@ export const TableForDecks = ({ decks, setSort, sort }: TableForDecksProps) => {
               <Table.Cell>{deck.author.name}</Table.Cell>
               <Table.Cell>
                 <div className={s.icons}>
-                  <PlayCircle />
-                  <EditDeck deckId={deck.id} isPrivate={deck.isPrivate} name={deck.name} />
-                  <DeleteDeck deckId={deck.id} />
+                  <Link className={s.name} to={`/decks/${deck.id}/learn`}>
+                    <PlayCircle />
+                  </Link>
+                  {deck.author.id === authMe?.id && (
+                    <>
+                      <EditDeck deckId={deck.id} isPrivate={deck.isPrivate} name={deck.name} />
+                      <DeleteDeck deckId={deck.id} />
+                    </>
+                  )}
                 </div>
               </Table.Cell>
             </Table.Row>

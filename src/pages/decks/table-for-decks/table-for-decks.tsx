@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 import { PlayCircle } from '@/assets/icons/playCircle'
 import { GetDecksResponse } from '@/common/services/api'
@@ -45,9 +46,13 @@ export const TableForDecks = ({ authMe, decks, setSort, sort }: TableForDecksPro
               <Table.Cell>{deck.author.name}</Table.Cell>
               <Table.Cell>
                 <div className={s.icons}>
-                  <Link className={s.name} to={`/decks/${deck.id}/learn`}>
-                    <PlayCircle />
-                  </Link>
+                  {deck.cardsCount ? (
+                    <Link className={s.name} to={`/decks/${deck.id}/learn`}>
+                      <PlayCircle />
+                    </Link>
+                  ) : (
+                    <PlayCircle className={s.icon} onClick={() => toast.error('no cards')} />
+                  )}
                   {deck.author.id === authMe?.id && (
                     <>
                       <EditDeck deckId={deck.id} isPrivate={deck.isPrivate} name={deck.name} />

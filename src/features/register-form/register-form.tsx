@@ -35,7 +35,7 @@ export const RegisterForm = () => {
     const { email, password } = data
 
     signUp({ email, password }).then(() => {
-      navigate('/v1/sign-in')
+      navigate('/sign-in')
     })
   })
 

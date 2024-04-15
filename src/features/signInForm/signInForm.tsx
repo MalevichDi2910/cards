@@ -7,7 +7,6 @@ import { ControlledCheckbox } from '@/components/ui/controlled/controlled-checkb
 import { ControlledTextField } from '@/components/ui/controlled/controlled-textField'
 import { Typography } from '@/components/ui/typography'
 import { SignInFormSchema, SignInFormValues } from '@/features/signInForm/signInFormSchema'
-import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import s from './signInForm.module.scss'
@@ -37,7 +36,6 @@ export const SignInForm = ({ onSubmit }: Props) => {
           Sign In
         </Typography>
         <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
-          <DevTool control={control} />
           <ControlledTextField
             control={control}
             errorMessage={errors.email?.message}

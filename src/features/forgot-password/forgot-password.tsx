@@ -9,7 +9,6 @@ import {
   ForgotPasswordFormValues,
   forgotPasswordSchema,
 } from '@/features/forgot-password/forgot-password-schema'
-import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import s from './forgot-password.module.scss'
@@ -32,7 +31,6 @@ export const ForgotPasswordForm = ({ onSubmit }: Props) => {
           Forgot your password?
         </Typography>
         <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
-          <DevTool control={control} />
           <ControlledTextField
             control={control}
             errorMessage={errors.email?.message}

@@ -13,7 +13,6 @@ import {
   PersonalInfoFormValues,
   PersonalInfoSchema,
 } from '@/features/personal-information/personal-info-schema'
-import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import s from './personal-info.module.scss'
@@ -77,7 +76,6 @@ export const PersonalInfo = ({ onLoadFileCover, update, user }: Props) => {
       </div>
       {editMode && (
         <form className={s.editBottomWrapper} onSubmit={handleSubmit(onSubmitHandler)}>
-          <DevTool control={control} />
           <ControlledTextField
             control={control}
             errorMessage={errors.name?.message}

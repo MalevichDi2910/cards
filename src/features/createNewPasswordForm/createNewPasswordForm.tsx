@@ -8,7 +8,6 @@ import {
   CreateNewPasswordFormSchema,
   CreateNewPasswordFormValues,
 } from '@/features/createNewPasswordForm/CreateNewPasswordFormSchema'
-import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import s from './createNewPasswordForm.module.scss'
@@ -34,7 +33,6 @@ export const CreateNewPasswordForm = ({ onSubmit }: Props) => {
           Create new password
         </Typography>
         <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
-          <DevTool control={control} />
           <ControlledTextField
             control={control}
             errorMessage={errors.password?.message}

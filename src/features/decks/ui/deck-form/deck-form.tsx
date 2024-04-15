@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/button'
 import { Typography } from '@/components/ui/typography'
 import { DeckFormField } from '@/features/decks/ui/deck-form/deck-form-field'
 import { DeckFormValues, deckFormSchema } from '@/features/decks/ui/deck-form-schema'
-import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import s from '@/features/cards/ui/cardForm/cardForm.module.scss'
@@ -48,7 +47,6 @@ export const DeckForm = ({ buttonTitle, closeModal, defaultValues, onSubmit }: P
   return (
     <>
       <form className={s.form} onSubmit={handleSubmit(onSubmitHandler)}>
-        <DevTool control={control} />
         <DeckFormField
           control={control}
           errors={errors.name?.message}

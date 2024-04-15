@@ -10,7 +10,6 @@ import {
   RegisterFormValues,
   registerFormSchema,
 } from '@/features/register-form/register-form-schema'
-import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import s from './register-form.module.scss'
@@ -46,7 +45,6 @@ export const RegisterForm = () => {
           Sign Up
         </Typography>
         <form className={s.form} onSubmit={onSubmit}>
-          <DevTool control={control} />
           <ControlledTextField
             control={control}
             errorMessage={errors.email?.message}

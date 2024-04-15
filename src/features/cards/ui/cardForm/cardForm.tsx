@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form'
 import { Button } from '@/components/ui/button'
 import { Typography } from '@/components/ui/typography'
 import { CardFormValues, cardFormSchema } from '@/features/cards/ui/cardForm/cardFormSchema'
-import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import s from '@/features/cards/ui/cardForm/cardForm.module.scss'
@@ -60,7 +59,6 @@ export const CardForm = ({ buttonTitle, cardValues, closeModal, onSubmit }: Prop
   return (
     <>
       <form className={s.form} onSubmit={handleSubmit(onSubmitHandler)}>
-        <DevTool control={control} />
         <CardFormField
           control={control}
           errors={errors.question?.message}

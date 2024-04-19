@@ -55,10 +55,10 @@ export const Header = ({ isLoggedIn, logout, user }: HeaderProps) => {
                 ></Avatar>
               }
             >
-              <DropDownItem asChild onClick={goToMyProfile} onSelect={() => {}}>
+              <DropDownItem asChild disable onClick={goToMyProfile} onSelect={() => {}}>
                 <div className={c.photoAndEmail}>
                   <Avatar size={'small'} src={user.src!} userName={user.name!} />
-                  <div className={c.nameAndEmail}>
+                  <div>
                     <Typography as={'div'} className={c.userName} variant={'subtitle2'}>
                       {user.name}
                     </Typography>
@@ -72,6 +72,7 @@ export const Header = ({ isLoggedIn, logout, user }: HeaderProps) => {
               </DropDownItem>
               <DropDownSeparator />
               <DropDownItemWithIcon
+                disable={false}
                 icon={<PersonIcon className={c.icon} size={1} />}
                 onClick={goToMyProfile}
                 onSelect={() => {}}
@@ -79,6 +80,7 @@ export const Header = ({ isLoggedIn, logout, user }: HeaderProps) => {
               />
               <DropDownSeparator />
               <DropDownItemWithIcon
+                disable={false}
                 icon={<LogOut size={1} />}
                 onSelect={logout}
                 text={'Sign Out'}

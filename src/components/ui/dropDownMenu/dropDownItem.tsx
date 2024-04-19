@@ -11,15 +11,16 @@ import s from './dropDownMenu.module.scss'
 type DropDownItemProps = {
   children?: ReactNode
   className?: string
+  disable: boolean
   onSelect: (event: Event) => void
 } & ComponentPropsWithoutRef<typeof DropdownMenuRadix.Item>
 
 export const DropDownItem = forwardRef<
   ElementRef<typeof DropdownMenuRadix.Item>,
   DropDownItemProps
->(({ children, className, onSelect, ...rest }, ref) => {
+>(({ children, className, disable, onSelect, ...rest }, ref) => {
   const classNames = {
-    item: clsx(s.item, className),
+    item: clsx(disable ? s.disableItem : s.item, className),
   }
   const onSelectHandler = (e: Event) => {
     onSelect && onSelect(e)

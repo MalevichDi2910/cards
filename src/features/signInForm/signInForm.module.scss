@@ -1,3 +1,9 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .card {
   display: flex;
   flex-direction: column;
@@ -39,4 +45,9 @@
   cursor: pointer;
   color: var(--color-primary-500);
   text-decoration: underline;
+}
+
+.info {
+  width: 100px;
+  height: 36px;
 }

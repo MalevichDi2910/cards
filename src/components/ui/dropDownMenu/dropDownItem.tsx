@@ -48,9 +48,9 @@ type DropDownItemWithIconProps = Omit<DropDownItemProps, 'children'> & {
 export const DropDownItemWithIcon = forwardRef<
   ElementRef<typeof DropdownMenuRadix.Item>,
   DropDownItemWithIconProps
->(({ children, className, icon, onSelect, text, ...rest }, ref) => {
+>(({ children, className, disable, icon, onSelect, text, ...rest }, ref) => {
   const classNames = {
-    item: clsx(s.item, className),
+    item: clsx(disable ? s.disableItem : s.item, className),
     itemIcon: s.itemIcon,
   }
 

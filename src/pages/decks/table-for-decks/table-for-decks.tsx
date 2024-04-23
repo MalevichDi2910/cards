@@ -47,7 +47,7 @@ export const TableForDecks = ({ authMe, decks, setSort, sort }: TableForDecksPro
               <Table.Cell>
                 <div className={s.icons}>
                   {deck.cardsCount ? (
-                    <Link className={s.name} to={`/decks/${deck.id}/learn`}>
+                    <Link className={s.icon} to={`/decks/${deck.id}/learn`}>
                       <PlayCircle />
                     </Link>
                   ) : (
@@ -56,7 +56,7 @@ export const TableForDecks = ({ authMe, decks, setSort, sort }: TableForDecksPro
                   {deck.author.id === authMe?.id && (
                     <>
                       <EditDeck deckId={deck.id} isPrivate={deck.isPrivate} name={deck.name} />
-                      <DeleteDeck deckId={deck.id} />
+                      <DeleteDeck deckId={deck.id} name={deck.name} />
                     </>
                   )}
                 </div>

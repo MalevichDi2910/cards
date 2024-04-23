@@ -47,9 +47,8 @@ export const SignInForm = ({ onSubmit }: Props) => {
       </Typography>
     </Button>
   )
-
   const bodyText =
-    "If you currently can't sign in to Google Chrome, use a different browser. Third-party browser cookies do not work for everyone. Google is gradually disabling them."
+    'If you currently can not sign in to Google Chrome, use a different browser. Third-party browser cookies do not work for everyone. Google is gradually disabling them.'
 
   return (
     <div className={s.container}>
@@ -100,7 +99,11 @@ export const SignInForm = ({ onSubmit }: Props) => {
         onOpenChange={() => onChangeOpen(!open)}
         title={'Attention!'}
         trigger={trigger}
-      ></Modal>
+      >
+        <p className={s.titleData}>Common test account credentials:</p>
+        <p>Email: test@test.com</p>
+        <p>Password: test</p>
+      </Modal>
     </div>
   )
 }

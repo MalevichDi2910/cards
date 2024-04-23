@@ -18,15 +18,20 @@ export const DropDownDeckTools = ({ deck }: Props) => {
 
   return (
     <>
-      <DropDownItemWithIcon icon={<PlayCircle size={1} />} onSelect={toLearnDeck} text={'Learn'} />
+      <DropDownItemWithIcon
+        disable={false}
+        icon={<PlayCircle size={1} />}
+        onSelect={toLearnDeck}
+        text={'Learn'}
+      />
       <DropDownSeparator />
-      <DropDownItem asChild onSelect={() => {}}>
+      <DropDownItem asChild disable={false} onSelect={() => {}}>
         <EditDeck deckId={deck.id} isPrivate={deck.isPrivate} name={deck.name} />
         <Typography variant={'caption'}>{'Edit'}</Typography>
       </DropDownItem>
       <DropDownSeparator />
-      <DropDownItem asChild onSelect={() => {}}>
-        <DeleteDeck deckId={deck.id} />
+      <DropDownItem asChild disable={false} onSelect={() => {}}>
+        <DeleteDeck deckId={deck.id} name={deck.name} />
         <Typography variant={'caption'}>{'Delete'}</Typography>
       </DropDownItem>
     </>

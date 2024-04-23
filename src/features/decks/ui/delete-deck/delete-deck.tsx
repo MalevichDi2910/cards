@@ -12,8 +12,9 @@ import s from '@/components/ui/modal/modal.module.scss'
 
 type DeleteDeckProps = {
   deckId: string
+  name: string
 }
-export const DeleteDeck = ({ deckId }: DeleteDeckProps) => {
+export const DeleteDeck = ({ deckId, name }: DeleteDeckProps) => {
   const [deleteDeck] = useDeleteDeckMutation()
 
   const [open, setOpen] = useState<boolean>(false)
@@ -46,7 +47,7 @@ export const DeleteDeck = ({ deckId }: DeleteDeckProps) => {
       >
         <div>
           <Typography as={'p'} variant={'body1'}>
-            Do you really want to remove <Typography variant={'subtitle1'}>Pack Name</Typography>?
+            Do you really want to remove <Typography variant={'subtitle1'}>{name}</Typography>?
           </Typography>
           <Typography as={'p'} variant={'body1'}>
             All cards will be deleted.

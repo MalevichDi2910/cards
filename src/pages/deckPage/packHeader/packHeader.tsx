@@ -19,7 +19,7 @@ export const PackHeader = ({ deck, isEmptyCard, isOwner }: Props) => {
     <div className={s.root}>
       <div className={s.deckOwnerWrapper}>
         <Typography as={'h1'} variant={'large'}>
-          {isOwner && isEmptyCard ? 'My Pack' : 'Friends Pack'}
+          {deck.name}
         </Typography>
         {isOwner && (
           <DropDownMenu>

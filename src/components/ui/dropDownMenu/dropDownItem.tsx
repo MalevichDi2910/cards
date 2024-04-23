@@ -11,15 +11,16 @@ import s from './dropDownMenu.module.scss'
 type DropDownItemProps = {
   children?: ReactNode
   className?: string
+  disable: boolean
   onSelect: (event: Event) => void
 } & ComponentPropsWithoutRef<typeof DropdownMenuRadix.Item>
 
 export const DropDownItem = forwardRef<
   ElementRef<typeof DropdownMenuRadix.Item>,
   DropDownItemProps
->(({ children, className, onSelect, ...rest }, ref) => {
+>(({ children, className, disable, onSelect, ...rest }, ref) => {
   const classNames = {
-    item: clsx(s.item, className),
+    item: clsx(disable ? s.disableItem : s.item, className),
   }
   const onSelectHandler = (e: Event) => {
     onSelect && onSelect(e)
@@ -47,9 +48,9 @@ type DropDownItemWithIconProps = Omit<DropDownItemProps, 'children'> & {
 export const DropDownItemWithIcon = forwardRef<
   ElementRef<typeof DropdownMenuRadix.Item>,
   DropDownItemWithIconProps
->(({ children, className, icon, onSelect, text, ...rest }, ref) => {
+>(({ children, className, disable, icon, onSelect, text, ...rest }, ref) => {
   const classNames = {
-    item: clsx(s.item, className),
+    item: clsx(disable ? s.disableItem : s.item, className),
     itemIcon: s.itemIcon,
   }
 

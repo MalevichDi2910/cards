@@ -22,7 +22,7 @@ export const Profile = () => {
   const onUpdateAvatar = async (data: File) => {
     const formData = new FormData()
 
-    await formData.append('avatar', data)
+    formData.append('avatar', data)
 
     updateProfile(formData)
   }

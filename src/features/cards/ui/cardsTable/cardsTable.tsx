@@ -59,9 +59,11 @@ export const CardsTable = ({ cards, isOwner, onSort, sort }: Props) => {
                 <Rating rating={card.grade} />
               </Table.Cell>
               {isOwner && (
-                <Table.Cell className={s.cellsButton}>
-                  <EditCard card={card} />
-                  <DeleteCard id={card.id} />
+                <Table.Cell>
+                  <div className={s.cellsButton}>
+                    <EditCard card={card} />
+                    <DeleteCard id={card.id} />
+                  </div>
                 </Table.Cell>
               )}
             </Table.Row>

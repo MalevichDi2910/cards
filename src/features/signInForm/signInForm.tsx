@@ -1,11 +1,15 @@
 import { useForm } from 'react-hook-form'
+import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 
+import { useAppSelector } from '@/common/services/store'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { ControlledCheckbox } from '@/components/ui/controlled/controlled-checkbox/controlled-checkbox'
 import { ControlledTextField } from '@/components/ui/controlled/controlled-textField'
+import Modal from '@/components/ui/modal/modal'
 import { Typography } from '@/components/ui/typography'
+import { modalsActions, selectOpenModal } from '@/features/modals'
 import { SignInFormSchema, SignInFormValues } from '@/features/signInForm/signInFormSchema'
 import { zodResolver } from '@hookform/resolvers/zod'
 
@@ -29,8 +33,25 @@ export const SignInForm = ({ onSubmit }: Props) => {
     resolver: zodResolver(SignInFormSchema),
   })
 
+  const dispatch = useDispatch()
+  const open = useAppSelector(selectOpenModal)
+
+  const onChangeOpen = (openModal: boolean) => {
+    dispatch(modalsActions.setOpenModal({ openModal }))
+  }
+
+  const trigger = (
+    <Button className={s.info}>
+      <Typography as={'span'} variant={'subtitle2'}>
+        Info
+      </Typography>
+    </Button>
+  )
+  const bodyText =
+    'If you currently can not sign in to Google Chrome, use a different browser. Third-party browser cookies do not work for everyone. Google is gradually disabling them.'
+
   return (
-    <>
+    <div className={s.container}>
       <Card className={s.card} variant={'dark'}>
         <Typography as={'h1'} className={s.title} variant={'large'}>
           Sign In
@@ -71,6 +92,18 @@ export const SignInForm = ({ onSubmit }: Props) => {
           Sign Up
         </Button>
       </Card>
-    </>
+      <Modal
+        bodyText={bodyText}
+        closeIcon
+        isOpen={open}
+        onOpenChange={() => onChangeOpen(!open)}
+        title={'Attention!'}
+        trigger={trigger}
+      >
+        <p className={s.titleData}>Common test account credentials:</p>
+        <p>Email: test@test.com</p>
+        <p>Password: test</p>
+      </Modal>
+    </div>
   )
 }

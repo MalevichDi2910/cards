@@ -39,7 +39,7 @@ export const UserInfo: Story = {
   args: {
     children: (
       <>
-        <DropDownItem asChild onSelect={() => {}}>
+        <DropDownItem asChild disable onSelect={() => {}}>
           <div className={s.photoAndEmail}>
             <Avatar size={'small'} src={user.src} userName={user.name} />
             <div className={s.nameAndEmail}>
@@ -56,12 +56,18 @@ export const UserInfo: Story = {
         </DropDownItem>
         <DropDownSeparator />
         <DropDownItemWithIcon
+          disable={false}
           icon={<PersonIcon className={s.icon} size={1} />}
           onSelect={() => {}}
           text={'My Profile'}
         />
         <DropDownSeparator />
-        <DropDownItemWithIcon icon={<LogOut size={1} />} onSelect={() => {}} text={'Sign Out'} />
+        <DropDownItemWithIcon
+          disable={false}
+          icon={<LogOut size={1} />}
+          onSelect={() => {}}
+          text={'Sign Out'}
+        />
       </>
     ),
     trigger: <Avatar size={'small'} src={user.src} userName={user.name} />,
@@ -71,11 +77,21 @@ export const MoreInfo: Story = {
   args: {
     children: (
       <>
-        <DropDownItemWithIcon icon={<PlayCircle size={1} />} onSelect={() => {}} text={'Learn'} />
+        <DropDownItemWithIcon
+          disable
+          icon={<PlayCircle size={1} />}
+          onSelect={() => {}}
+          text={'Learn'}
+        />
         <DropDownSeparator />
-        <DropDownItemWithIcon icon={<Edit size={1} />} onSelect={() => {}} text={'Edit'} />
+        <DropDownItemWithIcon disable icon={<Edit size={1} />} onSelect={() => {}} text={'Edit'} />
         <DropDownSeparator />
-        <DropDownItemWithIcon icon={<Delete size={1} />} onSelect={() => {}} text={'Delete'} />
+        <DropDownItemWithIcon
+          disable
+          icon={<Delete size={1} />}
+          onSelect={() => {}}
+          text={'Delete'}
+        />
       </>
     ),
   },

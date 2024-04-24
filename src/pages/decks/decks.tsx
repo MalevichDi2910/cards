@@ -1,3 +1,4 @@
+import { useDebounce } from '@/common/hooks'
 import { useGetDecksQuery } from '@/common/services/decks'
 import { useAppDispatch, useAppSelector } from '@/common/services/store'
 import { Loader } from '@/components/ui/loader'
@@ -32,6 +33,7 @@ export const Decks = () => {
   const sort = useAppSelector(selectDecksSort)
 
   const sortedString = sort ? `${sort.key}-${sort.direction}` : null
+  const debouncedSearch = useDebounce(search, 1000)
 
   const { data: user } = useMeQuery()
 
@@ -45,7 +47,7 @@ export const Decks = () => {
     itemsPerPage: pageSize,
     maxCardsCount: range[1],
     minCardsCount: range[0],
-    name: search,
+    name: debouncedSearch,
     orderBy: sortedString,
   })
 

@@ -31,9 +31,9 @@ export const Profile = () => {
     <div className={s.root}>
       <GoBack className={s.link} title={'Back to Decks List'} />
       <PersonalInfo
+        data={data as ProfileDataType}
         onLoadFileCover={onUpdateAvatar}
         update={onUpdateProfile}
-        user={data as ProfileDataType}
       />
     </div>
   )

@@ -1,5 +1,6 @@
 import { Navigate, RouteObject } from 'react-router-dom'
 
+import { CheckEmail } from '@/features/check-email'
 import { RegisterForm } from '@/features/register-form'
 import { CreateNewPasswordPage } from '@/pages/createNewPasswordPage'
 import { DeckPage } from '@/pages/deckPage/deckPage'
@@ -24,6 +25,7 @@ export const publicRoutes: RouteObject[] = [
         element: <h1>not-found</h1>,
         path: '/not-found',
       },
+      { element: <CheckEmail />, path: '/check-email/:email' },
       { element: <ForgotPasswordPage />, path: '/forgot-password' },
       { element: <CreateNewPasswordPage />, path: `/create-new-password/:token` },
     ],

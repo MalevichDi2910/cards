@@ -19,6 +19,6 @@ const user = {
 
 export const Primary1: Story = {
   args: {
-    user: user,
+    data: user,
   },
 }

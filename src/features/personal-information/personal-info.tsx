@@ -23,19 +23,25 @@ export type ProfileDataType = {
 }
 
 type Props = {
+  data: ProfileDataType
   onLoadFileCover: (data: File) => void
   update: (data: PersonalInfoFormValues) => void
-  user: ProfileDataType
 }
 
-export const PersonalInfo = ({ onLoadFileCover, update, user }: Props) => {
+export const PersonalInfo = ({ data, onLoadFileCover, update }: Props) => {
+  const { avatar, email, name } = data
   const [editMode, setEditMode] = useState<boolean>(false)
   const [logout] = useLogoutMutation()
   const {
     control,
     formState: { errors },
     handleSubmit,
-  } = useForm<PersonalInfoFormValues>({ resolver: zodResolver(PersonalInfoSchema) })
+  } = useForm<PersonalInfoFormValues>({
+    defaultValues: {
+      name,
+    },
+    resolver: zodResolver(PersonalInfoSchema),
+  })
   const onSubmitHandler = (data: PersonalInfoFormValues) => {
     update(data)
     setEditMode(false)
@@ -56,7 +62,7 @@ export const PersonalInfo = ({ onLoadFileCover, update, user }: Props) => {
       <Typography variant={'large'}>Personal Information</Typography>
       <div className={s.avatarWithIconWrapper}>
         <form className={s.avatarWithIcon}>
-          <Avatar size={'large'} src={user.avatar} userName={user.name}></Avatar>
+          <Avatar size={'large'} src={avatar} userName={name}></Avatar>
           <Button
             as={'label'}
             className={s.editButton}
@@ -92,7 +98,7 @@ export const PersonalInfo = ({ onLoadFileCover, update, user }: Props) => {
         <div className={s.bottomWrapper}>
           <div className={s.nameAndIcon}>
             <Typography className={s.name} variant={'h1'}>
-              {user.name}
+              {name}
             </Typography>
             <Edit
               as={'button'}
@@ -102,7 +108,7 @@ export const PersonalInfo = ({ onLoadFileCover, update, user }: Props) => {
             />
           </div>
           <Typography className={s.email} variant={'body2'}>
-            {user.email}
+            {email}
           </Typography>
           <Button className={s.logoutButton} onClick={logOut} variant={'secondary'}>
             <LogOut size={1} />

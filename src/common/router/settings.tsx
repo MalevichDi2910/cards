@@ -7,6 +7,7 @@ import { DeckPage } from '@/pages/deckPage/deckPage'
 import { Decks } from '@/pages/decks'
 import { ForgotPasswordPage } from '@/pages/forgotPasswordPage'
 import { LearnCard } from '@/pages/learnCard/learnCard'
+import { NotFoundPage } from '@/pages/notFoundPage'
 import { Profile } from '@/pages/profile'
 import { SignInPage } from '@/pages/signInPage/signInPage'
 
@@ -22,7 +23,7 @@ export const publicRoutes: RouteObject[] = [
         path: '/sign-up',
       },
       {
-        element: <h1>not-found</h1>,
+        element: <NotFoundPage />,
         path: '/not-found',
       },
       { element: <CheckEmail />, path: '/check-email/:email' },

@@ -2,6 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react'
 
 import LogOut from '@/assets/icons/logOut'
 
+import '@/styles/index.scss'
+
 import { Button } from './'
 
 const meta = {

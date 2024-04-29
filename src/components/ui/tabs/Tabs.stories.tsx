@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
+import '@/styles/index.scss'
+
 import { TabItem } from './tabItem'
 import { Tabs } from './tabs'
 

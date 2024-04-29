@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
+import '@/styles/index.scss'
+
 import { Card } from './card'
 
 const meta = {

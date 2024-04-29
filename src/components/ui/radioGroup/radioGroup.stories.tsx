@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
+import '@/styles/index.scss'
+
 import { RadioGroup } from './radioGroup'
 
 const meta = {

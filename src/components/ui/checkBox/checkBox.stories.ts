@@ -2,6 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react'
 
 import { Checkbox } from '@/components/ui/checkBox/checkBox'
 
+import '@/styles/index.scss'
+
 const meta = {
   argTypes: {
     label: { type: 'string' },

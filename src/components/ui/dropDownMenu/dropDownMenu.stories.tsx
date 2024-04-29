@@ -11,6 +11,8 @@ import { DropDownMenu } from '@/components/ui/dropDownMenu/dropDownMenu'
 import { DropDownSeparator } from '@/components/ui/dropDownMenu/dropDownSeparator'
 import { Typography } from '@/components/ui/typography'
 
+import '@/styles/index.scss'
+
 import s from './dropDownMenu.module.scss'
 
 const meta = {

@@ -1,6 +1,8 @@
 import { Rating } from '@/components/ui/rating/rating'
 import { Meta, StoryObj } from '@storybook/react'
 
+import '@/styles/index.scss'
+
 const meta: Meta<typeof Rating> = {
   argTypes: {
     rating: Number,

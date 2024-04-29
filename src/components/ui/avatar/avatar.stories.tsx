@@ -1,5 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react'
 
+import '@/styles/index.scss'
+
 import { Avatar } from './avatar'
 
 const meta: Meta<typeof Avatar> = {

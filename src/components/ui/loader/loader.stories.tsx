@@ -1,6 +1,8 @@
 import { Loader } from '@/components/ui/loader/loader'
 import { Meta, StoryObj } from '@storybook/react'
 
+import '@/styles/index.scss'
+
 const meta: Meta<typeof Loader> = {
   component: Loader,
   tags: ['autodocs'],

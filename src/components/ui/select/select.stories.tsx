@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
+import '@/styles/index.scss'
+
 import { Option, Select } from './select'
 
 const meta = {

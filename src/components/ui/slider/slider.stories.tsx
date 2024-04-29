@@ -2,6 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react'
 
 import { useState } from 'react'
 
+import '@/styles/index.scss'
+
 import { Slider } from './slider'
 
 const meta = {

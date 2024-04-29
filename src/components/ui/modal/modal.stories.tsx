@@ -9,6 +9,8 @@ import { Option, Select } from '@/components/ui/select'
 import { TextField } from '@/components/ui/textField'
 import * as Dialog from '@radix-ui/react-dialog'
 
+import '@/styles/index.scss'
+
 import s from '@/components/ui/modal/modal.module.scss'
 
 const meta = {

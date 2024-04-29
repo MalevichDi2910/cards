@@ -1,9 +1,24 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
+import { Provider } from 'react-redux'
+import { BrowserRouter } from 'react-router-dom'
+
+import { store } from '@/common/services/store'
 import { PersonalInfo } from '@/features/personal-information/personal-info'
+
+import '@/styles/index.scss'
 
 const meta = {
   component: PersonalInfo,
+  decorators: [
+    Story => (
+      <Provider store={store}>
+        <BrowserRouter>
+          <Story />
+        </BrowserRouter>
+      </Provider>
+    ),
+  ],
   tags: ['autodocs'],
   title: 'Features/PersonalInformation',
 } satisfies Meta<typeof PersonalInfo>

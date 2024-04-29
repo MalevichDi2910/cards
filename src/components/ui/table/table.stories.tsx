@@ -1,13 +1,16 @@
 import { CSSProperties } from 'react'
-import { Meta, StoryObj } from '@storybook/react'
-import { Table } from '@/components/ui/table/table'
-import { IconButton } from '@/components/ui/iconButton'
-import { PlayCircle } from '@/assets/icons/playCircle'
-import { Edit } from '@/assets/icons/edit'
+
 import { Delete } from '@/assets/icons/delete'
+import { Edit } from '@/assets/icons/edit'
+import { PlayCircle } from '@/assets/icons/playCircle'
+import { IconButton } from '@/components/ui/iconButton'
+import { Rating } from '@/components/ui/rating'
+import { Table } from '@/components/ui/table/table'
 import { Column, TableHeader } from '@/components/ui/table/tableHeader'
 import { Typography } from '@/components/ui/typography'
-import { Rating } from '@/components/ui/rating'
+import { Meta, StoryObj } from '@storybook/react'
+
+import '@/styles/index.scss'
 
 const meta: Meta<typeof Table.Root> = {
   component: Table.Root,
@@ -52,9 +55,7 @@ const columnsDefaultPackList: Column[] = [
 
 const dataPackList = [
   {
-    title: 'Pack Name 1',
     cardsCount: 4,
-    lastUpdated: '18.01.23',
     createdBy: 'Dennis Ruiz',
     icons: {
       ...(
@@ -65,11 +66,11 @@ const dataPackList = [
         </div>
       ),
     },
+    lastUpdated: '18.01.23',
+    title: 'Pack Name 1',
   },
   {
-    title: 'Pack Name 2',
     cardsCount: 8,
-    lastUpdated: '07.01.23',
     createdBy: 'Erik Carter',
     icons: {
       ...(
@@ -80,11 +81,11 @@ const dataPackList = [
         </div>
       ),
     },
+    lastUpdated: '07.01.23',
+    title: 'Pack Name 2',
   },
   {
-    title: 'Pack Name 3',
     cardsCount: 5,
-    lastUpdated: '08.04.23',
     createdBy: 'James Glover',
     icons: {
       ...(
@@ -95,11 +96,11 @@ const dataPackList = [
         </div>
       ),
     },
+    lastUpdated: '08.04.23',
+    title: 'Pack Name 3',
   },
   {
-    title: 'Pack Name 4',
     cardsCount: 7,
-    lastUpdated: '11.05.23',
     createdBy: 'Dave Smith',
     icons: {
       ...(
@@ -110,6 +111,8 @@ const dataPackList = [
         </div>
       ),
     },
+    lastUpdated: '11.05.23',
+    title: 'Pack Name 4',
   },
 ]
 
@@ -158,9 +161,7 @@ const columnsFriendsPack: Column[] = [
 
 const dataFriendsPack = [
   {
-    question: 'How "This" works in JavaScript?',
     answer: 'This is how "This" works in JavaScript',
-    lastUpdated: '18.01.23',
     grade: {
       ...(
         <>
@@ -168,11 +169,11 @@ const dataFriendsPack = [
         </>
       ),
     },
+    lastUpdated: '18.01.23',
+    question: 'How "This" works in JavaScript?',
   },
   {
-    question: 'How "This" works in JavaScript?',
     answer: 'This is how "This" works in JavaScript',
-    lastUpdated: '07.01.23',
     grade: {
       ...(
         <>
@@ -180,11 +181,11 @@ const dataFriendsPack = [
         </>
       ),
     },
+    lastUpdated: '07.01.23',
+    question: 'How "This" works in JavaScript?',
   },
   {
-    question: 'How "This" works in JavaScript?',
     answer: 'This is how "This" works in JavaScript',
-    lastUpdated: '08.04.23',
     grade: {
       ...(
         <>
@@ -192,11 +193,11 @@ const dataFriendsPack = [
         </>
       ),
     },
+    lastUpdated: '08.04.23',
+    question: 'How "This" works in JavaScript?',
   },
   {
-    question: 'How "This" works in JavaScript?',
     answer: 'This is how "This" works in JavaScript',
-    lastUpdated: '11.05.23',
     grade: {
       ...(
         <>
@@ -204,6 +205,8 @@ const dataFriendsPack = [
         </>
       ),
     },
+    lastUpdated: '11.05.23',
+    question: 'How "This" works in JavaScript?',
   },
 ]
 
